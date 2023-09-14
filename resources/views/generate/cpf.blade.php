@@ -79,76 +79,10 @@
     </main>
 @endsection
 
+@vite('resources/js/generate/cpf.js')
+
 @section('scripts')
     <script>
-        const generateCPF = (punctuation = true, uf = null) => {
-            const states = {
-                'DF': 1,
-                'GO': 1,
-                'MT': 1,
-                'MS': 1,
-                'TO': 1,
-                'AC': 2,
-                'AM': 2,
-                'AP': 2,
-                'PA': 2,
-                'RO': 2,
-                'RR': 2,
-                'CE': 3,
-                'MA': 3,
-                'PI': 3,
-                'PB': 4,
-                'PE': 4,
-                'AL': 4,
-                'RN': 4,
-                'BA': 5,
-                'SE': 5,
-                'MG': 6,
-                'RJ': 7,
-                'ES': 7,
-                'SP': 8,
-                'PR': 9,
-                'SC': 9,
-                'RS': 0,
-            };
-
-            let cpf = '';
-            for (let i = 0; i < 8; i++) {
-                cpf += Math.floor(Math.random() * 9);
-            }
-
-            if (uf) {
-                cpf += states[uf];
-            } else {
-                cpf += Math.floor(Math.random() * 9);
-            }
-
-            let soma = 0;
-            for (let i = 0; i < 9; i++) {
-                soma += parseInt(cpf[i]) * (10 - i);
-            }
-            let resto = soma % 11;
-            let digito1 = (resto < 2) ? 0 : (11 - resto);
-
-            cpf += digito1;
-
-            soma = 0;
-            for (let i = 0; i < 10; i++) {
-                soma += parseInt(cpf[i]) * (11 - i);
-            }
-
-            resto = soma % 11;
-            let digito2 = (resto < 2) ? 0 : (11 - resto);
-
-            cpf += digito2;
-
-            return punctuation ? punctuateCPF(cpf) : cpf;
-        }
-
-        const punctuateCPF = (cpf) => {
-            return cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + cpf.substring(6, 9) + '-' + cpf.substring(9);
-        }
-
         const generate = document.querySelector('#generate');
         generate.addEventListener('click', () => {
             const punctuation = document.querySelector('input[name="punctuation"]:checked').value === '1';
