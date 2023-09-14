@@ -65,13 +65,25 @@
                     <p>
                         CPF gerado
                     </p>
-                    <div class="flex items-center mt-3">
+                    <div class="flex items-center my-3">
                         <p id="cpf" class="text-2xl font-semibold w-[212px]">
                             000.000.000-00
                         </p>
                         <button id="generate" class="text-white rounded-md ml-3 px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light">
                             Gerar
                         </button>
+                    </div>
+                    <div class="flex gap-2">
+                        <button id="copy" class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-s-dark hover:bg-s-light-light dark:hover:bg-s-dark-light">
+                            Copiar
+                        </button>
+                        <a
+                            href="{{ route('validate.cpf') }}"
+                            class="text-white rounded-md px-4 py-2 bg-s-light dark:bg-s-dark hover:bg-s-light-light dark:hover:bg-s-dark-light"
+                            id="validate"
+                        >
+                            Validar CPF
+                        </a>
                     </div>
                 </div>
             </div>
@@ -87,7 +99,14 @@
             const punctuation = document.querySelector('input[name="punctuation"]:checked').value === '1';
             const uf = document.querySelector('#uf').value;
 
-            document.querySelector('#cpf').innerHTML = generate(punctuation, uf);
+            const generated = generate(punctuation, uf);
+            document.querySelector('#cpf').innerHTML = generated;
+            document.querySelector('#validate').href = `{{ route('validate.cpf') }}?cpf=${generated}`;
+        });
+
+        document.querySelector('#copy').addEventListener('click', () => {
+            const cpf = document.querySelector('#cpf').innerHTML;
+            navigator.clipboard.writeText(cpf);
         });
     </script>
 @endsection

@@ -18,6 +18,7 @@ class SiteController extends Controller
 
     public function validateCpf(): View
     {
-        return view('validate.cpf');
+        $cpf = request()->query('cpf');
+        return view('validate.cpf', ['cpf' => $cpf]);
     }
 }
