@@ -1,4 +1,4 @@
-window.generateCPF = (punctuation = true, uf = null) => {
+window.generate = (punctuation = true, uf = null) => {
     const states = [
         ['RS'],
         ['DF', 'GO', 'MT', 'MS', 'TO'],

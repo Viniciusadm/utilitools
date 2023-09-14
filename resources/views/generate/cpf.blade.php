@@ -83,12 +83,11 @@
 
 @section('scripts')
     <script>
-        const generate = document.querySelector('#generate');
-        generate.addEventListener('click', () => {
+        document.querySelector('#generate').addEventListener('click', () => {
             const punctuation = document.querySelector('input[name="punctuation"]:checked').value === '1';
             const uf = document.querySelector('#uf').value;
 
-            document.querySelector('#cpf').innerHTML = generateCPF(punctuation, uf);
+            document.querySelector('#cpf').innerHTML = generate(punctuation, uf);
         });
     </script>
 @endsection
