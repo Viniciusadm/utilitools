@@ -28,6 +28,8 @@ module.exports = {
             's-light': '#F97316',
             's-dark': '#EA580C',
             'white': '#FFFFFF',
+            'success': '#10B26C',
+            'danger': '#EF4444',
         },
         extend: {},
     },

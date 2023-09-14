@@ -15,4 +15,9 @@ class SiteController extends Controller
     {
         return view('generate.cpf');
     }
+
+    public function validateCpf(): View
+    {
+        return view('validate.cpf');
+    }
 }
