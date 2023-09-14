@@ -66,7 +66,7 @@ class GeneratorService
 
         $cpf .= $digito2;
 
-        return !$punctuation ? self::punctuation($cpf) : $cpf;
+        return $punctuation ? self::punctuation($cpf) : $cpf;
     }
 
     private static function punctuation($cpf): string

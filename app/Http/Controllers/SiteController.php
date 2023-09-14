@@ -10,4 +10,9 @@ class SiteController extends Controller
     {
         return view('home');
     }
+
+    public function generateCpf(): View
+    {
+        return view('generate.cpf');
+    }
 }
