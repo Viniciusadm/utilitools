@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\GeneratorController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +12,3 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::prefix('generator')->name('generator.')->group(function () {
-    Route::post('/cpf', [GeneratorController::class, 'cpf'])->name('cpf');
-});
