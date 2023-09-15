@@ -41,7 +41,14 @@ module.exports = {
             'success': '#10B26C',
             'danger': '#EF4444',
         },
-        extend: {},
+        extend: {
+            height: {
+                'sidebar': 'calc(100vh - 8rem)',
+            },
+            width: {
+                'content': 'calc(100% - 15rem)',
+            }
+        },
     },
     plugins: [],
 }

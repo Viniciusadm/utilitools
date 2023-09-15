@@ -3,7 +3,7 @@
 @section('title', 'Gerador de CPF')
 
 @section('content')
-    <main class="py-12 px-4 lg:px-0">
+    <main class="p-4 bg-a-light dark:bg-a-dark rounded-lg mt-4 w-screen sm:w-content">
         <h1 class="text-3xl font-semibold">
             Validar CPF
         </h1>
