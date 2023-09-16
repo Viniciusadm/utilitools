@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import purgeBootstrapIcons from 'vite-plugin-purge-bootstrap-icons'
 import fs from 'fs';
 import path from 'path';
 
@@ -22,5 +23,6 @@ export default defineConfig({
             ],
             refresh: true,
         }),
+        purgeBootstrapIcons(),
     ],
 });
