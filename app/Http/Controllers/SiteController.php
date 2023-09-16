@@ -27,6 +27,12 @@ class SiteController extends Controller
         return view('validate.cpf', ['cpf' => $cpf]);
     }
 
+    public function validateCnpj(): View
+    {
+        $cnpj = request()->query('cnpj');
+        return view('validate.cnpj', ['cnpj' => $cnpj]);
+    }
+
     public function editText(): View
     {
         return view('edit.text');

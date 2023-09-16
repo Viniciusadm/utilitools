@@ -1,4 +1,17 @@
 import { select } from "../helpers";
+import IMask from "imask";
+
+const calculateCNPJDigit = (cnpj) => {
+    let multiplier = 2;
+    let sum = 0;
+    for (let i = cnpj.length - 1; i >= 0; i--) {
+        sum += parseInt(cnpj[i]) * multiplier;
+        multiplier = (multiplier === 9) ? 2 : (multiplier + 1);
+    }
+
+    const remainder = sum % 11;
+    return (remainder < 2) ? 0 : (11 - remainder);
+};
 
 const generate = (punctuation = true) => {
     let cnpj = '';
@@ -13,18 +26,6 @@ const generate = (punctuation = true) => {
     cnpj += secondDigit;
 
     return punctuation ? punctuateCNPJ(cnpj) : cnpj;
-};
-
-const calculateCNPJDigit = (cnpj) => {
-    let multiplier = 2;
-    let sum = 0;
-    for (let i = cnpj.length - 1; i >= 0; i--) {
-        sum += parseInt(cnpj[i]) * multiplier;
-        multiplier = (multiplier === 9) ? 2 : (multiplier + 1);
-    }
-
-    const remainder = sum % 11;
-    return (remainder < 2) ? 0 : (11 - remainder);
 };
 
 const punctuateCNPJ = (cnpj: string) => {
@@ -62,6 +63,60 @@ if (generateElement) {
                 copy.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
                 copy.disabled = false;
             }, 1000);
+        });
+    });
+}
+
+const validate = (cnpj): boolean => {
+    cnpj = cnpj.replace(/\D/g, '');
+
+    if (!/^\d{14}$/.test(cnpj) || /^(0{14}|1{14}|2{14}|3{14}|4{14}|5{14}|6{14}|7{14}|8{14}|9{14})$/.test(cnpj)) {
+        return false;
+    }
+
+    const firstDigit = calculateCNPJDigit(cnpj.slice(0, 12));
+    const secondDigit = calculateCNPJDigit(cnpj.slice(0, 13));
+
+    return (parseInt(cnpj[12]) === firstDigit && parseInt(cnpj[13]) === secondDigit);
+};
+
+const cnpjElement = select('#cnpj') as HTMLInputElement;
+
+const validateCNPJ = () => {
+    const responseElement = select('#response') as Element;
+
+    const cnpj = cnpjElement.value;
+    const response = validate(cnpj);
+
+    responseElement.classList.remove('text-success', 'text-danger');
+
+    if (response) {
+        responseElement.innerHTML = 'CNPJ válido';
+        responseElement.classList.add('text-success');
+    } else {
+        responseElement.innerHTML = 'CNPJ inválido';
+        responseElement.classList.add('text-danger');
+    }
+}
+
+if (select('#validate')) {
+    (select('#validate') as Element).addEventListener('click', () => {
+        validateCNPJ();
+    });
+
+    cnpjElement.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+            validateCNPJ();
+        }
+    });
+
+    window.addEventListener('load', () => {
+        if (cnpjElement.value) {
+            validateCNPJ();
+        }
+
+        IMask(cnpjElement, {
+            mask: '00.000.000/0000-00'
         });
     });
 }

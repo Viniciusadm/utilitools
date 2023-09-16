@@ -23,7 +23,7 @@
         </p>
 
         <a
-            href="{{ route('validate.cpf') }}"
+            href="{{ route('validate.cnpj') }}"
             class="text-info hover:underline block mb-4 sm:mb-6"
             aria-label="Deseja validar em vez gerar?"
         >

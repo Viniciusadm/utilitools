@@ -66,6 +66,8 @@
                 @endcomponent
                 @component('components.link-menu', ['name' => 'generate.cnpj', 'label' => 'Gerador de CNPJ'])
                 @endcomponent
+                @component('components.link-menu', ['name' => 'validate.cnpj', 'label' => 'Validador de CNPJ'])
+                @endcomponent
                 @component('components.link-menu', ['name' => 'edit.text', 'label' => 'Editor de texto'])
                 @endcomponent
             </ul>
