@@ -141,4 +141,4 @@
     </main>
 @endsection
 
-@vite('resources/js/utils/cpf.js')
+@vite('resources/ts/utils/cpf.ts')

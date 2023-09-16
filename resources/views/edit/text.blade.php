@@ -97,4 +97,4 @@
     </main>
 @endsection
 
-@vite('resources/js/utils/text.js')
+@vite('resources/ts/utils/text.ts')

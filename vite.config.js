@@ -3,12 +3,12 @@ import laravel from 'laravel-vite-plugin';
 import fs from 'fs';
 import path from 'path';
 
-const utilsDir = 'resources/js/utils';
+const utilsDir = 'resources/ts/utils';
 
 function getUtilsFiles() {
     const files = fs.readdirSync(utilsDir);
     return files
-        .filter((file) => file.endsWith('.js'))
+        .filter((file) => file.endsWith('.ts'))
         .map((file) => path.join(utilsDir, file));
 }
 
@@ -17,7 +17,7 @@ export default defineConfig({
         laravel({
             input: [
                 'resources/css/app.css',
-                'resources/js/app.js',
+                'resources/ts/app.ts',
                 ...getUtilsFiles(),
             ],
             refresh: true,

@@ -1,4 +1,4 @@
-import { select } from '../helpers.js';
+import { select } from '../helpers';
 
 const MAX_MEMORY_LENGTH = 10;
 const memory = [];

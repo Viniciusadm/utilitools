@@ -1,4 +1,4 @@
-import { select } from '../helpers.js';
+import { select } from '../helpers';
 import IMask from 'imask';
 
 const states = [
