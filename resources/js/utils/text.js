@@ -49,7 +49,7 @@ addActionListener(select('#action-alternate'), text => {
 
 addActionListener(select('#action-shuffle'), text => text.split('').sort(() => Math.random() - 0.5).join(''));
 
-addActionListener(select('#action-unique'), text => [...new Set(text.split(''))].join(''));
+addActionListener(select('#action-unique'), text => [...new Set(text.split(' '))].join(' '));
 
 select('#action-undo').addEventListener('click', () => {
     if (memory.length > 0) {
