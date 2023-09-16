@@ -7,7 +7,7 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resources/js/generate/cpf.js',
+                'resources/js/utils/cpf.js',
             ],
             refresh: true,
         }),

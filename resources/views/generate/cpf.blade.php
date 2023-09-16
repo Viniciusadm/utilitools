@@ -96,7 +96,7 @@
      </main>
 @endsection
 
-@vite('resources/js/generate/cpf.js')
+@vite('resources/js/utils/cpf.js')
 
 @section('scripts')
     <script>
