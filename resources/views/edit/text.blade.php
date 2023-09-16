@@ -11,6 +11,45 @@
         <label for="text" class="block mb-2 sm:mb-3">
             Digite ou cole o texto que deseja editar
         </label>
+
+        <div class="mb-2 sm:mb-3 flex flex-wrap gap-2 sm:gap-3">
+            <button
+                id="action-reverse"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+            >
+                Inverter texto
+            </button>
+            <button
+                id="action-uppercase"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+            >
+                Maiúsculas
+            </button>
+            <button
+                id="action-lowercase"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+            >
+                Minúsculas
+            </button>
+            <button
+                id="action-capitalize"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+            >
+                Capitalizar
+            </button>
+            <button
+                id="action-alternate"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+            >
+                Alternar caixa
+            </button>
+            <button
+                id="action-shuffle"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+            >
+                Embaralhar
+            </button>
+        </div>
         <textarea
             id="text"
             class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full resize-none"
@@ -25,19 +64,3 @@
 @endsection
 
 @vite('resources/js/utils/text.js')
-
-@section('scripts')
-    <script>
-        const text = document.querySelector('#text');
-        const statusLength = document.querySelector('#status-characters');
-        const statusWords = document.querySelector('#status-words');
-        const statusLines = document.querySelector('#status-lines');
-
-        text.addEventListener('input', () => {
-            const analyzed = analyze(text.value);
-            statusLength.textContent = analyzed.characters;
-            statusWords.textContent = analyzed.words;
-            statusLines.textContent = analyzed.lines;
-        });
-    </script>
-@endsection
