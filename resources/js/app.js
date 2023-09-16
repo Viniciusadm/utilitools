@@ -1,5 +1,5 @@
 import './bootstrap';
-import '../js/utils/functions.js';
+import '../js/functions.js';
 
 import Toastify from 'toastify-js'
 import IMask from 'imask';

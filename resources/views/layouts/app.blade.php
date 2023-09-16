@@ -60,6 +60,8 @@
                 @endcomponent
                 @component('components.link-menu', ['name' => 'validate.cpf', 'label' => 'Validador de CPF'])
                 @endcomponent
+                @component('components.link-menu', ['name' => 'edit.text', 'label' => 'Editor de texto'])
+                @endcomponent
             </ul>
         </div>
     </aside>
