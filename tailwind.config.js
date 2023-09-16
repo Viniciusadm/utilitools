@@ -19,7 +19,7 @@ module.exports = {
             'a-dark': '#1F2937',
             't-light': '#1F2937',
             't-dark': '#F9FAFB',
-            'h-light': '#a4a4a4',
+            'h-light': '#454545',
             'h-dark': '#374151',
             'p-light': {
                 DEFAULT: '#19C37D',
