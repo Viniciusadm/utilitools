@@ -2,6 +2,15 @@
 
 @section('title', 'Editor de texto')
 
+@section('meta')
+    <meta name="title" content="Editor de texto">
+    <meta name="description" content="Editor de texto online. Ferramenta para editar textos, inverter, maiúsculas, minúsculas, capitalizar, alternar caixa, embaralhar e remover duplicados.">
+    <meta name="keywords" content="editor de texto, inverter texto, maiúsculas, minúsculas, capitalizar, alternar caixa, embaralhar, remover duplicados">
+    <meta property="og:title" content="Editor de texto">
+    <meta property="og:description" content="Editor de texto online. Ferramenta para editar textos, inverter, maiúsculas, minúsculas, capitalizar, alternar caixa, embaralhar e remover duplicados.">
+    <meta property="og:url" content="{{ route('edit.text') }}">
+@endsection
+
 @section('content')
     <main class="p-4 bg-a-light dark:bg-a-dark rounded-lg mt-4 w-screen sm:w-content">
         <h1 class="text-2xl font-semibold mb-2 sm:mb-3">

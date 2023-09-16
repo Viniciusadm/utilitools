@@ -2,6 +2,15 @@
 
 @section('title', 'Gerador de CPF')
 
+@section('meta')
+    <meta name="title" content="Gerador de CPF">
+    <meta name="description" content="Gerador de CPFs válidos aleatórios. Você pode escolher se quer pontuação ou não e o estado.">
+    <meta name="keywords" content="gerador de cpf, gerador de cpf online, gerador de cpf válido, gerador de cpf aleatório, gerador de cpf com pontuação, gerador de cpf com estado, gerador de cpf com uf, gerador de cpf com unidade federativa, gerador de muitos cpfs, gerador de cpf em massa, gerador de cpf em lote, gerador de multiplos cpfs">
+    <meta property="og:title" content="Gerador de CPF">
+    <meta property="og:description" content="Gerador de CPFs válidos aleatórios. Você pode escolher se quer pontuação ou não e o estado.">
+    <meta property="og:url" content="{{ route('generate.cpf') }}">
+@endsection
+
 @section('content')
     <main class="p-4 bg-a-light dark:bg-a-dark rounded-lg mt-4 w-screen sm:w-content">
         <h1 class="text-2xl font-semibold mb-2 sm:mb-3">
@@ -13,7 +22,11 @@
             Basta clicar em gerar e copiar o CPF gerado.
         </p>
 
-        <a href="{{ route('validate.cpf') }}" class="text-info hover:underline block mb-4 sm:mb-6">
+        <a
+            href="{{ route('validate.cpf') }}"
+            class="text-info hover:underline block mb-4 sm:mb-6"
+            aria-label="Validador de CPF"
+        >
             Deseja validar em vez gerar?
         </a>
 
@@ -103,6 +116,7 @@
             <button
                 id="generate"
                 class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light block text-center"
+                aria-label="Gerar CPF"
             >
                 Gerar
             </button>
@@ -110,6 +124,7 @@
             <button
                 id="copy"
                 class="text-white bg-transparent rounded-md h-10 px-4 border border-white"
+                aria-label="Copiar"
             >
                 <span class="mr-1">Copiar</span>
                 <i class="bi-clipboard"></i>
@@ -123,7 +138,7 @@
         <div id="cpf" class="text-lg font-semibold mb-2 sm:mb-3">
             000.000.000-00
         </div>
-     </main>
+    </main>
 @endsection
 
 @vite('resources/js/utils/cpf.js')
