@@ -21,4 +21,9 @@ class SiteController extends Controller
         $cpf = request()->query('cpf');
         return view('validate.cpf', ['cpf' => $cpf]);
     }
+
+    public function editText(): View
+    {
+        return view('edit.text');
+    }
 }

@@ -23,3 +23,7 @@ Route::prefix('gerar')->name('generate.')->group(function () {
 Route::prefix('validar')->name('validate.')->group(function () {
     Route::get('/cpf', [SiteController::class, 'validateCpf'])->name('cpf');
 });
+
+Route::prefix('editar')->name('edit.')->group(function () {
+    Route::get('/texto', [SiteController::class, 'editText'])->name('text');
+});
