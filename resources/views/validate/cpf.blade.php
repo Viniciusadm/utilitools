@@ -4,9 +4,17 @@
 
 @section('content')
     <main class="p-4 bg-a-light dark:bg-a-dark rounded-lg mt-4 w-screen sm:w-content">
-        <h1 class="text-3xl font-semibold">
+        <h1 class="text-2xl font-semibold mb-2 sm:mb-3">
             Validar CPF
         </h1>
+
+        <p class="mb-2 sm:mb-3">
+            Você pode validar um ou mais CPFs digitando-os abaixo. Basta clicar em validar e ver o resultado.
+        </p>
+
+        <a href="{{ route('generate.cpf') }}" class="text-info hover:underline block mb-4 sm:mb-6">
+            Deseja gerar em vez validar?
+        </a>
 
         <div class="mt-6">
             <div class="mb-3">
@@ -63,6 +71,10 @@
             if (document.querySelector('#cpf').value) {
                 validateCPF();
             }
+
+            IMask(document.querySelector('#cpf'), {
+                mask: '000.000.000-00'
+            });
         });
     </script>
 @endsection
