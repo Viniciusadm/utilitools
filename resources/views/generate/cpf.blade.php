@@ -37,33 +37,33 @@
             class="border rounded-lg block p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full sm:w-40"
         >
             <option value="">Qualquer</option>
-            <option value="AC">Acre</option>
-            <option value="AL">Alagoas</option>
-            <option value="AM">Amazonas</option>
-            <option value="AP">Amapá</option>
-            <option value="BA">Bahia</option>
-            <option value="CE">Ceará</option>
-            <option value="DF">Distrito Federal</option>
-            <option value="ES">Espirito Santo</option>
-            <option value="GO">Goiás</option>
-            <option value="MA">Maranhão</option>
-            <option value="MG">Minas Gerais</option>
-            <option value="MS">Mato Grosso do Sul</option>
-            <option value="MT">Mato Grosso</option>
-            <option value="PA">Pará</option>
-            <option value="PB">Paraíba</option>
-            <option value="PE">Pernambuco</option>
-            <option value="PI">Piauí</option>
-            <option value="PR">Paraná</option>
-            <option value="RJ">Rio de Janeiro</option>
-            <option value="RN">Rio Grande do Norte</option>
-            <option value="RO">Rondônia</option>
-            <option value="RR">Roraima</option>
-            <option value="RS">Rio Grande do Sul</option>
-            <option value="SC">Santa Catarina</option>
-            <option value="SE">Sergipe</option>
-            <option value="SP">São Paulo</option>
-            <option value="TO">Tocantins</option>
+            <option value="2">Acre</option>
+            <option value="4">Alagoas</option>
+            <option value="2">Amazonas</option>
+            <option value="2">Amapá</option>
+            <option value="5">Bahia</option>
+            <option value="3">Ceará</option>
+            <option value="1">Distrito Federal</option>
+            <option value="7">Espirito Santo</option>
+            <option value="1">Goiás</option>
+            <option value="3">Maranhão</option>
+            <option value="6">Minas Gerais</option>
+            <option value="1">Mato Grosso do Sul</option>
+            <option value="1">Mato Grosso</option>
+            <option value="2">Pará</option>
+            <option value="4">Paraíba</option>
+            <option value="4">Pernambuco</option>
+            <option value="3">Piauí</option>
+            <option value="9">Paraná</option>
+            <option value="7">Rio de Janeiro</option>
+            <option value="4">Rio Grande do Norte</option>
+            <option value="2">Rondônia</option>
+            <option value="2">Roraima</option>
+            <option value="0">Rio Grande do Sul</option>
+            <option value="9">Santa Catarina</option>
+            <option value="5">Sergipe</option>
+            <option value="8">São Paulo</option>
+            <option value="1">Tocantins</option>
         </select>
 
         <button
@@ -109,9 +109,22 @@
             document.querySelector('#validate').href = `{{ route('validate.cpf') }}?cpf=${generated}`;
         });
 
-        document.querySelector('#copy').addEventListener('click', () => {
+        const copy = document.querySelector('#copy');
+        copy.addEventListener('click', () => {
+            copy.disabled = true;
             const cpf = document.querySelector('#cpf').innerHTML;
-            navigator.clipboard.writeText(cpf);
+            navigator.clipboard.writeText(cpf).then(() => {
+                Toastify({
+                    text: "Copiado para a área de transferência",
+                    position: "center",
+                }).showToast();
+
+                copy.innerHTML = '<i class="bi-clipboard-check"></i>';
+                setTimeout(() => {
+                    copy.innerHTML = '<i class="bi-clipboard"></i>';
+                    copy.disabled = false;
+                }, 1000);
+            });
         });
     </script>
 @endsection

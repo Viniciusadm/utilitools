@@ -18,7 +18,7 @@ window.generate = (punctuation = true, uf = null) => {
     }
 
     if (uf) {
-        cpf += states.findIndex((state) => state.includes(uf));
+        cpf += uf;
     } else {
         cpf += Math.floor(Math.random() * 9);
     }
