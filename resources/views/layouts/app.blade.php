@@ -11,6 +11,7 @@
     </title>
 
     @yield('meta')
+    <meta name="google-site-verification" content="yhGpeq0-w7ZXyzcEMCfo_RkD___VPq_Kk96B5IQwqZs" />
 </head>
 
 <body class="bg-b-light dark:bg-b-dark text-t-light dark:text-t-dark lg:w-4/5 mx-auto px-4 lg:px-0">
