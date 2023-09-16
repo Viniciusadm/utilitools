@@ -16,7 +16,10 @@
 <body class="bg-b-light dark:bg-b-dark text-t-light dark:text-t-dark lg:w-4/5 mx-auto px-4 lg:px-0">
 <nav class="z-50 w-full bg-p-light dark:bg-p-dark text-b-light dark:text-b-dark grid grid-cols-2 px-2 lg:px-0 h-20 mt-4 rounded-lg">
     <div class="flex items-center ps-4">
-        <a href="{{ route('home') }}" class="text-2xl font-bold text-white">
+        <a
+            href="{{ route('home') }}"
+            class="text-2xl font-bold text-white"
+        >
             UtiliTools
         </a>
     </div>
@@ -39,7 +42,7 @@
     <div class="pe-4 hidden h-full sm:flex items-center justify-end">
         <label class="flex items-center justify-end">
             <input name="search" class="rounded-s-md p-2 h-10" placeholder="Pesquisar">
-            <button class="h-10 rounded-e-md py-2 px-3 bg-s-light dark:bg-s-dark text-b-light dark:text-b-dark">
+            <button class="h-10 rounded-e-md py-2 px-3 bg-s-light dark:bg-s-dark text-b-light dark:text-b-dark" aria-label="Pesquisar">
                 <i class="bi-search text-white"></i>
             </button>
         </label>

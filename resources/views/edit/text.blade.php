@@ -53,7 +53,7 @@
             <button
                 id="action-alternate"
                 class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
-                aria-label="Alternar entre maiúsculas e minúsculas"
+                aria-label="Alternar caixa"
             >
                 Alternar caixa
             </button>

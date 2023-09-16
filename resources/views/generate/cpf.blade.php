@@ -36,11 +36,11 @@
             </p>
             <div class="flex gap-3">
                 <div class="flex items-center">
-                    <input checked id="yes" type="radio" value="1" name="punctuation" class="w-4 h-4 text-blue-600 bg-gray-100">
+                    <input checked id="yes" type="radio" value="1" name="punctuation" class="w-4 h-4">
                     <label for="yes" class="ml-2 text-sm font-medium">Sim</label>
                 </div>
                 <div class="flex items-center">
-                    <input id="no" type="radio" value="2" name="punctuation" class="w-4 h-4 text-blue-600 bg-gray-100">
+                    <input id="no" type="radio" value="2" name="punctuation" class="w-4 h-4">
                     <label for="no" class="ml-2 text-sm font-medium">Não</label>
                 </div>
             </div>
@@ -52,11 +52,11 @@
             </p>
             <div class="flex gap-3">
                 <div class="flex items-center">
-                    <input checked id="word-break" type="radio" value="word-break" name="separator" class="w-4 h-4 text-blue-600 bg-gray-100">
+                    <input checked id="word-break" type="radio" value="word-break" name="separator" class="w-4 h-4">
                     <label for="word-break" class="ml-2 text-sm font-medium">Quebra de linha</label>
                 </div>
                 <div class="flex items-center">
-                    <input id="comma" type="radio" value="2" name="separator" class="w-4 h-4 text-blue-600 bg-gray-100">
+                    <input id="comma" type="radio" value="2" name="separator" class="w-4 h-4">
                     <label for="comma" class="ml-2 text-sm font-medium">Vírgula</label>
                 </div>
             </div>
@@ -123,7 +123,7 @@
 
             <button
                 id="copy"
-                class="text-white bg-transparent rounded-md h-10 px-4 border border-white"
+                class="text-t-light dark:text-white bg-transparent rounded-md h-10 px-4 border dark:t-light dark:border-white"
                 aria-label="Copiar"
             >
                 <span class="mr-1">Copiar</span>

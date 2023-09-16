@@ -37,7 +37,7 @@
                 <div class="flex items-center mt-3">
                     <input
                         id="cpf"
-                        class="w-[212px] bg-white dark:bg-b-dark p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-700"
+                        class="w-[212px] bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-700"
                         placeholder="000.000.000-00"
                         value="{{ $cpf }}"
                     >
