@@ -40,6 +40,7 @@ module.exports = {
             'white': '#FFFFFF',
             'success': '#10B26C',
             'danger': '#EF4444',
+            'info': '#3B82F6',
             'transparent': 'transparent',
         },
         extend: {

@@ -13,7 +13,7 @@
     @yield('meta')
 </head>
 
-<body class="bg-b-light dark:bg-b-dark text-t-light dark:text-t-dark lg:w-4/5 xl:w-3/5 mx-auto px-4 lg:px-0">
+<body class="bg-b-light dark:bg-b-dark text-t-light dark:text-t-dark lg:w-4/5 mx-auto px-4 lg:px-0">
 <nav class="z-50 w-full bg-p-light dark:bg-p-dark text-b-light dark:text-b-dark grid grid-cols-2 px-2 lg:px-0 h-20 mt-4 rounded-lg">
     <div class="flex items-center ps-4">
         <a href="{{ route('home') }}" class="text-2xl font-bold text-white">

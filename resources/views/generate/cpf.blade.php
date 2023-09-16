@@ -8,10 +8,14 @@
             Gerador de CPF
         </h1>
 
-        <p class="mb-4 sm:mb-6">
+        <p class="mb-2 sm:mb-3">
             Gerador de CPFs válidos aleatórios. Você pode escolher se quer pontuação ou não e o estado.
             Basta clicar em gerar e copiar o CPF gerado.
         </p>
+
+        <a href="{{ route('validate.cpf') }}" class="text-info hover:underline block mb-4 sm:mb-6">
+            Deseja validar em vez gerar?
+        </a>
 
         <div class="mb-2 sm:mb-3">
             <p class="mb-2 sm:mb-3">
@@ -29,12 +33,28 @@
             </div>
         </div>
 
+        <div class="mb-2 sm:mb-3">
+            <p class="mb-2 sm:mb-3">
+                Separador?
+            </p>
+            <div class="flex gap-3">
+                <div class="flex items-center">
+                    <input checked id="word-break" type="radio" value="word-break" name="separator" class="w-4 h-4 text-blue-600 bg-gray-100">
+                    <label for="word-break" class="ml-2 text-sm font-medium">Quebra de linha</label>
+                </div>
+                <div class="flex items-center">
+                    <input id="comma" type="radio" value="2" name="separator" class="w-4 h-4 text-blue-600 bg-gray-100">
+                    <label for="comma" class="ml-2 text-sm font-medium">Vírgula</label>
+                </div>
+            </div>
+        </div>
+
         <label for="uf" class="block mb-2 sm:mb-3">
             Estado
         </label>
         <select
             id="uf"
-            class="border rounded-lg block p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full sm:w-40"
+            class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full sm:w-80"
         >
             <option value="">Qualquer</option>
             <option value="2">Acre</option>
@@ -66,33 +86,43 @@
             <option value="1">Tocantins</option>
         </select>
 
-        <button
-            id="generate"
-            class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light mb-4 sm:mb-6 block text-center w-full sm:w-40"
-        >
-            Gerar
-        </button>
+        <label for="quantity" class="block mb-2 sm:mb-3">
+            Quantidade
+        </label>
+        <input
+            id="quantity"
+            type="number"
+            value="1"
+            min="1"
+            max="100"
+            class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full sm:w-80"
+            oninput="this.value = minMax(this.value, 1, 100)"
+        />
 
-        <p>
-            CPF gerado
-        </p>
+        <div class="grid grid-cols-2 gap-3 w-full sm:w-80 mb-4 sm:mb-6" id="buttons">
+            <button
+                id="generate"
+                class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light block text-center"
+            >
+                Gerar
+            </button>
 
-        <div class="flex gap-2 items-center mb-2 sm:mb-3">
-            <p id="cpf" class="text-2xl font-semibold my-3 w-[212px]">
-                000.000.000-00
-            </p>
-            <button id="copy" class="text-white bg-transparent rounded-md h-10 px-4 border border-white">
+            <button
+                id="copy"
+                class="text-white bg-transparent rounded-md h-10 px-4 border border-white"
+            >
+                <span class="mr-1">Copiar</span>
                 <i class="bi-clipboard"></i>
             </button>
         </div>
 
-        <a
-            href="{{ route('validate.cpf') }}"
-            class="text-white rounded-md px-4 py-2 bg-s-light dark:bg-s-dark hover:bg-s-light-light dark:hover:bg-s-dark-light mb-4 sm:mb-6 block text-center w-full sm:w-40"
-            id="validate"
-        >
-            Validar CPF
-        </a>
+        <p>
+            CPF(s) gerado
+        </p>
+
+        <div id="cpf" class="text-lg font-semibold mb-2 sm:mb-3">
+            000.000.000-00
+        </div>
      </main>
 @endsection
 
@@ -101,27 +131,33 @@
 @section('scripts')
     <script>
         document.querySelector('#generate').addEventListener('click', () => {
+            const quantity = document.querySelector('#quantity').value;
+
+            if (quantity === '') return;
+
             const punctuation = document.querySelector('input[name="punctuation"]:checked').value === '1';
             const uf = document.querySelector('#uf').value;
+            const separator = document.querySelector('input[name="separator"]:checked').value === 'word-break' ? '<br>' : ', ';
+            let html = '';
 
-            const generated = generate(punctuation, uf);
-            document.querySelector('#cpf').innerHTML = generated;
-            document.querySelector('#validate').href = `{{ route('validate.cpf') }}?cpf=${generated}`;
+            for (let i = 1; i <= quantity; i++) {
+                if (i === 1) html += `${generate(punctuation, uf)}`;
+                else html += `${separator} ${generate(punctuation, uf)}`;
+            }
+
+            document.querySelector('#cpf').innerHTML = html;
+
+            document.querySelector('#buttons').scrollIntoView({ behavior: 'smooth' });
         });
 
         const copy = document.querySelector('#copy');
         copy.addEventListener('click', () => {
             copy.disabled = true;
-            const cpf = document.querySelector('#cpf').innerHTML;
+            const cpf = document.querySelector('#cpf').innerText;
             navigator.clipboard.writeText(cpf).then(() => {
-                Toastify({
-                    text: "Copiado para a área de transferência",
-                    position: "center",
-                }).showToast();
-
-                copy.innerHTML = '<i class="bi-clipboard-check"></i>';
+                copy.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
                 setTimeout(() => {
-                    copy.innerHTML = '<i class="bi-clipboard"></i>';
+                    copy.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
                     copy.disabled = false;
                 }, 1000);
             });
