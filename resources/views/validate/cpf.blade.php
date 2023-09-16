@@ -24,7 +24,7 @@
         <a
             href="{{ route('generate.cpf') }}"
             class="text-info hover:underline block mb-4 sm:mb-6"
-            aria-label="Gerador de CPF"
+            aria-label="Deseja gerar em vez validar?"
         >
             Deseja gerar em vez validar?
         </a>
