@@ -1,4 +1,4 @@
-import { change, select } from "../helpers";
+import { change } from "../helpers";
 
 type Bases = 2 | 8 | 10 | 16;
 
@@ -47,5 +47,17 @@ document.querySelectorAll('.base-input').forEach((input: HTMLInputElement) => {
         change('#binary', convert(value, base, 2));
         change('#octal', convert(value, base, 8));
         change('#hexadecimal', convert(value, base, 16));
+    });
+});
+
+document.querySelectorAll('.copy-button').forEach((button: HTMLButtonElement) => {
+    button.addEventListener('click', () => {
+        const input = document.querySelector(button.getAttribute('data-clipboard-target') as string) as HTMLInputElement;
+        navigator.clipboard.writeText(input.value).then(() => {
+            button.innerHTML = '<i class="bi-clipboard-check"></i>';
+            setTimeout(() => {
+                button.innerHTML = '<i class="bi-clipboard"></i>';
+            }, 2000);
+        });
     });
 });
