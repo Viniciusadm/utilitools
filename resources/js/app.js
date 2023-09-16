@@ -1,6 +1,6 @@
 import './bootstrap';
-import '../js/functions.js';
 
-import IMask from 'imask';
-
-window.IMask = IMask;
+window.minMax = (value, min, max) => {
+    if (!value) return value;
+    return Math.min(Math.max(value, min), max);
+}

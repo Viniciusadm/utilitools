@@ -1,9 +1,7 @@
+import { select } from '../helpers.js';
+
 const MAX_MEMORY_LENGTH = 10;
 const memory = [];
-
-const select = (selector) => {
-    return document.querySelector(selector);
-};
 
 const text = select('#text');
 const statusCharacters = select('#status-characters');
