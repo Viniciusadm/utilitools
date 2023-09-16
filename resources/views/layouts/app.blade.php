@@ -70,6 +70,8 @@
                 @endcomponent
                 @component('components.link-menu', ['name' => 'edit.text', 'label' => 'Editor de texto'])
                 @endcomponent
+                @component('components.link-menu', ['name' => 'convert.numbers', 'label' => 'Conversor de números'])
+                @endcomponent
             </ul>
         </div>
     </aside>

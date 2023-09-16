@@ -37,4 +37,9 @@ class SiteController extends Controller
     {
         return view('edit.text');
     }
+
+    public function convertNumbers(): View
+    {
+        return view('convert.numbers');
+    }
 }

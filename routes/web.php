@@ -29,3 +29,7 @@ Route::prefix('validar')->name('validate.')->group(function () {
 Route::prefix('editar')->name('edit.')->group(function () {
     Route::get('/texto', [SiteController::class, 'editText'])->name('text');
 });
+
+Route::prefix('converter')->name('convert.')->group(function () {
+    Route::get('/numeros', [SiteController::class, 'convertNumbers'])->name('numbers');
+});
