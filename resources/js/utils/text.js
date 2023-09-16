@@ -1,45 +1,59 @@
-const text = document.querySelector('#text');
+const MAX_MEMORY_LENGTH = 10;
+const memory = [];
 
-const statusLength = document.querySelector('#status-characters');
-const statusWords = document.querySelector('#status-words');
-const statusLines = document.querySelector('#status-lines');
+const select = (selector) => {
+    return document.querySelector(selector);
+};
 
-text.addEventListener('input', () => {
-    statusLength.textContent = text.value.length;
-    statusWords.textContent = text.value.split(' ').length;
-    statusLines.textContent = text.value.split('\n').length;
+const text = select('#text');
+const statusCharacters = select('#status-characters');
+const statusWords = select('#status-words');
+const statusLines = select('#status-lines');
+
+const updateStatus = () => {
+    statusCharacters.textContent = text.value.length;
+    statusWords.textContent = text.value.split(' ').filter(word => word !== '').length;
+    statusLines.textContent = text.value.split('\n').filter(line => line !== '').length;
+};
+
+const addActionListener = (button, callback) => {
+    button.addEventListener('click', () => {
+        const originalText = text.value;
+        const modifiedText = callback(originalText);
+
+        if (originalText !== modifiedText) {
+            memory.push(originalText);
+            if (memory.length > MAX_MEMORY_LENGTH) {
+                memory.shift();
+            }
+            text.value = modifiedText;
+            updateStatus();
+        }
+    });
+};
+
+text.addEventListener('input', updateStatus);
+
+addActionListener(select('#action-reverse'), text => text.split('').reverse().join(''));
+
+addActionListener(select('#action-uppercase'), text => text.toUpperCase());
+
+addActionListener(select('#action-lowercase'), text => text.toLowerCase());
+
+addActionListener(select('#action-capitalize'), text => text.toLowerCase().replace(/(?:^|\s)\S/g, match => match.toUpperCase()));
+
+addActionListener(select('#action-alternate'), text => {
+    const upper = text[0] === text[0].toUpperCase();
+    return text.split('').map((char, index) => (index % 2 ? (upper ? char.toUpperCase() : char.toLowerCase()) : (upper ? char.toLowerCase() : char.toUpperCase()))).join('');
 });
 
-document.querySelector('#action-reverse').addEventListener('click', () => {
-    if (!text.value) return;
-    text.value = text.value.split('').reverse().join('');
-});
+addActionListener(select('#action-shuffle'), text => text.split('').sort(() => Math.random() - 0.5).join(''));
 
-document.querySelector('#action-uppercase').addEventListener('click', () => {
-    if (!text.value) return;
-    text.value = text.value.toUpperCase();
-});
+addActionListener(select('#action-unique'), text => [...new Set(text.split(''))].join(''));
 
-document.querySelector('#action-lowercase').addEventListener('click', () => {
-    if (!text.value) return;
-    text.value = text.value.toLowerCase();
-});
-
-document.querySelector('#action-capitalize').addEventListener('click', () => {
-    if (!text.value) return;
-    text.value = text.value.toLowerCase().replace(/(?:^|\s)\S/g, function (a) { return a.toUpperCase(); });
-});
-
-document.querySelector('#action-alternate').addEventListener('click', () => {
-    if (!text.value) return;
-    const upper = text.value[0] === text.value[0].toUpperCase();
-
-    text.value = text.value.split('').map((value, index) => {
-        return (index % 2) ? upper ? value.toUpperCase() : value.toLowerCase() : upper ? value.toLowerCase() : value.toUpperCase();
-    }).join('');
-});
-
-document.querySelector('#action-shuffle').addEventListener('click', () => {
-    if (!text.value) return;
-    text.value = text.value.split('').sort(() => Math.random() - 0.5).join('');
+select('#action-undo').addEventListener('click', () => {
+    if (memory.length > 0) {
+        text.value = memory.pop();
+        updateStatus();
+    }
 });

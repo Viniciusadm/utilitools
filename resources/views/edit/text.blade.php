@@ -8,7 +8,7 @@
             Editor de texto
         </h1>
 
-        <label for="text" class="block mb-2 sm:mb-3">
+        <label for="text" class="block mb-2 sm:mb-3" id="text-label">
             Digite ou cole o texto que deseja editar
         </label>
 
@@ -16,44 +16,69 @@
             <button
                 id="action-reverse"
                 class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Inverter texto"
             >
                 Inverter texto
             </button>
             <button
                 id="action-uppercase"
                 class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Maiúsculas"
             >
                 Maiúsculas
             </button>
             <button
                 id="action-lowercase"
                 class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Minúsculas"
             >
                 Minúsculas
             </button>
             <button
                 id="action-capitalize"
                 class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Capitalizar"
             >
                 Capitalizar
             </button>
             <button
                 id="action-alternate"
                 class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Alternar entre maiúsculas e minúsculas"
             >
                 Alternar caixa
             </button>
             <button
                 id="action-shuffle"
                 class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Embaralhar"
             >
                 Embaralhar
+            </button>
+
+            <button
+                id="action-unique"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Remover duplicados"
+            >
+                Remover duplicados
+            </button>
+
+            <button
+                id="action-undo"
+                class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+                aria-label="Desfazer"
+            >
+                <i class="bi bi-arrow-counterclockwise"></i>
+                Desfazer
             </button>
         </div>
         <textarea
             id="text"
             class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full resize-none"
             rows="15"
+            aria-labelledby="text-label"
+            aria-describedby="status"
         ></textarea>
         <p id="status">
             <span class="font-bold" id="status-characters">0</span> caracteres
