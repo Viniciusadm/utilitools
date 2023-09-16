@@ -49,7 +49,7 @@
                         Validar
                     </button>
                 </div>
-                <p id="response" class="my-3"></p>
+                <p id="response" class="my-3 font-bold"></p>
             </div>
         </div>
     </main>
