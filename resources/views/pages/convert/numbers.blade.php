@@ -2,6 +2,17 @@
 
 @section('title', 'Conversor de bases numéricas')
 
+@section('meta')
+    <meta name="title" content="Conversor de bases numéricas">
+    <meta name="description"
+          content="Conversor de bases numéricas. Digite um número em qualquer base numérica e veja sua conversão para as demais bases. As bases disponíveis são: binário, octal, decimal e hexadecimal.">
+    <meta name="keywords" content="conversor de bases numéricas, conversor de bases, conversor de números, binário, octal, decimal, hexadecimal">
+    <meta property="og:title" content="Conversor de bases numéricas">
+    <meta property="og:description"
+          content="Conversor de bases numéricas. Digite um número em qualquer base numérica e veja sua conversão para as demais bases. As bases disponíveis são: binário, octal, decimal e hexadecimal.">
+    <meta property="og:url" content="{{ route('convert.numbers') }}">
+@endsection
+
 @section('content')
     <main class="p-4 bg-a-light dark:bg-a-dark rounded-lg mt-4 w-screen sm:w-content">
         <h1 class="text-2xl font-semibold mb-3 sm:mb-4">
