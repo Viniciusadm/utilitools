@@ -12,6 +12,7 @@
 
     @yield('meta')
     <meta name="google-site-verification" content="yhGpeq0-w7ZXyzcEMCfo_RkD___VPq_Kk96B5IQwqZs"/>
+    <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon"/>
 </head>
 
 <body class="bg-b-light dark:bg-b-dark text-t-light dark:text-t-dark grid grid-rows-[auto,1fr,auto] min-h-screen">
