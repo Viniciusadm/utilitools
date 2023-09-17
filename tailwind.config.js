@@ -48,6 +48,7 @@ module.exports = {
                 'sidebar': 'calc(100vh - 8rem)',
             },
             width: {
+                'sidebar': 'calc(100vw - 2rem)',
                 'content': 'calc(100% - 15rem)',
             }
         },

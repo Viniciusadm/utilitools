@@ -30,8 +30,8 @@
             data-drawer-target="sidebar"
             data-drawer-toggle="sidebar"
             aria-controls="sidebar"
+            id="sidebar-toggle"
             class="inline-flex items-center text-sm rounded-lg sm:hidden hover:bg-h-light p-2"
-            onclick="toggleSidebar()"
         >
             <span class="sr-only">Open sidebar</span>
             <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" id="sidebar-open">
@@ -53,7 +53,7 @@
 <div class="flex gap-4">
     <aside
         id="sidebar"
-        class="z-40 h-sidebar w-60 bg-a-light rounded-lg dark:bg-a-dark mt-4 hidden sm:block"
+        class="z-40 h-screen sm:h-sidebar w-sidebar sm:w-60 bg-a-light rounded-lg dark:bg-a-dark mt-4 mx-4 sm:mx-0 hidden sm:block absolute sm:static left-0 sm:h-auto"
         aria-label="Sidebar"
     >
         <div class="h-full overflow-y-auto p-4 bg-a-light dark:bg-a-dark rounded-lg">
@@ -79,18 +79,6 @@
     @yield('content')
 </div>
 
-<script>
-    const toggleSidebar = () => {
-        const sidebar = document.querySelector('#sidebar');
-        const openIcon = document.querySelector('#sidebar-open');
-
-        if (isOpen) {
-            openIcon.setAttribute('aria-hidden', 'true');
-        } else {
-            openIcon.setAttribute('aria-hidden', 'false');
-        }
-    }
-</script>
 @yield('scripts')
 </body>
 
