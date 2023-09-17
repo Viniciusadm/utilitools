@@ -49,6 +49,8 @@ class SitemapGenerate extends Command
 
     private function addRoute(string $route): string
     {
+        $route = str_replace('http://', 'https://', route($route));
+
         $xml = '<url>' . PHP_EOL;
         $xml .= '<loc>' . route($route) . '</loc>' . PHP_EOL;
         $xml .= '</url>' . PHP_EOL;
