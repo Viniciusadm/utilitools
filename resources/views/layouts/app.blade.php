@@ -22,7 +22,9 @@
     <div class="flex gap-4 min-h-main">
         @include('includes.aside')
 
-        @yield('content')
+        <main class="p-4 bg-a-light dark:bg-a-dark rounded-lg mt-4 sm:w-content">
+            @yield('content')
+        </main>
     </div>
 </div>
 

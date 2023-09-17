@@ -14,93 +14,91 @@
 @endsection
 
 @section('content')
-    <main class="p-4 bg-a-light dark:bg-a-dark rounded-lg mt-4 w-screen sm:w-content">
-        <h1 class="text-2xl font-semibold mb-3 sm:mb-4">
-            Conversor de bases numéricas
-        </h1>
+    <h1 class="text-2xl font-semibold mb-3 sm:mb-4">
+        Conversor de bases numéricas
+    </h1>
 
-        <p class="mb-3 sm:mb-4">
-            Digite um número em qualquer base numérica e veja sua conversão para as demais bases.
-        </p>
+    <p class="mb-3 sm:mb-4">
+        Digite um número em qualquer base numérica e veja sua conversão para as demais bases.
+    </p>
 
-        <div class="flex items-center gap-2 mb-4 sm:mb-5">
-            <label for="binary" class="w-36 text-sm md:text-base">Binário</label>
-            <div class="flex items-center gap-2 w-full">
-                <input
-                    id="binary"
-                    data-base="2"
-                    class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
-                    placeholder="00000000"
-                />
-                <button
-                    class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
-                    data-clipboard-target="#binary"
-                    aria-label="Copiar o valor do campo Binário"
-                >
-                    <i class="bi-clipboard"></i>
-                </button>
-            </div>
+    <div class="flex items-center gap-2 mb-4 sm:mb-5">
+        <label for="binary" class="w-36 text-sm md:text-base">Binário</label>
+        <div class="flex items-center gap-2 w-full">
+            <input
+                id="binary"
+                data-base="2"
+                class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
+                placeholder="00000000"
+            />
+            <button
+                class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
+                data-clipboard-target="#binary"
+                aria-label="Copiar o valor do campo Binário"
+            >
+                <i class="bi-clipboard"></i>
+            </button>
         </div>
+    </div>
 
-        <div class="flex items-center gap-2 mb-4 sm:mb-5">
-            <label for="octal" class="w-36 text-sm md:text-base">Octal</label>
-            <div class="flex items-center gap-2 w-full">
-                <input
-                    id="octal"
-                    data-base="8"
-                    class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
-                    placeholder="000"
-                />
-                <button
-                    class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
-                    data-clipboard-target="#octal"
-                    aria-label="Copiar o valor do campo Octal"
-                >
-                    <i class="bi-clipboard"></i>
-                </button>
-            </div>
+    <div class="flex items-center gap-2 mb-4 sm:mb-5">
+        <label for="octal" class="w-36 text-sm md:text-base">Octal</label>
+        <div class="flex items-center gap-2 w-full">
+            <input
+                id="octal"
+                data-base="8"
+                class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
+                placeholder="000"
+            />
+            <button
+                class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
+                data-clipboard-target="#octal"
+                aria-label="Copiar o valor do campo Octal"
+            >
+                <i class="bi-clipboard"></i>
+            </button>
         </div>
+    </div>
 
-        <div class="flex items-center gap-2 mb-4 sm:mb-5">
-            <label for="decimal" class="w-36 text-sm md:text-base">Decimal</label>
-            <div class="flex items-center gap-2 w-full">
-                <input
-                    id="decimal"
-                    data-base="10"
-                    class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
-                    placeholder="0"
-                />
-                <button
-                    class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
-                    data-clipboard-target="#decimal"
-                    aria-label="Copiar o valor do campo Decimal"
-                >
-                    <i class="bi-clipboard"></i>
-                </button>
-            </div>
+    <div class="flex items-center gap-2 mb-4 sm:mb-5">
+        <label for="decimal" class="w-36 text-sm md:text-base">Decimal</label>
+        <div class="flex items-center gap-2 w-full">
+            <input
+                id="decimal"
+                data-base="10"
+                class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
+                placeholder="0"
+            />
+            <button
+                class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
+                data-clipboard-target="#decimal"
+                aria-label="Copiar o valor do campo Decimal"
+            >
+                <i class="bi-clipboard"></i>
+            </button>
         </div>
+    </div>
 
-        <div class="flex items-center gap-2 mb-4 sm:mb-5">
-            <label for="hexadecimal" class="w-36 text-sm md:text-base">Hexadecimal</label>
-            <div class="flex items-center gap-2 w-full">
-                <input
-                    id="hexadecimal"
-                    data-base="16"
-                    class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
-                    placeholder="00"
-                />
-                <button
-                    class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
-                    data-clipboard-target="#hexadecimal"
-                    aria-label="Copiar o valor do campo Hexadecimal"
-                >
-                    <i class="bi-clipboard"></i>
-                </button>
-            </div>
+    <div class="flex items-center gap-2 mb-4 sm:mb-5">
+        <label for="hexadecimal" class="w-36 text-sm md:text-base">Hexadecimal</label>
+        <div class="flex items-center gap-2 w-full">
+            <input
+                id="hexadecimal"
+                data-base="16"
+                class="w-full bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border base-input"
+                placeholder="00"
+            />
+            <button
+                class="bg-a-light dark:bg-a-dark text-white dark:text-black p-2 rounded-md shadow-sm border copy-button"
+                data-clipboard-target="#hexadecimal"
+                aria-label="Copiar o valor do campo Hexadecimal"
+            >
+                <i class="bi-clipboard"></i>
+            </button>
         </div>
+    </div>
 
-        @include('includes.articles.numbers')
-    </main>
+    @include('includes.articles.numbers')
 @endsection
 
 @vite('resources/ts/utils/numbers.ts')
