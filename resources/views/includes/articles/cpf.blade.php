@@ -35,8 +35,4 @@
         <li><strong>8</strong> - São Paulo</li>
         <li><strong>9</strong> - Paraná e Santa Catarina</li>
     </ul>
-
-    <p class="mb-2 sm:mb-3">
-        <strong>Fonte:</strong> <a href="https://pt.wikipedia.org/wiki/Cadastro_de_pessoas_f%C3%ADsicas" class="text-info hover:underline">Wikipédia</a>
-    </p>
 </article>
