@@ -53,7 +53,7 @@
             </div>
         </div>
 
-        @include('articles.cpf')
+        @include('includes.articles.cpf')
     </main>
 @endsection
 

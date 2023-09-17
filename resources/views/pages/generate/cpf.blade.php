@@ -139,7 +139,7 @@
             000.000.000-00
         </div>
 
-        @include('articles.cpf')
+        @include('includes.articles.cpf')
     </main>
 @endsection
 

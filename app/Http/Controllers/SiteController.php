@@ -13,33 +13,33 @@ class SiteController extends Controller
 
     public function generateCpf(): View
     {
-        return view('generate.cpf');
+        return view('pages.generate.cpf');
     }
 
     public function generateCnpj(): View
     {
-        return view('generate.cnpj');
+        return view('pages.generate.cnpj');
     }
 
     public function validateCpf(): View
     {
         $cpf = request()->query('cpf');
-        return view('validate.cpf', ['cpf' => $cpf]);
+        return view('pages.validate.cpf', ['cpf' => $cpf]);
     }
 
     public function validateCnpj(): View
     {
         $cnpj = request()->query('cnpj');
-        return view('validate.cnpj', ['cnpj' => $cnpj]);
+        return view('pages.validate.cnpj', ['cnpj' => $cnpj]);
     }
 
     public function editText(): View
     {
-        return view('edit.text');
+        return view('pages.edit.text');
     }
 
     public function convertNumbers(): View
     {
-        return view('convert.numbers');
+        return view('pages.convert.numbers');
     }
 }
