@@ -1,5 +1,5 @@
 <footer
-    class="z-50 w-screen bg-p-light dark:bg-p-dark text-b-light dark:text-b-dark px-2 lg:px-0 h-20"
+    class="z-50 mi-w-screen bg-p-light dark:bg-p-dark text-b-light dark:text-b-dark px-2 lg:px-0 h-20"
 >
     <div class="flex items-center ps-4 lg:w-4/5 mx-auto h-20">
         <a
