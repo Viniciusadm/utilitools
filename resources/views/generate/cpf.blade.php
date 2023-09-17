@@ -135,9 +135,11 @@
             CPF(s) gerado
         </p>
 
-        <div id="cpf" class="text-lg font-semibold mb-2 sm:mb-3">
+        <div id="cpf" class="text-lg font-semibold mb-4 sm:mb-5">
             000.000.000-00
         </div>
+
+        @include('articles.cpf')
     </main>
 @endsection
 

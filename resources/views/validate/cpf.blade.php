@@ -52,6 +52,8 @@
                 <p id="response" class="my-3 font-bold"></p>
             </div>
         </div>
+
+        @include('articles.cpf')
     </main>
 @endsection
 

@@ -39,21 +39,12 @@
             </svg>
         </button>
     </div>
-
-    <div class="pe-4 hidden h-full sm:flex items-center justify-end">
-        <label class="flex items-center justify-end">
-            <input name="search" class="rounded-s-md p-2 h-10" placeholder="Pesquisar">
-            <button class="h-10 rounded-e-md py-2 px-3 bg-s-light dark:bg-s-dark text-b-light dark:text-b-dark" aria-label="Pesquisar">
-                <i class="bi-search text-white"></i>
-            </button>
-        </label>
-    </div>
 </nav>
 
 <div class="flex gap-4">
     <aside
         id="sidebar"
-        class="z-40 h-screen sm:h-sidebar w-sidebar sm:w-60 bg-a-light rounded-lg dark:bg-a-dark mt-4 mx-4 sm:mx-0 hidden sm:block absolute sm:static left-0 sm:h-auto"
+        class="z-40 w-sidebar sm:w-60 bg-a-light rounded-lg dark:bg-a-dark mt-4 mx-4 sm:mx-0 hidden sm:block absolute sm:static left-0"
         aria-label="Sidebar"
     >
         <div class="h-full overflow-y-auto p-4 bg-a-light dark:bg-a-dark rounded-lg">
