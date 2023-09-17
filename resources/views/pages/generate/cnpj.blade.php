@@ -71,7 +71,6 @@
         min="1"
         max="100"
         class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full sm:w-80"
-        oninput="this.value = minMax(this.value, 1, 100)"
     />
 
     <div class="grid grid-cols-2 gap-3 w-full sm:w-80 mb-4 sm:mb-6" id="buttons">

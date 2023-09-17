@@ -1,4 +1,4 @@
-import { select } from "../helpers";
+import { change, minMax, select } from "../helpers";
 import IMask from "imask";
 
 const calculateCNPJDigit = (cnpj) => {
@@ -64,6 +64,13 @@ if (generateElement) {
                 copy.disabled = false;
             }, 1000);
         });
+    });
+}
+
+const quantity = select('#quantity') as HTMLInputElement;
+if (quantity) {
+    quantity.addEventListener('input', () => {
+        change('#quantity', minMax(Number(quantity.value), 1, 100).toString());
     });
 }
 
