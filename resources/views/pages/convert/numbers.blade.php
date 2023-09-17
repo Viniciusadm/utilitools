@@ -87,6 +87,8 @@
                 </button>
             </div>
         </div>
+
+        @include('includes.articles.numbers')
     </main>
 @endsection
 
