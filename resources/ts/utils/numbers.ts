@@ -1,8 +1,8 @@
-import { change } from "../helpers";
+import { change, minMax, select } from "../helpers";
 
 type Bases = 2 | 8 | 10 | 16;
 
-function filter(value: string, base: Bases): string {
+function filterBase(value: string, base: Bases): string {
     const validCharacters: Record<Bases, string> = {
         2: '01',
         8: '01234567',
@@ -16,7 +16,6 @@ function filter(value: string, base: Bases): string {
         .join('');
 }
 
-
 const convert = (number: number | string, from: Bases, to: Bases): string => {
     if (from === 10) {
         return parseInt(number as string, 10).toString(to);
@@ -28,7 +27,7 @@ const convert = (number: number | string, from: Bases, to: Bases): string => {
 
 document.querySelectorAll('.base-input').forEach((input: HTMLInputElement) => {
     input.addEventListener('input', () => {
-        input.value = filter(input.value, parseInt(input.getAttribute('data-base') as string, 10) as Bases);
+        input.value = filterBase(input.value, parseInt(input.getAttribute('data-base') as string, 10) as Bases);
     });
 
     input.addEventListener('keyup', () => {
@@ -60,4 +59,48 @@ document.querySelectorAll('.copy-button').forEach((button: HTMLButtonElement) =>
             }, 2000);
         });
     });
+});
+
+const operations: Record<'sum' | 'sub' | 'mul' | 'div', (a: number, b: number) => number> = {
+    sum: (a, b) => a + b,
+    sub: (a, b) => a - b,
+    mul: (a, b) => a * b,
+    div: (a, b) => a / b
+}
+
+const random = (min: number, max: number): number => {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+(select('#generate') as HTMLButtonElement).addEventListener('click', () => {
+    const min = parseInt((select('#min') as HTMLInputElement).value, 10);
+    const max = parseInt((select('#max') as HTMLInputElement).value, 10);
+    const quantity = parseInt((select('#quantity') as HTMLInputElement).value, 10);
+
+    let html = '';
+
+    for (let i = 1; i <= Number(quantity); i++) {
+        if (i === 1) html += `${random(min, max)}`;
+        else html += `, ${random(min, max)}`;
+    }
+
+    (select('#result') as Element).innerHTML = html;
+
+    const copy = select('#copy') as HTMLButtonElement;
+    copy.addEventListener('click', () => {
+        copy.disabled = true;
+        const cpf = (select('#result') as HTMLInputElement).innerText;
+        navigator.clipboard.writeText(cpf).then(() => {
+            copy.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
+            setTimeout(() => {
+                copy.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
+                copy.disabled = false;
+            }, 1000);
+        });
+    });
+});
+
+const quantity = select('#quantity') as HTMLInputElement;
+quantity.addEventListener('input', () => {
+    change('#quantity', minMax(Number(quantity.value), 1, 100).toString());
 });
