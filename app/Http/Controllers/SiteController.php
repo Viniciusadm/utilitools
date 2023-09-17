@@ -21,6 +21,11 @@ class SiteController extends Controller
         return view('pages.generate.cnpj');
     }
 
+    public function generateNumbers(): View
+    {
+        return view('pages.generate.numbers');
+    }
+
     public function validateCpf(): View
     {
         $cpf = request()->query('cpf');
