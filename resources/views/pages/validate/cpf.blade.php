@@ -29,7 +29,7 @@
             Deseja gerar em vez validar?
         </a>
 
-        <div class="mt-6">
+        <div class="mt-6 mb-4 sm:mb-5">
             <div class="mb-3">
                 <label for="cpf" class="block mb-2">
                     CPF
