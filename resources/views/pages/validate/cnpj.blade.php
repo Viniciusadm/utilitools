@@ -4,10 +4,12 @@
 
 @section('meta')
     <meta name="title" content="Validar CNPJ">
-    <meta name="description" content="Validador de CNPJs. Você pode validar um ou mais CNPJs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
+    <meta name="description"
+          content="Validador de CNPJs. Você pode validar um ou mais CNPJs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
     <meta name="keywords" content="validar cnpj, validar cnpj online">
     <meta property="og:title" content="Validar CNPJ">
-    <meta property="og:description" content="Validador de CNPJs. Você pode validar um ou mais CNPJs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
+    <meta property="og:description"
+          content="Validador de CNPJs. Você pode validar um ou mais CNPJs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
     <meta property="og:url" content="{{ route('validate.cnpj') }}">
 @endsection
 
@@ -29,7 +31,7 @@
             Deseja gerar em vez validar?
         </a>
 
-        <div class="mt-6">
+        <div class="mt-6 mb-4 sm:mb-5">
             <div class="mb-3">
                 <label for="cnpj" class="block mb-2">
                     CNPJ
@@ -52,6 +54,8 @@
                 <p id="response" class="my-3 font-bold"></p>
             </div>
         </div>
+
+        @include('includes.articles.cnpj')
     </main>
 @endsection
 

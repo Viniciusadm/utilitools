@@ -98,9 +98,11 @@
             CNPJ(s) gerado
         </p>
 
-        <div id="cnpj" class="text-lg font-semibold mb-2 sm:mb-3">
+        <div id="cnpj" class="text-lg font-semibold mb-4 sm:mb-5">
             00.000.000/0000-00
         </div>
+
+        @include('includes.articles.cnpj')
     </main>
 @endsection
 
