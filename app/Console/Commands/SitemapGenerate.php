@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Route;
 
 class SitemapGenerate extends Command
 {
@@ -32,15 +33,13 @@ class SitemapGenerate extends Command
 
         $xml = $init;
 
-        $xml .= $this->addRoute('home');
-        $xml .= $this->addRoute('generate.cpf');
-        $xml .= $this->addRoute('generate.cnpj');
-        $xml .= $this->addRoute('generate.numbers');
-        $xml .= $this->addRoute('validate.cpf');
-        $xml .= $this->addRoute('validate.cnpj');
-        $xml .= $this->addRoute('edit.text');
-        $xml .= $this->addRoute('convert.numbers');
-        $xml .= $this->addRoute('convert.temperatures');
+        $routes = Route::getRoutes()->getRoutesByName();
+
+        foreach (array_keys($routes) as $route) {
+            if (str_contains($route, 'site.')) {
+                $xml .= $this->addRoute($route);
+            }
+        }
 
         $xml .= $end;
 
