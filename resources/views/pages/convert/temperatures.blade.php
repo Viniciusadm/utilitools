@@ -76,6 +76,8 @@
             </button>
         </div>
     </div>
+
+    @include('includes.articles.temperatures')
 @endsection
 
 @vite('resources/ts/utils/temperatures.ts')
