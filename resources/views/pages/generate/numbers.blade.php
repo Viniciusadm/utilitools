@@ -61,7 +61,7 @@
     <div class="grid grid-cols-2 gap-3 w-full sm:w-80 mb-4 sm:mb-6" id="buttons">
         <button
             id="generate"
-            class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light block text-center"
+            class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light block text-center disabled:opacity-50 disabled:cursor-not-allowed"
             aria-label="Gerar números"
         >
             Gerar

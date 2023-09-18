@@ -1,4 +1,4 @@
-import { change, minMax, select } from "../helpers";
+import { button, change, input, select, minMax } from "../helpers";
 
 type Bases = 2 | 8 | 10 | 16;
 
@@ -69,29 +69,40 @@ const operations: Record<'sum' | 'sub' | 'mul' | 'div', (a: number, b: number) =
 }
 
 const random = (min: number, max: number): number => {
-    return Math.floor(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-const generate = (select('#generate') as HTMLButtonElement);
+const generate = (button('#generate'));
 if (generate) {
+    const max = input('#max');
+    const min = input('#min');
+
+    max.addEventListener('input', () => {
+        button('#generate').disabled = max.value < min.value;
+    });
+
+    min.addEventListener('input', () => {
+        button('#generate').disabled = min.value > max.value;
+    });
+
     generate.addEventListener('click', () => {
-        const min = parseInt((select('#min') as HTMLInputElement).value, 10);
-        const max = parseInt((select('#max') as HTMLInputElement).value, 10);
-        const quantity = parseInt((select('#quantity') as HTMLInputElement).value, 10);
-    
+        const min = parseInt((input('#min')).value, 10);
+        const max = parseInt((input('#max')).value, 10);
+        const quantity = parseInt((input('#quantity')).value, 10);
+
         let html = '';
-    
+
         for (let i = 1; i <= Number(quantity); i++) {
             if (i === 1) html += `${random(min, max)}`;
             else html += `, ${random(min, max)}`;
         }
-    
+
         (select('#result') as Element).innerHTML = html;
-    
-        const copy = select('#copy') as HTMLButtonElement;
+
+        const copy = button('#copy');
         copy.addEventListener('click', () => {
             copy.disabled = true;
-            const cpf = (select('#result') as HTMLInputElement).innerText;
+            const cpf = (input('#result')).innerText;
             navigator.clipboard.writeText(cpf).then(() => {
                 copy.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
                 setTimeout(() => {
@@ -103,7 +114,7 @@ if (generate) {
     });
 }
 
-const quantity = select('#quantity') as HTMLInputElement;
+const quantity = input('#quantity');
 if (quantity) {
     quantity.addEventListener('input', () => {
         change('#quantity', minMax(Number(quantity.value), 1, 100).toString());
