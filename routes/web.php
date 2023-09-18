@@ -33,4 +33,5 @@ Route::prefix('editar')->name('edit.')->group(function () {
 
 Route::prefix('converter')->name('convert.')->group(function () {
     Route::get('/numeros', [SiteController::class, 'convertNumbers'])->name('numbers');
+    Route::get('/temperaturas', [SiteController::class, 'convertTemperatures'])->name('temperatures');
 });

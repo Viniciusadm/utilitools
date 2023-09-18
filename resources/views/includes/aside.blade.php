@@ -21,6 +21,8 @@
             @endcomponent
             @component('components.link-menu', ['name' => 'convert.numbers', 'label' => 'Conversor de números'])
             @endcomponent
+            @component('components.link-menu', ['name' => 'convert.temperatures', 'label' => 'Conversor de temperaturas'])
+            @endcomponent
         </ul>
     </div>
 </aside>

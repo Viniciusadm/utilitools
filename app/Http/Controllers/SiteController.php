@@ -47,4 +47,9 @@ class SiteController extends Controller
     {
         return view('pages.convert.numbers');
     }
+
+    public function convertTemperatures(): View
+    {
+        return view('pages.convert.temperatures');
+    }
 }
