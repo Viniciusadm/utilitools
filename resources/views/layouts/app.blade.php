@@ -11,7 +11,7 @@
     </title>
 
     @yield('meta')
-    <meta name="google-site-verification" content="yhGpeq0-w7ZXyzcEMCfo_RkD___VPq_Kk96B5IQwqZs"/>
+    <meta name="google-site-verification" content="xOiiMIRDHjlhs2zgj1C7GSuxiI38euRzKBE1eX5b5KQ" />
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon"/>
 </head>
 
