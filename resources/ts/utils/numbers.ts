@@ -72,35 +72,40 @@ const random = (min: number, max: number): number => {
     return Math.floor(Math.random() * (max - min) + min);
 }
 
-(select('#generate') as HTMLButtonElement).addEventListener('click', () => {
-    const min = parseInt((select('#min') as HTMLInputElement).value, 10);
-    const max = parseInt((select('#max') as HTMLInputElement).value, 10);
-    const quantity = parseInt((select('#quantity') as HTMLInputElement).value, 10);
-
-    let html = '';
-
-    for (let i = 1; i <= Number(quantity); i++) {
-        if (i === 1) html += `${random(min, max)}`;
-        else html += `, ${random(min, max)}`;
-    }
-
-    (select('#result') as Element).innerHTML = html;
-
-    const copy = select('#copy') as HTMLButtonElement;
-    copy.addEventListener('click', () => {
-        copy.disabled = true;
-        const cpf = (select('#result') as HTMLInputElement).innerText;
-        navigator.clipboard.writeText(cpf).then(() => {
-            copy.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
-            setTimeout(() => {
-                copy.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
-                copy.disabled = false;
-            }, 1000);
+const generate = (select('#generate') as HTMLButtonElement);
+if (generate) {
+    generate.addEventListener('click', () => {
+        const min = parseInt((select('#min') as HTMLInputElement).value, 10);
+        const max = parseInt((select('#max') as HTMLInputElement).value, 10);
+        const quantity = parseInt((select('#quantity') as HTMLInputElement).value, 10);
+    
+        let html = '';
+    
+        for (let i = 1; i <= Number(quantity); i++) {
+            if (i === 1) html += `${random(min, max)}`;
+            else html += `, ${random(min, max)}`;
+        }
+    
+        (select('#result') as Element).innerHTML = html;
+    
+        const copy = select('#copy') as HTMLButtonElement;
+        copy.addEventListener('click', () => {
+            copy.disabled = true;
+            const cpf = (select('#result') as HTMLInputElement).innerText;
+            navigator.clipboard.writeText(cpf).then(() => {
+                copy.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
+                setTimeout(() => {
+                    copy.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
+                    copy.disabled = false;
+                }, 1000);
+            });
         });
     });
-});
+}
 
 const quantity = select('#quantity') as HTMLInputElement;
-quantity.addEventListener('input', () => {
-    change('#quantity', minMax(Number(quantity.value), 1, 100).toString());
-});
+if (quantity) {
+    quantity.addEventListener('input', () => {
+        change('#quantity', minMax(Number(quantity.value), 1, 100).toString());
+    });
+}
