@@ -8,7 +8,7 @@
     <meta name="keywords" content="gerador de cnpj, gerador de cnpj online, gerador de cnpj válido, gerador de cnpj aleatório, gerador de cnpj com pontuação, gerador de cnpj com estado, gerador de muitos cnpjs, gerador de cnpj em massa, gerador de cnpj em lote, gerador de multiplos cnpjs">
     <meta property="og:title" content="Gerador de CNPJ">
     <meta property="og:description" content="Gerador de CNPJs válidos aleatórios. Você pode escolher se quer pontuação ou não.">
-    <meta property="og:url" content="{{ route('generate.cnpj') }}">
+    <meta property="og:url" content="{{ route('site.generate.cnpj') }}">
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
     </p>
 
     <a
-        href="{{ route('validate.cnpj') }}"
+        href="{{ route('site.validate.cnpj') }}"
         class="text-info hover:underline block mb-4 sm:mb-6"
         aria-label="Deseja validar em vez gerar?"
     >

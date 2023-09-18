@@ -8,7 +8,7 @@
     <meta name="keywords" content="gerador de cpf, gerador de cpf online, gerador de cpf válido, gerador de cpf aleatório, gerador de cpf com pontuação, gerador de cpf com estado, gerador de cpf com uf, gerador de cpf com unidade federativa, gerador de muitos cpfs, gerador de cpf em massa, gerador de cpf em lote, gerador de multiplos cpfs">
     <meta property="og:title" content="Gerador de CPF">
     <meta property="og:description" content="Gerador de CPFs válidos aleatórios. Você pode escolher se quer pontuação ou não e o estado.">
-    <meta property="og:url" content="{{ route('generate.cpf') }}">
+    <meta property="og:url" content="{{ route('site.generate.cpf') }}">
 @endsection
 
 @section('content')
@@ -22,7 +22,7 @@
     </p>
 
     <a
-        href="{{ route('validate.cpf') }}"
+        href="{{ route('site.validate.cpf') }}"
         class="text-info hover:underline block mb-4 sm:mb-6"
         aria-label="Deseja validar em vez gerar?"
     >

@@ -8,7 +8,7 @@
     <meta name="keywords" content="validar cpf, validar cpf online">
     <meta property="og:title" content="Validar CPF">
     <meta property="og:description" content="Validador de CPFs. Você pode validar um ou mais CPFs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
-    <meta property="og:url" content="{{ route('validate.cpf') }}">
+    <meta property="og:url" content="{{ route('site.validate.cpf') }}">
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
     </p>
 
     <a
-        href="{{ route('generate.cpf') }}"
+        href="{{ route('site.generate.cpf') }}"
         class="text-info hover:underline block mb-4 sm:mb-6"
         aria-label="Deseja gerar em vez validar?"
     >

@@ -2,7 +2,7 @@
     <div class="lg:w-4/5 mx-auto grid grid-cols-2 px-2 lg:px-0 h-20">
         <div class="flex items-center ps-4">
             <a
-                href="{{ route('home') }}"
+                href="{{ route('site.home') }}"
                 class="text-2xl font-bold text-white"
             >
                 UtiliTools
