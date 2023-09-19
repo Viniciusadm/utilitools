@@ -77,11 +77,11 @@
         </button>
     </div>
 
-    <div class="mt-4 sm:mt-6">
+    <div class="mt-4 sm:mt-6 mb-2 sm:mb-3">
         <p class="block mb-2 sm:mb-3">
             Resultado
         </p>
-        <div id="result"></div>
+        <div id="result">0</div>
     </div>
 
     @if (count($links) > 0)
