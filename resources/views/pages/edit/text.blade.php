@@ -81,6 +81,7 @@
             Desfazer
         </button>
     </div>
+
     <textarea
         id="text"
         class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full resize-none"
@@ -88,7 +89,8 @@
         aria-labelledby="text-label"
         aria-describedby="status"
     ></textarea>
-    <p id="status">
+
+    <p id="status" class="mb-2 sm:mb-3">
         <span class="font-bold" id="status-characters">0</span> caracteres
         <span class="font-bold" id="status-words">0</span> palavras
         <span class="font-bold" id="status-lines">0</span> linhas
