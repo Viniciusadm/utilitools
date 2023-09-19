@@ -32,6 +32,10 @@ Route::name('site.')->group(function () {
         Route::get('/texto', [SiteController::class, 'editText'])->name('text');
     });
 
+    Route::prefix('dividir')->name('split.')->group(function () {
+        Route::get('/texto', [SiteController::class, 'splitText'])->name('text');
+    });
+
     Route::prefix('converter')->name('convert.')->group(function () {
         Route::get('/numeros', [SiteController::class, 'convertNumbers'])->name('numbers');
         Route::get('/temperaturas', [SiteController::class, 'convertTemperatures'])->name('temperatures');

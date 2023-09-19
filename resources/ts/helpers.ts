@@ -1,5 +1,5 @@
-export const select = (selector: string): Element | null  => {
-    return document.querySelector(selector);
+export const select = (selector: string): Element  => {
+    return document.querySelector(selector) as Element;
 };
 
 export const input = (selector: string): HTMLInputElement => {
