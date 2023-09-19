@@ -16,11 +16,16 @@ class VisitorMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        Access::query()->create([
-            'ip' => $request->ip(),
-            'url' => $request->path(),
-            'user_agent' => $request->userAgent(),
-        ]);
+        $ips = config('app.ignored_ips');
+        $ip = $request->ip();
+
+        if (!in_array($ip, explode(',', $ips))) {
+            Access::query()->create([
+                'ip' => $ip,
+                'url' => $request->path(),
+                'user_agent' => $request->userAgent(),
+            ]);
+        }
 
         return $next($request);
     }

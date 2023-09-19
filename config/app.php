@@ -185,4 +185,5 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'ignored_ips' => env('IGNORED_IPS', ''),
 ];
