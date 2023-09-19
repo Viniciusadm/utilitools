@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\LinksHelper;
 use Illuminate\Contracts\View\View;
 
 class SiteController extends Controller
@@ -13,43 +14,41 @@ class SiteController extends Controller
 
     public function generateCpf(): View
     {
-        return view('pages.generate.cpf');
+        return view('pages.generate.cpf', ['links' => LinksHelper::get()]);
     }
 
     public function generateCnpj(): View
     {
-        return view('pages.generate.cnpj');
+        return view('pages.generate.cnpj', ['links' => LinksHelper::get()]);
     }
 
     public function generateNumbers(): View
     {
-        return view('pages.generate.numbers');
+        return view('pages.generate.numbers', ['links' => LinksHelper::get()]);
     }
 
     public function validateCpf(): View
     {
-        $cpf = request()->query('cpf');
-        return view('pages.validate.cpf', ['cpf' => $cpf]);
+        return view('pages.validate.cpf', ['links' => LinksHelper::get()]);
     }
 
     public function validateCnpj(): View
     {
-        $cnpj = request()->query('cnpj');
-        return view('pages.validate.cnpj', ['cnpj' => $cnpj]);
+        return view('pages.validate.cnpj', ['links' => LinksHelper::get()]);
     }
 
     public function editText(): View
     {
-        return view('pages.edit.text');
+        return view('pages.edit.text', ['links' => LinksHelper::get()]);
     }
 
     public function convertNumbers(): View
     {
-        return view('pages.convert.numbers');
+        return view('pages.convert.numbers', ['links' => LinksHelper::get()]);
     }
 
     public function convertTemperatures(): View
     {
-        return view('pages.convert.temperatures');
+        return view('pages.convert.temperatures', ['links' => LinksHelper::get()]);
     }
 }

@@ -38,7 +38,6 @@
                     id="cnpj"
                     class="w-[212px] bg-white dark:bg-a-dark p-2 rounded-md shadow-sm border border-gray-300 dark:border-gray-700"
                     placeholder="000.000.000-00"
-                    value="{{ $cnpj }}"
                 >
                 <button
                     id="validate"
@@ -53,6 +52,11 @@
     </div>
 
     @include('includes.articles.cnpj')
+
+    @if (count($links) > 0)
+        @component('components.links', ['links' => $links])
+        @endcomponent
+    @endif
 @endsection
 
 @vite('resources/ts/utils/cnpj.ts')

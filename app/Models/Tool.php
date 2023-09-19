@@ -5,6 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $name
+ * @property string $type
+ * @property string $category
+ * @property string $route
+ */
 class Tool extends Model
 {
     use HasFactory;
@@ -14,4 +20,13 @@ class Tool extends Model
         'type',
         'category',
     ];
+
+    protected $appends = [
+        'route',
+    ];
+
+    public function getRouteAttribute(): string
+    {
+        return route('site.' . $this->type . '.' . $this->category);
+    }
 }

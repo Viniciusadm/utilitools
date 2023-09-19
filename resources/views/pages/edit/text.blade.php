@@ -93,6 +93,11 @@
         <span class="font-bold" id="status-words">0</span> palavras
         <span class="font-bold" id="status-lines">0</span> linhas
     </p>
+
+    @if (count($links) > 0)
+        @component('components.links', ['links' => $links])
+        @endcomponent
+    @endif
 @endsection
 
 @vite('resources/ts/utils/text.ts')

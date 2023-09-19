@@ -101,6 +101,11 @@
     </div>
 
     @include('includes.articles.cnpj')
+
+    @if (count($links) > 0)
+        @component('components.links', ['links' => $links])
+        @endcomponent
+    @endif
 @endsection
 
 @vite('resources/ts/utils/cnpj.ts')

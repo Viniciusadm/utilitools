@@ -138,6 +138,11 @@
     </div>
 
     @include('includes.articles.cpf')
+
+    @if (count($links) > 0)
+        @component('components.links', ['links' => $links])
+        @endcomponent
+    @endif
 @endsection
 
 @vite('resources/ts/utils/cpf.ts')

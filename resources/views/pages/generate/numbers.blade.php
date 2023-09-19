@@ -83,6 +83,11 @@
         </p>
         <div id="result"></div>
     </div>
+
+    @if (count($links) > 0)
+        @component('components.links', ['links' => $links])
+        @endcomponent
+    @endif
 @endsection
 
 @vite('resources/ts/utils/numbers.ts')

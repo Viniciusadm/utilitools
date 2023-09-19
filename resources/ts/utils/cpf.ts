@@ -165,10 +165,6 @@ if (select('#validate')) {
     });
 
     window.addEventListener('load', () => {
-        if (cpfElement.value) {
-            validateCPF();
-        }
-
         IMask(cpfElement, {
             mask: '000.000.000-00'
         });

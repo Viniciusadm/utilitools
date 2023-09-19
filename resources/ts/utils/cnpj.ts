@@ -118,10 +118,6 @@ if (select('#validate')) {
     });
 
     window.addEventListener('load', () => {
-        if (cnpjElement.value) {
-            validateCNPJ();
-        }
-
         IMask(cnpjElement, {
             mask: '00.000.000/0000-00'
         });
