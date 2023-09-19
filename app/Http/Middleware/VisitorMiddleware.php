@@ -18,7 +18,7 @@ class VisitorMiddleware
     {
         Access::query()->create([
             'ip' => $request->ip(),
-            'url' => $request->url(),
+            'url' => $request->path(),
             'user_agent' => $request->userAgent(),
         ]);
 
