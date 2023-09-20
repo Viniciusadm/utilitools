@@ -8,7 +8,7 @@
     <meta name="keywords" content="editor de texto, inverter texto, maiúsculas, minúsculas, capitalizar, alternar caixa, embaralhar, remover duplicados">
     <meta property="og:title" content="Editor de texto">
     <meta property="og:description" content="Editor de texto online. Ferramenta para editar textos, inverter, maiúsculas, minúsculas, capitalizar, alternar caixa, embaralhar e remover duplicados.">
-    <meta property="og:url" content="{{ route('site.edit.text') }}">
+    <meta property="og:url" content="{{ route('edit.text') }}">
 @endsection
 
 @section('content')

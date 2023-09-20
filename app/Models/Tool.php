@@ -27,6 +27,6 @@ class Tool extends Model
 
     public function getRouteAttribute(): string
     {
-        return route('site.' . $this->type . '.' . $this->category);
+        return route('' . $this->type . '.' . $this->category);
     }
 }

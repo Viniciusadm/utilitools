@@ -10,9 +10,8 @@ class LinksHelper
     public static function get(): Collection
     {
         $name = request()->route()->getName();
-        $route = str_replace('site.', '', $name);
-        $type = explode('.', $route)[0];
-        $category = explode('.', $route)[1];
+        $type = explode('.', $name)[0];
+        $category = explode('.', $name)[1];
 
         $actual = Tool::query()
             ->where('type', $type)

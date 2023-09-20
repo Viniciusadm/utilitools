@@ -8,7 +8,7 @@
     <meta name="keywords" content="conversor, temperatura, celsius, fahrenheit, kelvin">
     <meta property="og:title" content="Conversor de temperaturas">
     <meta property="og:description" content="Conversor de temperaturas. Digite um valor em qualquer unidade de temperatura e veja sua conversão para as demais unidades. As unidades disponíveis são: Celsius, Fahrenheit, Kelvin.">
-    <meta property="og:url" content="{{ route('site.convert.temperatures') }}">
+    <meta property="og:url" content="{{ route('convert.temperatures') }}">
 @endsection
 
 @section('content')

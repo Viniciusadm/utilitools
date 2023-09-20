@@ -8,7 +8,7 @@
     <meta name="keywords" content="dividir texto, dividir linhas, dividir palavras, dividir caracteres, dividir strings">
     <meta property="og:title" content="Dividir texto">
     <meta property="og:description" content="Dividir texto online. Ferramenta para dividir textos em linhas, palavras, caracteres.">
-    <meta property="og:url" content="{{ route('site.split.text') }}">
+    <meta property="og:url" content="{{ route('split.text') }}">
 @endsection
 
 @section('content')

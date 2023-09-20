@@ -36,9 +36,7 @@ class SitemapGenerate extends Command
         $routes = Route::getRoutes()->getRoutesByName();
 
         foreach (array_keys($routes) as $route) {
-            if (str_contains($route, 'site.')) {
-                $xml .= $this->addRoute($route);
-            }
+            $xml .= $this->addRoute($route);
         }
 
         $xml .= $end;

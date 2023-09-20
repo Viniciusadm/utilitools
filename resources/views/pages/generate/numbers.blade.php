@@ -8,7 +8,7 @@
     <meta name="keywords" content="gerador de números, gerador de números aleatórios, gerador de números aleatórios online, gerador de números aleatórios com mínimo, gerador de números aleatórios com máximo, gerador de números aleatórios com quantidade, gerador de números aleatórios com min, gerador de números aleatórios com max, gerador de números aleatórios com qtd, gerador de números aleatórios com quantidade, gerador de números aleatórios com quantidade, gerador de números aleatórios com minimo, gerador de números aleatórios com maximo, gerador de números aleatórios com qtd, gerador de números aleatórios com quantidade, gerador de números aleatórios com minimo, gerador de números aleatórios com maximo, gerador de números aleatórios com qtd, gerador de números aleatórios com quantidade, gerador de números aleatórios com minimo, gerador de números aleatórios com maximo, gerador de números aleatórios com qtd, gerador de números aleatórios com quantidade">
     <meta property="og:title" content="Gerador de números aleatórios">
     <meta property="og:description" content="Gerador de números aleatórios. Você pode escolher o mínimo, o máximo e a quantidade de números.">
-    <meta property="og:url" content="{{ route('site.generate.numbers') }}">
+    <meta property="og:url" content="{{ route('generate.numbers') }}">
 @endsection
 
 @section('content')

@@ -8,7 +8,7 @@
     <meta name="keywords" content="conversor de bases numéricas, conversor de bases, conversor de números, binário, octal, decimal, hexadecimal">
     <meta property="og:title" content="Conversor de bases numéricas">
     <meta property="og:description" content="Conversor de bases numéricas. Digite um número em qualquer base numérica e veja sua conversão para as demais bases. As bases disponíveis são: binário, octal, decimal e hexadecimal.">
-    <meta property="og:url" content="{{ route('site.convert.numbers') }}">
+    <meta property="og:url" content="{{ route('convert.numbers') }}">
 @endsection
 
 @section('content')

@@ -8,7 +8,7 @@
     <meta name="keywords" content="editor de palavras, ordernar palavras, remover duplicados, contar palavras">
     <meta property="og:title" content="Editor de palavras">
     <meta property="og:description" content="Editor de palavras online. Ferramenta para ordernar palavras, remover duplicados e contar palavras.">
-    <meta property="og:url" content="{{ route('site.edit.words') }}">
+    <meta property="og:url" content="{{ route('edit.words') }}">
 @endsection
 
 @section('content')
