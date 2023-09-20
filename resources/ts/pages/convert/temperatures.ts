@@ -1,4 +1,4 @@
-import { change } from "../helpers";
+import { change, input } from "../../helpers";
 
 type Units = "Kelvin" | "Fahrenheit" | "Celsius";
 
@@ -60,8 +60,8 @@ document.querySelectorAll('.base-input').forEach((input: HTMLInputElement) => {
 
 document.querySelectorAll('.copy-button').forEach((button: HTMLButtonElement) => {
     button.addEventListener('click', () => {
-        const input = document.querySelector(button.getAttribute('data-clipboard-target') as string) as HTMLInputElement;
-        navigator.clipboard.writeText(input.value).then(() => {
+        const copy = input(button.getAttribute('data-clipboard-target'));
+        navigator.clipboard.writeText(copy.value).then(() => {
             button.innerHTML = '<i class="bi-clipboard-check"></i>';
             setTimeout(() => {
                 button.innerHTML = '<i class="bi-clipboard"></i>';
