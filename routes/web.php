@@ -30,6 +30,7 @@ Route::name('site.')->group(function () {
 
     Route::prefix('editar')->name('edit.')->group(function () {
         Route::get('/texto', [SiteController::class, 'editText'])->name('text');
+        Route::get('/palavras', [SiteController::class, 'editWords'])->name('words');
     });
 
     Route::prefix('dividir')->name('split.')->group(function () {

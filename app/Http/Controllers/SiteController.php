@@ -42,6 +42,11 @@ class SiteController extends Controller
         return view('pages.edit.text', ['links' => LinksHelper::get()]);
     }
 
+    public function editWords(): View
+    {
+        return view('pages.edit.words', ['links' => LinksHelper::get()]);
+    }
+
     public function splitText(): View
     {
         return view('pages.split.text', ['links' => LinksHelper::get()]);
