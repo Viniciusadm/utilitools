@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Tool;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Route;
 
 class SitemapGenerate extends Command
 {
@@ -33,10 +33,8 @@ class SitemapGenerate extends Command
 
         $xml = $init;
 
-        $routes = Route::getRoutes()->getRoutesByName();
-
-        foreach (array_keys($routes) as $route) {
-            $xml .= $this->addRoute($route);
+        foreach (Tool::query()->orderBy('type')->get() as $route) {
+            $xml .= $this->addRoute($route->route);
         }
 
         $xml .= $end;
@@ -48,7 +46,7 @@ class SitemapGenerate extends Command
 
     private function addRoute(string $route): string
     {
-        $route = str_replace('http://', 'https://', route($route));
+        $route = str_replace('http://', 'https://', $route);
 
         $xml = '<url>' . PHP_EOL;
         $xml .= '<loc>' . $route . '</loc>' . PHP_EOL;
