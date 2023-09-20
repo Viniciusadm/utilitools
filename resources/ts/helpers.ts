@@ -14,6 +14,13 @@ export const change = (selector: string, value: string = ''): void => {
     (select(selector) as HTMLInputElement).value = value;
 }
 
+export const event = (selector: string, event: string, callback: (element: HTMLInputElement | HTMLButtonElement, event: Event | KeyboardEvent) => void): void => {
+    const element = select(selector) as HTMLInputElement | HTMLButtonElement;
+    element.addEventListener(event, (event) => {
+        callback(element, event);
+    });
+}
+
 export const minMax = (value: number, min: number, max: number) => {
     if (!value) return value;
     return Math.min(Math.max(value, min), max);
