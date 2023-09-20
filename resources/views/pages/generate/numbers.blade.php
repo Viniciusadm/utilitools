@@ -90,4 +90,4 @@
     @endif
 @endsection
 
-@vite('resources/ts/utils/numbers.ts')
+@vite('resources/ts/pages/numbers.ts')

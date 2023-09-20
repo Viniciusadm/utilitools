@@ -3,7 +3,7 @@ import laravel from 'laravel-vite-plugin';
 import fs from 'fs';
 import path from 'path';
 
-const utilsDir = 'resources/ts/utils';
+const utilsDir = 'resources/ts/pages';
 
 function getUtilsFiles() {
     const files = fs.readdirSync(utilsDir);

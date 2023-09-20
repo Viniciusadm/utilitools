@@ -102,4 +102,4 @@
     @endif
 @endsection
 
-@vite('resources/ts/utils/text.ts')
+@vite('resources/ts/pages/text.ts')

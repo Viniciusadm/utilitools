@@ -108,4 +108,4 @@
     @endif
 @endsection
 
-@vite('resources/ts/utils/cnpj.ts')
+@vite('resources/ts/pages/cnpj.ts')

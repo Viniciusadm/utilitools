@@ -85,4 +85,4 @@
     @endif
 @endsection
 
-@vite('resources/ts/utils/temperatures.ts')
+@vite('resources/ts/pages/temperatures.ts')
