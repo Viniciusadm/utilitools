@@ -104,4 +104,4 @@
     @endif
 @endsection
 
-@vite('resources/ts/pages/numbers.ts')
+@vite('resources/ts/pages/convert/numbers.ts')
