@@ -1,6 +1,6 @@
-import { event, input, select } from "../../helpers";
+import { event, input, select } from "../helpers";
 import IMask from "imask";
-import { calculateCNPJDigit } from "../../functions";
+import { calculateCNPJDigit } from "../functions";
 
 const validate = (cnpj): boolean => {
     cnpj = cnpj.replace(/\D/g, '');

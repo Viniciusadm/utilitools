@@ -1,4 +1,4 @@
-import { change, input } from "../../helpers";
+import { change, input } from "../helpers";
 
 type Units = "Kelvin" | "Fahrenheit" | "Celsius";
 

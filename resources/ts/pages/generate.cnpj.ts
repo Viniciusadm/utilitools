@@ -1,5 +1,5 @@
-import { change, event, input, minMax, select } from "../../helpers";
-import { calculateCNPJDigit } from "../../functions";
+import { change, event, input, minMax, select } from "../helpers";
+import { calculateCNPJDigit } from "../functions";
 
 const generate = (punctuation = true) => {
     let cnpj = '';

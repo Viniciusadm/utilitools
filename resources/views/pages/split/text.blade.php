@@ -67,4 +67,4 @@
     @endif
 @endsection
 
-@vite('resources/ts/pages/split/text.ts')
+@vite('resources/ts/pages/split.text.ts')

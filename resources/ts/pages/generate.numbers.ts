@@ -1,4 +1,4 @@
-import { button, change, input, select, minMax, event } from "../../helpers";
+import { button, change, input, select, minMax, event } from "../helpers";
 
 const operations: Record<'sum' | 'sub' | 'mul' | 'div', (a: number, b: number) => number> = {
     sum: (a, b) => a + b,

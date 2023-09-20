@@ -1,5 +1,5 @@
 import IMask from "imask";
-import { event, input, select } from "../../helpers";
+import { event, input, select } from "../helpers";
 
 const states = [
     ['RS'],

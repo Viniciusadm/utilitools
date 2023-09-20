@@ -1,4 +1,4 @@
-import { event, input, minMax, select } from '../../helpers';
+import { event, input, minMax, select } from '../helpers';
 import IMask from 'imask';
 
 const punctuateCPF = (cpf: string): string => {

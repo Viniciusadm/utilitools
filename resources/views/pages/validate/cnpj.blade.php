@@ -59,4 +59,4 @@
     @endif
 @endsection
 
-@vite('resources/ts/pages/validate/cnpj.ts')
+@vite('resources/ts/pages/validate.cnpj.ts')

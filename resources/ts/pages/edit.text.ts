@@ -1,4 +1,4 @@
-import { event, input, select } from '../../helpers';
+import { event, input, select } from '../helpers';
 
 const MAX_MEMORY_LENGTH = 10;
 const memory: string[] = [];
