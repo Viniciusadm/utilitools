@@ -24,15 +24,13 @@ event('#generate', 'click', (element) => {
 });
 
 event('#copy', 'click', (element) => {
-    element.addEventListener('click', () => {
-        element.disabled = true;
-        const name = select('#name-text').innerHTML;
-        navigator.clipboard.writeText(name).then(() => {
-            element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
-            setTimeout(() => {
-                element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
-                element.disabled = false;
-            }, 1000);
-        });
+    element.disabled = true;
+    const name = select('#name-text').innerHTML;
+    navigator.clipboard.writeText(name).then(() => {
+        element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
+        setTimeout(() => {
+            element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
+            element.disabled = false;
+        }, 1000);
     });
 });
