@@ -27,6 +27,11 @@ class SiteController extends Controller
         return view('pages.generate.numbers', ['links' => LinksHelper::get()]);
     }
 
+    public function generateNames(): View
+    {
+        return view('pages.generate.names', ['links' => LinksHelper::get()]);
+    }
+
     public function validateCpf(): View
     {
         return view('pages.validate.cpf', ['links' => LinksHelper::get()]);
