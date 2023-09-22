@@ -38,16 +38,14 @@ event('#generate', 'click', (element) => {
 });
 
 event('#copy', 'click', (element) => {
-    element.addEventListener('click', () => {
-        element.disabled = true;
-        const cnpj = input('#cnpj').innerText;
-        navigator.clipboard.writeText(cnpj).then(() => {
-            element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
-            setTimeout(() => {
-                element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
-                element.disabled = false;
-            }, 1000);
-        });
+    element.disabled = true;
+    const cnpj = input('#cnpj').innerText;
+    navigator.clipboard.writeText(cnpj).then(() => {
+        element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
+        setTimeout(() => {
+            element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
+            element.disabled = false;
+        }, 1000);
     });
 });
 
