@@ -92,6 +92,8 @@
         00.000.000-0
     </div>
 
+    @include('includes.articles.rg')
+
     @if (count($links) > 0)
         @component('components.links', ['links' => $links])
         @endcomponent
