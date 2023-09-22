@@ -21,6 +21,7 @@ Route::prefix('gerar')->name('generate.')->group(function () {
     Route::get('/cnpj', [SiteController::class, 'generateCnpj'])->name('cnpj');
     Route::get('/numeros', [SiteController::class, 'generateNumbers'])->name('numbers');
     Route::get('/nomes', [SiteController::class, 'generateNames'])->name('names');
+    Route::get('/lorem', [SiteController::class, 'generateLorem'])->name('lorem');
 });
 
 Route::prefix('validar')->name('validate.')->group(function () {
