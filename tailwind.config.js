@@ -1,10 +1,7 @@
 /** @type {import('tailwindcss').Config} */
+
 module.exports = {
-    content: [
-        "./resources/**/*.blade.php",
-        "./resources/**/*.js",
-        "./resources/**/*.vue",
-    ],
+    content: ['./resources/**/*.blade.php', './resources/**/*.js', './resources/**/*.vue'],
     theme: {
         colors: {
             'b-light': {
@@ -37,27 +34,26 @@ module.exports = {
                 DEFAULT: '#EA580C',
                 light: '#F97316',
             },
-            'white': '#FFFFFF',
-            'success': '#10B26C',
-            'danger': '#EF4444',
-            'info': {
+            white: '#FFFFFF',
+            success: '#10B26C',
+            danger: '#EF4444',
+            info: {
                 DEFAULT: '#3B82F6',
                 light: '#60A5FA',
             },
-            'transparent': 'transparent',
+            transparent: 'transparent',
         },
         extend: {
             height: {
-                'sidebar': 'calc(100vh - 8rem)',
+                sidebar: 'calc(100vh - 8rem)',
             },
             minHeight: {
-                'main': 'calc(100vh - 11rem)',
+                main: 'calc(100vh - 11rem)',
             },
             width: {
-                'sidebar': 'calc(100vw - 2rem)',
-                'content': 'calc(100% - 15rem)',
-            }
+                sidebar: 'calc(100vw - 2rem)',
+                content: 'calc(100% - 15rem)',
+            },
         },
     },
-    plugins: [],
 }
