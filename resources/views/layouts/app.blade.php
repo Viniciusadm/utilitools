@@ -13,6 +13,17 @@
     @yield('meta')
     <meta name="google-site-verification" content="xOiiMIRDHjlhs2zgj1C7GSuxiI38euRzKBE1eX5b5KQ" />
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon"/>
+
+    @if (config('services.google.analytics.id'))
+        <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google.analytics.id') }}"></script>
+            <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', '{{ config('services.google.analytics.id') }}');
+        </script>
+    @endif
 </head>
 
 <body class="bg-b-light dark:bg-b-dark text-t-light dark:text-t-dark grid grid-rows-[auto,1fr,auto] min-h-screen">
