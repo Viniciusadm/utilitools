@@ -14,7 +14,9 @@ const text = input('#text');
 
 const updateStatus = () => {
     const separator =  input('input[name="separator"]:checked').value;
-    select('#status-words').textContent = String(text.value.split(SEPARATORES[separator]).filter(word => word !== '').length);
+    const lines = String(text.value.split('\n').filter(line => line !== '').length);
+    const words = String(text.value.split(SEPARATORES[separator]).filter(word => word !== '').length);
+    select('#status-words').textContent = String(Number(words) + Number(lines) - 1);
 };
 
 const addActionListener = (button: string, callback: (text: string) => string) => {

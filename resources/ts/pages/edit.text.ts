@@ -6,9 +6,13 @@ const memory: string[] = [];
 const text = input('#text');
 
 const updateStatus = () => {
-    select('#status-characters').textContent = String(text.value.length);
-    select('#status-words').textContent = String(text.value.split(' ').filter(word => word !== '').length);
-    select('#status-lines').textContent = String(text.value.split('\n').filter(line => line !== '').length);
+    const lines = String(text.value.split('\n').filter(line => line !== '').length);
+    const characters = String(text.value.length);
+    const words = String(text.value.split(' ').filter(word => word !== '').length);
+
+    select('#status-characters').textContent = characters;
+    select('#status-words').textContent = String(Number(words) + Number(lines) - 1);
+    select('#status-lines').textContent = lines;
 };
 
 const addActionListener = (button: string, callback: (text: string) => string) => {
