@@ -52,6 +52,11 @@ class SiteController extends Controller
         return view('pages.validate.cnpj', ['links' => LinksHelper::get()]);
     }
 
+    public function validateRg(): View
+    {
+        return view('pages.validate.rg', ['links' => LinksHelper::get()]);
+    }
+
     public function editText(): View
     {
         return view('pages.edit.text', ['links' => LinksHelper::get()]);
