@@ -44,3 +44,7 @@ Route::prefix('converter')->name('convert.')->group(function () {
     Route::get('/numeros', [SiteController::class, 'convertNumbers'])->name('numbers');
     Route::get('/temperaturas', [SiteController::class, 'convertTemperatures'])->name('temperatures');
 });
+
+Route::prefix('cortar')->name('cut.')->group(function () {
+    Route::get('/texto', [SiteController::class, 'cutText'])->name('text');
+});

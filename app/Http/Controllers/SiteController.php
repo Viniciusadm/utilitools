@@ -81,4 +81,9 @@ class SiteController extends Controller
     {
         return view('pages.convert.temperatures', ['links' => LinksHelper::get()]);
     }
+
+    public function cutText(): View
+    {
+        return view('pages.cut.text', ['links' => LinksHelper::get()]);
+    }
 }
