@@ -22,7 +22,7 @@
 
     <textarea
         id="text"
-        class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full resize-none"
+        class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-3 sm:mb-4 w-full resize-none"
         rows="9"
         aria-labelledby="text-label"
     ></textarea>
@@ -33,7 +33,7 @@
 
     <input
         id="quantity"
-        class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-4 sm:mb-5 w-full"
+        class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-5 sm:mb-6 w-full"
         type="text"
         placeholder="Digite o máximo de caracteres"
         aria-label="Digite o máximo de caracteres"
@@ -45,13 +45,22 @@
         <label for="ellipsis" class="ml-2 text-sm font-medium">Adicionar reticências</label>
     </div>
 
-    <div class="flex items-center justify-center my-6 lg:mb-0">
+    <div class="flex items-center justify-center my-6 lg:mb-0 gap-3">
         <button
             id="cut"
-            class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light block text-center w-40"
+            class="text-white rounded-md px-4 py-2 bg-p-light dark:bg-p-dark hover:bg-p-light-light dark:hover:bg-p-dark-light block text-center w-full sm:w-40"
             aria-label="Cortar texto"
         >
             Cortar texto
+        </button>
+
+        <button
+            id="copy"
+            class="text-t-light dark:text-white bg-transparent rounded-md h-10 px-4 border dark:t-light dark:border-white w-full sm:w-40"
+            aria-label="Copiar"
+        >
+            <span class="mr-1">Copiar</span>
+            <i class="bi-clipboard"></i>
         </button>
     </div>
 

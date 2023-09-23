@@ -1,4 +1,5 @@
 import { event, input, select } from "../helpers";
+import { copy } from "../functions";
 
 const split = (text: string, separator: string): string => {
     return text.replaceAll(separator, '').replaceAll('  ', ' ');
@@ -9,3 +10,5 @@ event('#split', 'click', () => {
     const separator = input('#separator').value;
     select('#result').innerHTML = split(text, separator);
 });
+
+copy('#result');
