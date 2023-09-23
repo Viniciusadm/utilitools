@@ -1,4 +1,5 @@
 import { button, change, input, select, minMax, event } from "../helpers";
+import { copy } from "../functions";
 
 const operations: Record<'sum' | 'sub' | 'mul' | 'div', (a: number, b: number) => number> = {
     sum: (a, b) => a + b,
@@ -34,17 +35,7 @@ event('#generate', 'click', () => {
     select('#result').innerHTML = html;
 });
 
-event('#copy', 'click', (element) => {
-    element.disabled = true;
-    const cpf = (input('#result')).innerText;
-    navigator.clipboard.writeText(cpf).then(() => {
-        element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
-        setTimeout(() => {
-            element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
-            element.disabled = false;
-        }, 1000);
-    });
-});
+copy('#result');
 
 event('#quantity', 'input', (element) => {
     change('#quantity', minMax(Number(element.value), 1, 100).toString());

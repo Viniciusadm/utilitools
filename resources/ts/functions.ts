@@ -1,3 +1,5 @@
+import { event, input } from "./helpers";
+
 export const calculateCNPJDigit = (cnpj) => {
     let multiplier = 2;
     let sum = 0;
@@ -9,3 +11,17 @@ export const calculateCNPJDigit = (cnpj) => {
     const remainder = sum % 11;
     return (remainder < 2) ? 0 : (11 - remainder);
 };
+
+export const copy = (target: string) => {
+    event('#copy', 'click', (element) => {
+        element.disabled = true;
+        const result = input(target).value;
+        navigator.clipboard.writeText(result).then(() => {
+            element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
+            setTimeout(() => {
+                element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
+                element.disabled = false;
+            }, 1000);
+        });
+    });
+}

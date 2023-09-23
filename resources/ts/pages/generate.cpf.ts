@@ -1,5 +1,6 @@
 import { event, input, minMax, select } from '../helpers';
 import IMask from 'imask';
+import { copy } from "../functions";
 
 const punctuateCPF = (cpf: string): string => {
     return cpf.substring(0, 3) + '.' + cpf.substring(3, 6) + '.' + cpf.substring(6, 9) + '-' + cpf.substring(9);
@@ -57,17 +58,7 @@ event('#generate', 'click', () => {
     select('#cpf').innerHTML = html;
 });
 
-event('#copy', 'click', (element) => {
-    element.disabled = true;
-    const cpf = (select('#cpf') as HTMLInputElement).innerText;
-    navigator.clipboard.writeText(cpf).then(() => {
-        element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
-        setTimeout(() => {
-            element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
-            element.disabled = false;
-        }, 1000);
-    });
-});
+copy('#cpf');
 
 event('#quantity', 'input', (element, event: KeyboardEvent) => {
     if (event.key === 'Enter') {

@@ -1,5 +1,5 @@
 import { change, event, input, minMax, select } from "../helpers";
-import { calculateCNPJDigit } from "../functions";
+import { calculateCNPJDigit, copy } from "../functions";
 
 const generate = (punctuation: boolean = true) => {
     const n1 = Math.floor((Math.random() * 4) + 1);
@@ -43,17 +43,7 @@ event('#generate', 'click', () => {
     select('#rg').innerHTML = html;
 });
 
-event('#copy', 'click', (element) => {
-    element.disabled = true;
-    const rg = input('#rg').innerText;
-    navigator.clipboard.writeText(rg).then(() => {
-        element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
-        setTimeout(() => {
-            element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
-            element.disabled = false;
-        }, 1000);
-    });
-});
+copy('#rg');
 
 event('#quantity', 'input', (element) => {
     change('#quantity', minMax(Number(element.value), 1, 100).toString());

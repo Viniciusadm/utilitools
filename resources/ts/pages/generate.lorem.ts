@@ -1,4 +1,5 @@
 import { change, event, input, select } from "../helpers";
+import { copy } from "../functions";
 
 const words = [
     "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit", "sed",
@@ -187,14 +188,4 @@ event("#generate", "click", () => {
     }
 });
 
-event('#copy', 'click', (element) => {
-    element.disabled = true;
-    const result = input('#result').value;
-    navigator.clipboard.writeText(result).then(() => {
-        element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
-        setTimeout(() => {
-            element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
-            element.disabled = false;
-        }, 1000);
-    });
-});
+copy("#result");
