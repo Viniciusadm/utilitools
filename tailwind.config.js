@@ -16,7 +16,7 @@ module.exports = {
             'a-dark': '#1F2937',
             't-light': '#1F2937',
             't-dark': '#F9FAFB',
-            'h-light': '#454545',
+            'h-light': '#8f8f8f',
             'h-dark': '#374151',
             'p-light': {
                 DEFAULT: '#19C37D',
