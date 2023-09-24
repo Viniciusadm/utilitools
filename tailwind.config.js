@@ -14,10 +14,20 @@ module.exports = {
             },
             'a-light': '#E5E7EB',
             'a-dark': '#1F2937',
-            't-light': '#1F2937',
-            't-dark': '#F9FAFB',
+            't-light': {
+                DEFAULT: '#1F2937',
+                dark: '#111827',
+                light: '#374151',
+            },
+            't-dark': {
+                DEFAULT: '#F9FAFB',
+                dark: '#bbbbbb',
+                light: '#eaeaea',
+            },
             'h-light': '#8f8f8f',
             'h-dark': '#374151',
+            'd-light': '#F9FAFB',
+            'd-dark': '#374151',
             'p-light': {
                 DEFAULT: '#19C37D',
                 light: '#1EE08B',
