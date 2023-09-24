@@ -58,6 +58,8 @@
         readonly
     ></textarea>
 
+    @include('includes.articles.accents')
+
     @if (count($links) > 0)
         @component('components.links', ['links' => $links])
         @endcomponent
