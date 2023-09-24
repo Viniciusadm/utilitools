@@ -86,4 +86,9 @@ class SiteController extends Controller
     {
         return view('pages.cut.text', ['links' => LinksHelper::get()]);
     }
+
+    public function removeAccents(): View
+    {
+        return view('pages.remove.accents', ['links' => LinksHelper::get()]);
+    }
 }

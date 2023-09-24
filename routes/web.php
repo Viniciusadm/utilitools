@@ -48,3 +48,7 @@ Route::prefix('converter')->name('convert.')->group(function () {
 Route::prefix('cortar')->name('cut.')->group(function () {
     Route::get('/texto', [SiteController::class, 'cutText'])->name('text');
 });
+
+Route::prefix('remover')->name('remove.')->group(function () {
+    Route::get('/acentos', [SiteController::class, 'removeAccents'])->name('accents');
+});
