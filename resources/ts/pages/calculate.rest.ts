@@ -1,7 +1,7 @@
 import { button, event, input, select } from "../helpers";
 
 const calculate = (divident: number, divisor: number): Record<string, number> => {
-    if (divisor === 0) return { quociente: 0, rest: 0, percentage: 0 };
+    if (Number(divisor) === 0) return { quociente: 0, rest: 0, percentage: 0 };
 
     const quociente = Math.floor(divident / divisor);
     const rest = divident % divisor;
@@ -15,17 +15,11 @@ const calculate = (divident: number, divisor: number): Record<string, number> =>
 }
 
 event('#divident', 'input', (element) => {
-    button('#calculate').disabled = element.value < input('#divisor').value;
+    button('#calculate').disabled = Number(element.value) < Number(input('#divisor').value);
 });
 
 event('#divisor', 'input', (element) => {
-    button('#calculate').disabled = element.value > input('#divident').value;
-});
-
-event('#divident', 'keypress', (element, event: KeyboardEvent) => {
-    if (event.key === 'Enter') {
-        input('#divisor').focus();
-    }
+    button('#calculate').disabled = Number(element.value) > Number(input('#divident').value);
 });
 
 event('#calculate', 'click', () => {
