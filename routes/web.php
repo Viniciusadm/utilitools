@@ -52,3 +52,7 @@ Route::prefix('cortar')->name('cut.')->group(function () {
 Route::prefix('remover')->name('remove.')->group(function () {
     Route::get('/acentos', [SiteController::class, 'removeAccents'])->name('accents');
 });
+
+Route::prefix('calcular')->name('calculate.')->group(function () {
+    Route::get('/resto', [SiteController::class, 'calculateRest'])->name('rest');
+});

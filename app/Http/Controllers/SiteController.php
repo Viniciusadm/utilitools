@@ -91,4 +91,9 @@ class SiteController extends Controller
     {
         return view('pages.remove.accents', ['links' => LinksHelper::get()]);
     }
+
+    public function calculateRest(): View
+    {
+        return view('pages.calculate.rest', ['links' => LinksHelper::get()]);
+    }
 }
