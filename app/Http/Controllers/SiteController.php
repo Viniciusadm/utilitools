@@ -96,4 +96,9 @@ class SiteController extends Controller
     {
         return view('pages.calculate.rest', ['links' => LinksHelper::get()]);
     }
+
+    public function calculateThree(): View
+    {
+        return view('pages.calculate.three', ['links' => LinksHelper::get()]);
+    }
 }

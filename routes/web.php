@@ -55,4 +55,5 @@ Route::prefix('remover')->name('remove.')->group(function () {
 
 Route::prefix('calcular')->name('calculate.')->group(function () {
     Route::get('/resto', [SiteController::class, 'calculateRest'])->name('rest');
+    Route::get('/tres', [SiteController::class, 'calculateThree'])->name('three');
 });
