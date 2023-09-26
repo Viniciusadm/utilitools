@@ -73,6 +73,8 @@
         </button>
     </div>
 
+    @include('includes.articles.three')
+
     @if (count($links) > 0)
         @component('components.links', ['links' => $links])
         @endcomponent
