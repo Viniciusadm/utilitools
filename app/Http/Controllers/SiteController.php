@@ -101,4 +101,9 @@ class SiteController extends Controller
     {
         return view('pages.calculate.three', ['links' => LinksHelper::get()]);
     }
+
+    public function countDays(): View
+    {
+        return view('pages.count.days', ['links' => LinksHelper::get()]);
+    }
 }

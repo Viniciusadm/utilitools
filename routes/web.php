@@ -57,3 +57,7 @@ Route::prefix('calcular')->name('calculate.')->group(function () {
     Route::get('/resto', [SiteController::class, 'calculateRest'])->name('rest');
     Route::get('/tres', [SiteController::class, 'calculateThree'])->name('three');
 });
+
+Route::prefix('contar')->name('count.')->group(function () {
+    Route::get('/dias', [SiteController::class, 'countDays'])->name('days');
+});
