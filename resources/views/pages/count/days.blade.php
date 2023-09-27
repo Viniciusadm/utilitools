@@ -54,7 +54,7 @@
         Calcular
     </button>
 
-    <p class="font-semibold mt-4 sm:mt-6 mb-2 sm:mb-3">
+    <p class="font-semibold mt-4 sm:mt-6 mb-2 sm:mb-3 text-lg">
         Resultado: <span id="result-days">7 dias</span>
     </p>
 
