@@ -23,6 +23,7 @@ Route::prefix('gerar')->name('generate.')->group(function () {
     Route::get('/nomes', [SiteController::class, 'generateNames'])->name('names');
     Route::get('/lorem', [SiteController::class, 'generateLorem'])->name('lorem');
     Route::get('/rg', [SiteController::class, 'generateRg'])->name('rg');
+    Route::get('/cnh', [SiteController::class, 'generateCnh'])->name('cnh');
 });
 
 Route::prefix('validar')->name('validate.')->group(function () {
