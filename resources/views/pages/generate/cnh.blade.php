@@ -76,6 +76,8 @@
         00000000000
     </div>
 
+    @include('includes.articles.cnh')
+
     @if (count($links) > 0)
         @component('components.links', ['links' => $links])
         @endcomponent
