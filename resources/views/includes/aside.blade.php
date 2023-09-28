@@ -1,6 +1,6 @@
 <aside
     id="sidebar"
-    class="z-40 w-sidebar sm:w-60 bg-a-light rounded-lg dark:bg-a-dark mt-4 mx-4 sm:mx-0 hidden sm:block absolute sm:static left-0"
+    class="z-[51] w-sidebar sm:w-60 bg-a-light rounded-lg dark:bg-a-dark mt-4 mx-4 sm:mx-0 hidden sm:block absolute sm:static left-0"
     aria-label="Sidebar"
 >
     <div class="h-full overflow-y-auto p-4 bg-a-light dark:bg-a-dark rounded-lg">
