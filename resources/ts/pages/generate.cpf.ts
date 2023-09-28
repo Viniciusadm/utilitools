@@ -58,7 +58,7 @@ event('#generate', 'click', () => {
     select('#cpf').innerHTML = html;
 });
 
-copy('#cpf');
+copy('#cpf', 'div');
 
 event('#quantity', 'input', (element, event: KeyboardEvent) => {
     if (event.key === 'Enter') {

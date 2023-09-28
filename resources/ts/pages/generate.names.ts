@@ -24,4 +24,4 @@ event('#generate', 'click', (element) => {
     });
 });
 
-copy('#name-text');
+copy('#name-text', 'div');

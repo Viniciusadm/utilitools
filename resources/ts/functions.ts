@@ -12,10 +12,10 @@ export const calculateCNPJDigit = (cnpj) => {
     return (remainder < 2) ? 0 : (11 - remainder);
 };
 
-export const copy = (target: string) => {
+export const copy = (target: string, type: 'input' | 'div' = 'input') => {
     event('#copy', 'click', (element) => {
         element.disabled = true;
-        const result = input(target).value;
+        const result = type === 'input' ? input(target).value : input(target).innerText;
         navigator.clipboard.writeText(result).then(() => {
             element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
             setTimeout(() => {

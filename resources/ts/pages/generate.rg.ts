@@ -43,7 +43,7 @@ event('#generate', 'click', () => {
     select('#rg').innerHTML = html;
 });
 
-copy('#rg');
+copy('#rg', 'div');
 
 event('#quantity', 'input', (element) => {
     change('#quantity', minMax(Number(element.value), 1, 100).toString());
