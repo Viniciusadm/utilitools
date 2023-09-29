@@ -4,10 +4,10 @@
 
 @section('meta')
     <meta name="title" content="Validar CNPJ">
-    <meta name="description" content="Validador de CNPJs. Você pode validar um ou mais CNPJs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
+    <meta name="description" content="Validador de CNPJs. Você pode validar um CNPJ digitando-o abaixo. Basta clicar em validar e ver o resultado.">
     <meta name="keywords" content="validar cnpj, validar cnpj online">
     <meta property="og:title" content="Validar CNPJ">
-    <meta property="og:description" content="Validador de CNPJs. Você pode validar um ou mais CNPJs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
+    <meta property="og:description" content="Validador de CNPJs. Você pode validar um CNPJ digitando-o abaixo. Basta clicar em validar e ver o resultado.">
     <meta property="og:url" content="{{ route('validate.cnpj') }}">
 @endsection
 
@@ -17,7 +17,7 @@
     </h1>
 
     <p class="mb-2 sm:mb-3">
-        Você pode validar um ou mais CNPJs digitando-os abaixo. Basta clicar em validar e ver o resultado.
+        Você pode validar um CNPJ digitando-o abaixo. Basta clicar em validar e ver o resultado.
     </p>
 
     <a

@@ -4,10 +4,10 @@
 
 @section('meta')
     <meta name="title" content="Validar RG - SSP/SP">
-    <meta name="description" content="Validador de RGs. Você pode validar um ou mais RGs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
+    <meta name="description" content="Validador de RGs. Você pode validar um RG digitando-o abaixo. Basta clicar em validar e ver o resultado.">
     <meta name="keywords" content="validar rg, validar rg online">
     <meta property="og:title" content="Validar RG - SSP/SP">
-    <meta property="og:description" content="Validador de RGs. Você pode validar um ou mais RGs digitando-os abaixo. Basta clicar em validar e ver o resultado.">
+    <meta property="og:description" content="Validador de RGs. Você pode validar um RG digitando-o abaixo. Basta clicar em validar e ver o resultado.">
     <meta property="og:url" content="{{ route('validate.rg') }}">
 @endsection
 
@@ -17,7 +17,7 @@
     </h1>
 
     <p class="mb-2 sm:mb-3">
-        Você pode validar um ou mais RGs digitando-os abaixo. Basta clicar em validar e ver o resultado.
+        Você pode validar um RG digitando-o abaixo. Basta clicar em validar e ver o resultado.
     </p>
 
     <a
