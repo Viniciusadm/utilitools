@@ -62,6 +62,11 @@ class SiteController extends Controller
         return view('pages.validate.rg', ['links' => LinksHelper::get()]);
     }
 
+    public function validateCnh(): View
+    {
+        return view('pages.validate.cnh', ['links' => LinksHelper::get()]);
+    }
+
     public function editText(): View
     {
         return view('pages.edit.text', ['links' => LinksHelper::get()]);

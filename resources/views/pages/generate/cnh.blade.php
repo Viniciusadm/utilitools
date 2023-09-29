@@ -21,6 +21,14 @@
         Basta clicar em gerar e copiar o CNH gerado.
     </p>
 
+    <a
+        href="{{ route('validate.cnh') }}"
+        class="text-info hover:underline block mb-4 sm:mb-6"
+        aria-label="Deseja validar em vez gerar?"
+    >
+        Deseja validar em vez gerar?
+    </a>
+
     <div class="mb-2 sm:mb-3">
         <p class="mb-2 sm:mb-3">
             Separador?
