@@ -53,11 +53,13 @@
 
     <textarea
         id="result"
-        class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full resize-none"
+        class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-4 sm:mb-5 w-full resize-none"
         rows="5"
         aria-labelledby="result-label"
         readonly
     ></textarea>
+
+    @include('includes.articles.in-full')
 
     @if (count($links) > 0)
         @component('components.links', ['links' => $links])
