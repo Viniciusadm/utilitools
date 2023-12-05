@@ -63,3 +63,7 @@ Route::prefix('calcular')->name('calculate.')->group(function () {
 Route::prefix('contar')->name('count.')->group(function () {
     Route::get('/dias', [SiteController::class, 'countDays'])->name('days');
 });
+
+Route::prefix('numeros')->name('numbers.')->group(function () {
+    Route::get('/por-extenso', [SiteController::class, 'numbersInFull'])->name('in-full');
+});

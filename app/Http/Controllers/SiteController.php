@@ -116,4 +116,9 @@ class SiteController extends Controller
     {
         return view('pages.count.days', ['links' => LinksHelper::get()]);
     }
+
+    public function numbersInFull(): View
+    {
+        return view('pages.numbers.in-full', ['links' => LinksHelper::get()]);
+    }
 }
