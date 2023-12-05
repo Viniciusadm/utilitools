@@ -102,6 +102,12 @@
 
     @include('includes.articles.rg')
 
+    @component('components.warning')
+        <span class="fw-bold">ATENÇÃO:</span> O gerador de RG é apenas para fins educacionais. Ele é usado para testar sites, software e outros.
+        Os números são gerados aleatoriamente, mas respeitando as regras de formação do RG.
+        Não nos responsabilizamos por qualquer uso indevido. Se você encontrar algum problema, entre em contato conosco.
+    @endcomponent
+
     @if (count($links) > 0)
         @component('components.links', ['links' => $links])
         @endcomponent
