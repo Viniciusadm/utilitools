@@ -19,10 +19,12 @@ class VisitorMiddleware
         $ips = config('app.ignored_ips');
         $ip = $request->ip();
 
+        $name = $request->route()->getName();
+
         if (!in_array($ip, explode(',', $ips))) {
             Access::query()->create([
                 'ip' => $ip,
-                'url' => $request->path(),
+                'url' => $name === 'home' ? '/' : explode('.', $name)[1] . '/' . explode('.', $name)[0],
                 'user_agent' => $request->userAgent(),
             ]);
         }

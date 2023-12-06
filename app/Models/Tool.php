@@ -19,6 +19,7 @@ class Tool extends Model
         'name',
         'type',
         'category',
+        'views',
     ];
 
     protected $appends = [
