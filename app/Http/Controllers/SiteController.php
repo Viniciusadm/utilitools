@@ -3,13 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\LinksHelper;
+use App\Models\Tool;
 use Illuminate\Contracts\View\View;
 
 class SiteController extends Controller
 {
     public function home(): View
     {
-        return view('home');
+        $main = Tool::query()
+            ->select('name', 'description','type', 'category', 'views')
+            ->orderBy('views', 'desc')
+            ->limit(9)
+            ->get();
+
+        return view('home', ['main' => $main]);
     }
 
     public function generateCpf(): View
