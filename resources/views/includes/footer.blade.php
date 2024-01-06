@@ -10,6 +10,6 @@
         </a>
         <span class="text-white text-sm ms-2">by <a href="https://github.com/Viniciusadm" target="_blank" class="hover:underline">Viniciusadm</a></span>
         <span class="text-white text-sm ms-2">|</span>
-        <span class="text-white text-sm ms-2">{{ date('Y') }}</span>
+        <span class="text-white text-sm ms-2">2023 - {{ date('Y') }}</span>
     </div>
 </footer>
