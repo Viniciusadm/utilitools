@@ -103,9 +103,9 @@
     @include('includes.articles.rg')
 
     @component('components.warning')
-        <span class="fw-bold">ATENÇÃO:</span> O gerador de RG é apenas para fins educacionais. Ele é usado para testar sites, software e outros.
-        Os números são gerados aleatoriamente, mas respeitando as regras de formação do RG.
-        Não nos responsabilizamos por qualquer uso indevido. Se você encontrar algum problema, entre em contato conosco.
+        <span class="fw-bold">NOTA:</span> O gerador de RG fornecido tem exclusivamente propósitos educacionais, destinando-se à avaliação de sites, softwares e outros.
+        Os números são gerados aleatoriamente, respeitando as normas de formação do RG. Não nos responsabilizamos por qualquer uso indevido.
+        Caso identifique algum problema, agradecemos se entrar em contato conosco imediatamente.
     @endcomponent
 
     @if (count($links) > 0)

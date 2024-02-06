@@ -86,6 +86,12 @@
 
     @include('includes.articles.cnh')
 
+    @component('components.warning')
+        <span class="fw-bold">NOTA:</span> O gerador de CNH fornecido tem exclusivamente propósitos educacionais, destinando-se à avaliação de sites, softwares e outros.
+        Os números são gerados aleatoriamente, respeitando as normas de formação do CNH. Não nos responsabilizamos por qualquer uso indevido.
+        Caso identifique algum problema, agradecemos se entrar em contato conosco imediatamente.
+    @endcomponent
+
     @if (count($links) > 0)
         @component('components.links', ['links' => $links])
         @endcomponent
