@@ -20,6 +20,8 @@ Route::get('/', [SiteController::class, 'home'])->name('home');
 Route::name('auth.')->group(function () {
     Route::get('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'logar'])->name('logar');
+    Route::get('/registrar', [AuthController::class, 'register'])->name('register');
+    Route::post('/registrar', [AuthController::class, 'create'])->name('create');
 });
 
 Route::prefix('gerar')->name('generate.')->group(function () {
