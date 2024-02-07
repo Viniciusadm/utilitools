@@ -8,18 +8,22 @@
             @component('components.link-menu', ['name' => 'home', 'label' => 'Página inicial'])
             @endcomponent
 
-            <li class="flex items-center p-2 ml-2 text-t-white dark:text-t-dark border-b-2">
-                Serviços
-            </li>
+            @if ($tools->where('function', 'service')->count() > 0)
+                <li class="flex items-center p-2 ml-2 text-t-white dark:text-t-dark border-b-2">
+                    Serviços
+                </li>
+            @endif
 
             @foreach($tools->where('function', 'service') as $tool)
                 @component('components.link-menu', ['name' => $tool->type . '.' . $tool->category, 'label' => $tool->name])
                 @endcomponent
             @endforeach
 
-            <li class="flex items-center p-2 ml-2 text-t-white dark:text-t-dark border-b-2">
-                Ferramentas
-            </li>
+            @if ($tools->where('function', 'tool')->count() > 0)
+                <li class="flex items-center p-2 ml-2 text-t-white dark:text-t-dark border-b-2">
+                    Ferramentas
+                </li>
+            @endif
 
             @foreach($tools->where('function', 'tool') as $tool)
                 @component('components.link-menu', ['name' => $tool->type . '.' . $tool->category, 'label' => $tool->name])
