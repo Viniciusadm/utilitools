@@ -23,6 +23,7 @@ class LinksHelper
                 $query->where('type', $type)
                     ->orWhere('category', $category);
             })
+            ->where('function', $actual->function)
             ->where('id', '!=', $actual->id)
             ->orderBy('views', 'desc')
             ->limit(6)

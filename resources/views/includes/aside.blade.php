@@ -8,7 +8,20 @@
             @component('components.link-menu', ['name' => 'home', 'label' => 'Página inicial'])
             @endcomponent
 
-            @foreach($tools as $tool)
+            <li class="flex items-center p-2 ml-2 text-t-white dark:text-t-dark border-b-2">
+                Serviços
+            </li>
+
+            @foreach($tools->where('function', 'service') as $tool)
+                @component('components.link-menu', ['name' => $tool->type . '.' . $tool->category, 'label' => $tool->name])
+                @endcomponent
+            @endforeach
+
+            <li class="flex items-center p-2 ml-2 text-t-white dark:text-t-dark border-b-2">
+                Ferramentas
+            </li>
+
+            @foreach($tools->where('function', 'tool') as $tool)
                 @component('components.link-menu', ['name' => $tool->type . '.' . $tool->category, 'label' => $tool->name])
                 @endcomponent
             @endforeach
