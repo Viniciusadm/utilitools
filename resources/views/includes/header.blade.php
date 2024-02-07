@@ -9,6 +9,27 @@
             </a>
         </div>
 
+        <div class="hidden sm:flex items-center justify-end pe-4">
+            @if (!Auth::check())
+                <a
+                    href="{{ route('auth.login') }}"
+                    class="text-white hover:text-p-light dark:hover:text-white"
+                >
+                    Login
+                </a>
+                <a
+                    href="{{ route('auth.register') }}"
+                    class="text-white hover:text-p-light dark:hover:text-white ms-4"
+                >
+                    Registrar
+                </a>
+            @else
+                <p class="text-white">
+                    Olá, {{ Auth::user()->first_name }}
+                </p>
+            @endif
+        </div>
+
         <div class="flex items-center pe-4 sm:hidden justify-end">
             <button
                 data-drawer-target="sidebar"
