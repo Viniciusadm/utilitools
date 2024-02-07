@@ -31,6 +31,7 @@
                 id="name"
                 name="name"
                 class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full"
+                required
             />
             @if ($errors->has('name'))
                 <p class="text-danger text-sm sm:text-base">
@@ -48,6 +49,7 @@
                 type="email"
                 name="email"
                 class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark mb-2 sm:mb-3 w-full"
+                required
             />
             @if ($errors->has('email'))
                 <p class="text-danger text-sm sm:text-base">
@@ -65,6 +67,7 @@
                 type="password"
                 name="password"
                 class="border rounded-lg block p-2 sm:p-2.5 bg-white dark:bg-a-dark w-full"
+                required
             />
             @if ($errors->has('password'))
                 <p class="text-danger text-sm sm:text-base">
