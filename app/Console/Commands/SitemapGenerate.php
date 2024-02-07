@@ -34,6 +34,8 @@ class SitemapGenerate extends Command
         $xml = $init;
 
         $xml .= $this->addRoute(route('home'));
+        $xml .= $this->addRoute(route('auth.login'));
+        $xml .= $this->addRoute(route('auth.register'));
 
         foreach (Tool::query()->orderBy('type')->get() as $route) {
             $xml .= $this->addRoute($route->route);
