@@ -16,7 +16,7 @@
     </p>
 
     <h3 class="text-xl font-semibold mb-2 sm:mb-3">
-        Como é formado o RG SSP/SP?
+        Como é formado o RG SSP SP?
     </h3>
 
     <p class="mb-2 sm:mb-3">

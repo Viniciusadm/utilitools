@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
-@section('title', 'Gerador de RG - SSP/SP')
+@section('title', 'Gerador de RG - SSP SP')
 
 @section('meta')
-    <meta name="title" content="Gerador de RG - SSP/SP">
-    <meta name="description" content="Gerador de RG - SSP/SP. Você pode escolher se quer pontuação ou não.">
+    <meta name="title" content="Gerador de RG - SSP SP">
+    <meta name="description" content="Gerador de RG - SSP SP. Você pode escolher se quer pontuação ou não.">
     <meta name="keywords" content="gerador de rg, gerador de rg online, gerador de rg válido, gerador de rg aleatório, gerador de rg com pontuação, gerador de rg em massa, gerador de rg em lote, gerador de muitos rg, gerador de rg com estado, gerador de rg com ssp, gerador de rg com sp">
-    <meta property="og:title" content="Gerador de RG - SSP/SP">
-    <meta property="og:description" content="Gerador de RG - SSP/SP. Você pode escolher se quer pontuação ou não.">
+    <meta property="og:title" content="Gerador de RG - SSP SP">
+    <meta property="og:description" content="Gerador de RG - SSP SP. Você pode escolher se quer pontuação ou não.">
     <meta property="og:url" content="{{ route('generate.rg') }}">
 @endsection
 
 @section('content')
     <h1 class="text-2xl font-semibold mb-2 sm:mb-3">
-        Gerador de RG - SSP/SP
+        Gerador de RG - SSP SP
     </h1>
 
     <p class="mb-2 sm:mb-3">
-        Gerador de RG - SSP/SP. Você pode escolher se quer pontuação ou não.
+        Gerador de RG - SSP SP. Você pode escolher se quer pontuação ou não.
         Basta clicar em gerar e copiar o RG gerado.
     </p>
 
