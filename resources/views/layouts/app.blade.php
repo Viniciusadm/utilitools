@@ -13,7 +13,6 @@
     @yield('meta')
 
     <meta name="google-site-verification" content="xOiiMIRDHjlhs2zgj1C7GSuxiI38euRzKBE1eX5b5KQ" />
-    <meta name="google-adsense-account" content="ca-pub-3503700693296604">
 
     <link rel="icon" href="{{ asset('images/favicon.png') }}" type="image/x-icon"/>
 
@@ -27,6 +26,8 @@
             gtag('config', '{{ config('services.google.analytics.id') }}');
         </script>
     @endif
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3503700693296604" crossorigin="anonymous"></script>
 </head>
 
 <body class="bg-b-light dark:bg-b-dark text-t-light dark:text-t-dark grid grid-rows-[auto,1fr,auto] min-h-screen">
