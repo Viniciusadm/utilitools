@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserContoller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,6 +32,7 @@ Route::prefix('gerar')->name('generate.')->group(function () {
     Route::get('/nomes', [SiteController::class, 'generateNames'])->name('names');
     Route::get('/lorem', [SiteController::class, 'generateLorem'])->name('lorem');
     Route::get('/rg', [SiteController::class, 'generateRg'])->name('rg');
+    Route::get('/rj', [SiteController::class, 'generateRj'])->name('rj');
     Route::get('/cnh', [SiteController::class, 'generateCnh'])->name('cnh');
 });
 
@@ -38,6 +40,7 @@ Route::prefix('validar')->name('validate.')->group(function () {
     Route::get('/cpf', [SiteController::class, 'validateCpf'])->name('cpf');
     Route::get('/cnpj', [SiteController::class, 'validateCnpj'])->name('cnpj');
     Route::get('/rg', [SiteController::class, 'validateRg'])->name('rg');
+    Route::get('/rj', [SiteController::class, 'validateRj'])->name('rj');
     Route::get('/cnh', [SiteController::class, 'validateCnh'])->name('cnh');
 });
 

@@ -49,6 +49,11 @@ class SiteController extends Controller
         return view('pages.generate.rg', ['links' => LinksHelper::get()]);
     }
 
+    public function generateRj(): View
+    {
+        return view('pages.generate.rj', ['links' => LinksHelper::get()]);
+    }
+
     public function generateCnh(): View
     {
         return view('pages.generate.cnh', ['links' => LinksHelper::get()]);
@@ -67,6 +72,11 @@ class SiteController extends Controller
     public function validateRg(): View
     {
         return view('pages.validate.rg', ['links' => LinksHelper::get()]);
+    }
+
+    public function validateRj(): View
+    {
+        return view('pages.validate.rj', ['links' => LinksHelper::get()]);
     }
 
     public function validateCnh(): View

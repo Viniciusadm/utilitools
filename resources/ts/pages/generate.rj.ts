@@ -2,23 +2,29 @@ import { change, event, input, minMax, select } from "../helpers";
 import { copy } from "../functions";
 
 const generate = (punctuation: boolean = true) => {
-    const n1 = Math.floor((Math.random() * 4) + 1);
-    const n2 = Math.round(Math.random() * 9);
-    const n3 = Math.round(Math.random() * 9);
-    const n4 = Math.round(Math.random() * 9);
-    const n5 = Math.round(Math.random() * 9);
-    const n6 = Math.round(Math.random() * 9);
-    const n7 = Math.round(Math.random() * 9);
-    const n8 = Math.round(Math.random() * 9);
+    const arr = [];
+    arr.push(Math.floor((Math.random() * 4) + 1));
+    for (var i = 1; i < 8; i++) {
+        arr.push(Math.round(Math.random() * 9))
+    }
 
-    const sum = n1 * 2 + n2 * 3 + n3 * 4 + n4 * 5 + n5 * 6 + n6 * 7 + n7 * 8 + n8 * 9;
-    let digit = String(11 - (sum % 11));
-    if (digit === '11')
-        digit = '0';
-    if (digit === '10')
-        digit = "X";
+    let sum = 0;
+    let aux = false;
+    let ninesOut = 0;
+    arr.forEach((value) => {
+        ninesOut = value * (aux ? 2 : 1);
+        ninesOut = ninesOut > 9 ? ninesOut - 9 : ninesOut;
+        sum = sum + ninesOut;
+        aux = !aux;
+        ninesOut = 0;
+    });
 
-    const rg = String(n1) + String(n2) + String(n3) + String(n4) + String(n5) + String(n6) + String(n7) + String(n8) + digit;
+    let digit = 10 - (sum % 10);
+    if (digit === 10) {
+        digit = 0;
+    }
+
+    const rg = `${arr.join("")}${digit}`;
     return punctuation ? punctuateRG(rg) : rg;
 }
 
