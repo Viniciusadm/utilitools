@@ -2,11 +2,11 @@ import { event, input, select } from "../helpers";
 import IMask from "imask";
 
 const validate = (rg: string) => {
+    const original = rg;
     rg = rg.replace(/\D/g, '');
 
-    const regex = /^[0-9]{8}[0-9X]$/;
-    if (!regex.test(rg)) {
-        return false;
+    if (original[original.length - 1] === 'X' || original[original.length - 1] === 'x') {
+        rg = rg + 'X';
     }
 
     const n1 = parseInt(rg[0]);

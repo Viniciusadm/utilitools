@@ -41,6 +41,8 @@
             @endif
         </div>
 
+        <p class="text-success hidden" id="success"></p>
+
         <div>
             <label for="password" class="block mb-2 sm:mb-3">
                 Senha
