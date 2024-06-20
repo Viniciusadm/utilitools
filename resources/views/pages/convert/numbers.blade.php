@@ -34,7 +34,7 @@
                 data-clipboard-target="#binary"
                 aria-label="Copiar o valor do campo Binário"
             >
-                <i class="bi-clipboard"></i>
+                <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
             </button>
         </div>
     </div>
@@ -53,7 +53,7 @@
                 data-clipboard-target="#octal"
                 aria-label="Copiar o valor do campo Octal"
             >
-                <i class="bi-clipboard"></i>
+                <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
             </button>
         </div>
     </div>
@@ -72,7 +72,7 @@
                 data-clipboard-target="#decimal"
                 aria-label="Copiar o valor do campo Decimal"
             >
-                <i class="bi-clipboard"></i>
+                <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
             </button>
         </div>
     </div>
@@ -91,7 +91,7 @@
                 data-clipboard-target="#hexadecimal"
                 aria-label="Copiar o valor do campo Hexadecimal"
             >
-                <i class="bi-clipboard"></i>
+                <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
             </button>
         </div>
     </div>

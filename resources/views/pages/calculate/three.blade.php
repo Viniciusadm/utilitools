@@ -69,7 +69,7 @@
             id="copy"
             aria-label="Copiar o valor calculado"
         >
-            <i class="bi-clipboard"></i>
+            <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
         </button>
     </div>
 

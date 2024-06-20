@@ -34,7 +34,7 @@
                 data-clipboard-target="#celsius"
                 aria-label="Copiar o valor do campo Celsius"
             >
-                <i class="bi-clipboard"></i>
+                <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
             </button>
         </div>
     </div>
@@ -53,7 +53,7 @@
                 data-clipboard-target="#fahrenheit"
                 aria-label="Copiar o valor do campo Fahrenheit"
             >
-                <i class="bi-clipboard"></i>
+                <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
             </button>
         </div>
     </div>
@@ -72,7 +72,7 @@
                 data-clipboard-target="#kelvin"
                 aria-label="Copiar o valor do campo Kelvin"
             >
-                <i class="bi-clipboard"></i>
+                <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
             </button>
         </div>
     </div>

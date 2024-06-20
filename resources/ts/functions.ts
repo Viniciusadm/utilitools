@@ -17,9 +17,9 @@ export const copy = (target: string, type: 'input' | 'div' = 'input') => {
         element.disabled = true;
         const result = type === 'input' ? input(target).value : input(target).innerText;
         navigator.clipboard.writeText(result).then(() => {
-            element.innerHTML = '<span class="mr-1">Copiado</span><i class="bi-clipboard-check"></i>';
+            element.innerHTML = '<span class="mr-1">Copiado</span><img src="/images/icons/clipboard-check.svg" alt="">';
             setTimeout(() => {
-                element.innerHTML = '<span class="mr-1">Copiar</span><i class="bi-clipboard"></i>';
+                element.innerHTML = '<span class="mr-1">Copiar</span><img src="/images/icons/clipboard.svg" alt="">';
                 element.disabled = false;
             }, 1000);
         });

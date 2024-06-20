@@ -62,9 +62,9 @@ document.querySelectorAll('.copy-button').forEach((button: HTMLButtonElement) =>
     button.addEventListener('click', () => {
         const copy = input(button.getAttribute('data-clipboard-target'));
         navigator.clipboard.writeText(copy.value).then(() => {
-            button.innerHTML = '<i class="bi-clipboard-check"></i>';
+            button.innerHTML = '<img src="/images/icons/clipboard-check.svg" alt="">';
             setTimeout(() => {
-                button.innerHTML = '<i class="bi-clipboard"></i>';
+                button.innerHTML = '<img src="/images/icons/clipboard.svg" alt="">';
             }, 2000);
         });
     });

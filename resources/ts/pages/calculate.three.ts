@@ -31,9 +31,9 @@ event('#copy', 'click', (element) => {
     element.disabled = true;
     const result = input('#number_x').value;
     navigator.clipboard.writeText(result).then(() => {
-        element.innerHTML = '<i class="bi-clipboard-check"></i>';
+        element.innerHTML = '<img src="/images/icons/clipboard-check.svg" alt="">';
         setTimeout(() => {
-            element.innerHTML = '<i class="bi-clipboard"></i>';
+            element.innerHTML = '<img src="/images/icons/clipboard.svg" alt="">';
             element.disabled = false;
         }, 1000);
     });

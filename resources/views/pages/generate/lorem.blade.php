@@ -59,11 +59,11 @@
 
         <button
             id="copy"
-            class="text-t-light dark:text-white bg-transparent rounded-md h-10 px-4 border dark:t-light dark:border-white"
+            class="text-t-light dark:text-white bg-transparent rounded-md h-10 px-4 border dark:t-light dark:border-white flex items-center justify-center"
             aria-label="Copiar"
         >
             <span class="mr-1">Copiar</span>
-            <i class="bi-clipboard"></i>
+            <img src="{{ asset('images/icons/clipboard.svg') }}" alt="">
         </button>
     </div>
 

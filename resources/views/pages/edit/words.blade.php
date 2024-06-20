@@ -55,10 +55,10 @@
 
         <button
             id="action-undo"
-            class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5"
+            class="bg-h-light dark:bg-h-dark text-white dark:text-black rounded-lg p-2 sm:p-2.5 flex items-center"
             aria-label="Desfazer"
         >
-            <i class="bi bi-arrow-counterclockwise"></i>
+            <img src="{{ asset('images/icons/arrow-counterclockwise.svg') }}" class="me-1" alt="">
             Desfazer
         </button>
     </div>
