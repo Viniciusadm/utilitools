@@ -20,7 +20,7 @@ const punctuateCNPJ = (cnpj: string) => {
     return `${cnpj.slice(0, 2)}.${cnpj.slice(2, 5)}.${cnpj.slice(5, 8)}/${cnpj.slice(8, 12)}-${cnpj.slice(12)}`;
 }
 
-event('#generate', 'click', (element) => {
+const load = () => {
     const quantity = input('#quantity').value;
 
     if (quantity === '') return;
@@ -35,10 +35,18 @@ event('#generate', 'click', (element) => {
     }
 
     select('#cnpj').innerHTML = html;
+}
+
+event('#generate', 'click', () => {
+    load();
 });
 
 copy('#cnpj', 'div');
 
 event('#quantity', 'input', (element) => {
     change('#quantity', minMax(Number(element.value), 1, 100).toString());
+});
+
+window.addEventListener('load', () => {
+    load();
 });

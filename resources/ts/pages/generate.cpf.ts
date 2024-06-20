@@ -40,7 +40,7 @@ const generate = (punctuation: boolean = true, uf: string | null = null) => {
     return punctuation ? punctuateCPF(cpf) : cpf;
 }
 
-event('#generate', 'click', () => {
+const load = () => {
     const quantity = input('#quantity').value;
 
     if (quantity === '') return;
@@ -56,6 +56,10 @@ event('#generate', 'click', () => {
     }
 
     select('#cpf').innerHTML = html;
+}
+
+event('#generate', 'click', () => {
+    load();
 });
 
 copy('#cpf', 'div');
@@ -64,4 +68,8 @@ event('#quantity', 'input', (element, event: KeyboardEvent) => {
     if (event.key === 'Enter') {
         element.value = minMax(Number(element.value), 1, 100).toString();
     }
+});
+
+window.addEventListener('load', () => {
+    load();
 });

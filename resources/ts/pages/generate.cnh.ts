@@ -38,7 +38,7 @@ const generate = (): string => {
     return `${n1}${n2}${n3}${n4}${n5}${n6}${n7}${n8}${n9}${dv1}${dv2}`;
 }
 
-event('#generate', 'click', () => {
+const load = () => {
     const quantity = input('#quantity').value;
 
     if (quantity === '') return;
@@ -52,10 +52,18 @@ event('#generate', 'click', () => {
     }
 
     select('#cnh').innerHTML = html;
+}
+
+event('#generate', 'click', () => {
+    load();
 });
 
 copy('#cnh', 'div');
 
 event('#quantity', 'input', (element) => {
     change('#quantity', minMax(Number(element.value), 1, 100).toString());
+});
+
+window.addEventListener('load', () => {
+    load();
 });

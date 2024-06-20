@@ -26,7 +26,7 @@ const punctuateRG = (rg: string): string => {
     return rg.substring(0, 2) + '.' + rg.substring(2, 5) + '.' + rg.substring(5, 8) + '-' + rg.substring(8);
 }
 
-event('#generate', 'click', () => {
+const load = () => {
     const quantity = input('#quantity').value;
 
     if (quantity === '') return;
@@ -41,10 +41,18 @@ event('#generate', 'click', () => {
     }
 
     select('#rg').innerHTML = html;
+}
+
+event('#generate', 'click', () => {
+    load();
 });
 
 copy('#rg', 'div');
 
 event('#quantity', 'input', (element) => {
     change('#quantity', minMax(Number(element.value), 1, 100).toString());
+});
+
+window.addEventListener('load', () => {
+    load();
 });
