@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next";
 import { NAV_TOOLS } from "@/lib/nav-tools";
 import { getSiteUrl } from "@/lib/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = getSiteUrl();
   const home = {
