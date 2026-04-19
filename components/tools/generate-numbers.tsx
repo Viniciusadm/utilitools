@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,11 @@ export default function GenerateRandomNumbers() {
   const [minVal, setMinVal] = useState(1);
   const [maxVal, setMaxVal] = useState(100);
   const [quantity, setQuantity] = useState(1);
-  const [results, setResults] = useState<number[]>(() => [Math.floor(Math.random() * 100) + 1]);
+  const [results, setResults] = useState<number[]>([]);
+
+  useEffect(() => {
+    setResults([Math.floor(Math.random() * 100) + 1]);
+  }, []);
 
   const handleGenerate = useCallback(() => {
     const min = Math.min(minVal, maxVal);

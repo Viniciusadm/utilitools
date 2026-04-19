@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -46,7 +46,11 @@ function generateFullName(gender: "male" | "female"): string {
 
 export default function GenerateNames() {
   const [gender, setGender] = useState<"male" | "female">("male");
-  const [output, setOutput] = useState(() => generateFullName("male"));
+  const [output, setOutput] = useState("");
+
+  useEffect(() => {
+    setOutput(generateFullName("male"));
+  }, []);
 
   const handleGenerate = () => {
     setOutput(generateFullName(gender));

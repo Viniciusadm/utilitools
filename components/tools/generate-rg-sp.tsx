@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,7 +15,11 @@ export default function GenerateRGSP() {
   const [punctuation, setPunctuation] = useState(true);
   const [outputSeparator, setOutputSeparator] = useState<"newline" | "comma">("newline");
   const [quantity, setQuantity] = useState(1);
-  const [results, setResults] = useState<string[]>(() => [generateRGSP(true)]);
+  const [results, setResults] = useState<string[]>([]);
+
+  useEffect(() => {
+    setResults([generateRGSP(true)]);
+  }, []);
 
   const handleGenerate = () => {
     const qty = Math.max(1, Math.min(quantity, 100));

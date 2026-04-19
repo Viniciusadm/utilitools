@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,11 @@ import { Copy } from "lucide-react";
 export default function GenerateCNH() {
   const [outputSeparator, setOutputSeparator] = useState<"newline" | "comma">("newline");
   const [quantity, setQuantity] = useState(1);
-  const [results, setResults] = useState<string[]>(() => [generateCNH()]);
+  const [results, setResults] = useState<string[]>([]);
+
+  useEffect(() => {
+    setResults([generateCNH()]);
+  }, []);
 
   const handleGenerate = () => {
     const qty = Math.max(1, Math.min(quantity, 100));

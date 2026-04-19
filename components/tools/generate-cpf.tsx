@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,7 +22,11 @@ export default function GenerateCPF() {
   const [outputSeparator, setOutputSeparator] = useState<"newline" | "comma">("newline");
   const [selectedState, setSelectedState] = useState("");
   const [quantity, setQuantity] = useState(1);
-  const [results, setResults] = useState<string[]>(() => [formatCPF(generateCPF(""), true)]);
+  const [results, setResults] = useState<string[]>([]);
+
+  useEffect(() => {
+    setResults([formatCPF(generateCPF(""), true)]);
+  }, []);
 
   const handleGenerate = () => {
     const cpfs: string[] = [];
