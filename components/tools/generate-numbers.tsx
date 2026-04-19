@@ -46,43 +46,45 @@ export default function GenerateRandomNumbers() {
         </p>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-3">
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Mínimo</Label>
-          <Input
-            type="number"
-            value={minVal}
-            onChange={(e) => setMinVal(Number(e.target.value))}
-            className="bg-muted border-border"
-          />
+      <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5">
+        <div className="grid gap-5 sm:grid-cols-3">
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Mínimo</Label>
+            <Input
+              type="number"
+              value={minVal}
+              onChange={(e) => setMinVal(Number(e.target.value))}
+              className="bg-muted border-border"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Máximo</Label>
+            <Input
+              type="number"
+              value={maxVal}
+              onChange={(e) => setMaxVal(Number(e.target.value))}
+              className="bg-muted border-border"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Quantidade</Label>
+            <Input
+              type="number"
+              min={1}
+              max={1000}
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              className="bg-muted border-border"
+            />
+          </div>
         </div>
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Máximo</Label>
-          <Input
-            type="number"
-            value={maxVal}
-            onChange={(e) => setMaxVal(Number(e.target.value))}
-            className="bg-muted border-border"
-          />
-        </div>
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Quantidade</Label>
-          <Input
-            type="number"
-            min={1}
-            max={1000}
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            className="bg-muted border-border"
-          />
-        </div>
-      </div>
 
-      <div className="flex gap-3">
-        <Button onClick={handleGenerate} className="px-8">Gerar</Button>
-        <Button variant="secondary" onClick={handleCopy} className="gap-2">
-          <Copy className="h-4 w-4" /> Copiar
-        </Button>
+        <div className="flex flex-wrap gap-3">
+          <Button onClick={handleGenerate} className="px-8">Gerar</Button>
+          <Button variant="secondary" onClick={handleCopy} className="gap-2">
+            <Copy className="h-4 w-4" /> Copiar
+          </Button>
+        </div>
       </div>
 
       <AnimatePresence mode="wait">
@@ -93,7 +95,7 @@ export default function GenerateRandomNumbers() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="rounded-md border border-border bg-muted p-5"
+            className="rounded-lg border border-border bg-muted p-5"
           >
             <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">Números gerados</p>
             <div className="font-mono text-lg text-foreground flex flex-wrap gap-3">

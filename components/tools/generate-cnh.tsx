@@ -48,64 +48,72 @@ export default function GenerateCNH() {
         </Link>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Separador</Label>
-          <div className="flex gap-2">
-            <Button
-              size="sm"
-              variant={outputSeparator === "newline" ? "default" : "secondary"}
-              onClick={() => setOutputSeparator("newline")}
-              className="flex-1"
-            >
-              Quebra de linha
-            </Button>
-            <Button
-              size="sm"
-              variant={outputSeparator === "comma" ? "default" : "secondary"}
-              onClick={() => setOutputSeparator("comma")}
-              className="flex-1"
-            >
-              Vírgula
-            </Button>
+      <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Separador</Label>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={outputSeparator === "newline" ? "default" : "secondary"}
+                onClick={() => setOutputSeparator("newline")}
+                className="flex-1"
+              >
+                Quebra de linha
+              </Button>
+              <Button
+                size="sm"
+                variant={outputSeparator === "comma" ? "default" : "secondary"}
+                onClick={() => setOutputSeparator("comma")}
+                className="flex-1"
+              >
+                Vírgula
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Quantidade</Label>
+            <Input
+              type="number"
+              min={1}
+              max={100}
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              className="bg-muted border-border"
+            />
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Quantidade</Label>
-          <Input
-            type="number"
-            min={1}
-            max={100}
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            className="bg-muted border-border"
-          />
+        <div className="flex flex-wrap gap-3">
+          <Button onClick={handleGenerate} className="px-8">Gerar</Button>
+          <Button variant="secondary" onClick={handleCopy} className="gap-2">
+            <Copy className="h-4 w-4" /> Copiar
+          </Button>
         </div>
-      </div>
-
-      <div className="flex gap-3">
-        <Button onClick={handleGenerate} className="px-8">Gerar</Button>
-        <Button variant="secondary" onClick={handleCopy} className="gap-2">
-          <Copy className="h-4 w-4" /> Copiar
-        </Button>
       </div>
 
       <AnimatePresence mode="wait">
         {results.length > 0 && (
           <motion.div
-            key={results.join()}
+            key={`${results.join()}-${outputSeparator}`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="rounded-md border border-border bg-muted p-5"
+            className="rounded-lg border border-border bg-muted p-5"
           >
             <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">CNH(s) gerada</p>
-            <div className="font-mono text-lg text-foreground space-y-1">
-              {results.map((cnh, i) => (
-                <div key={i} className="font-semibold">{cnh}</div>
-              ))}
+            <div className="font-mono text-lg text-foreground">
+              {outputSeparator === "comma" ? (
+                <div className="font-semibold break-words">{results.join(", ")}</div>
+              ) : (
+                <div className="space-y-1">
+                  {results.map((cnh, i) => (
+                    <div key={i} className="font-semibold">{cnh}</div>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.div>
         )}

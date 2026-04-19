@@ -55,109 +55,117 @@ export default function GenerateCPF() {
           href="/validar-cpf"
           className="text-primary text-sm hover:underline mt-1 inline-block"
         >
-          Deseja validar em vez gerar?
+          Deseja validar em vez de gerar?
         </Link>
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2">
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Pontuação?</Label>
-          <div className="flex gap-2">
-            <Button
-              size="sm"
-              variant={punctuation ? "default" : "secondary"}
-              onClick={() => setPunctuation(true)}
-              className="flex-1"
-            >
-              Sim
-            </Button>
-            <Button
-              size="sm"
-              variant={!punctuation ? "default" : "secondary"}
-              onClick={() => setPunctuation(false)}
-              className="flex-1"
-            >
-              Não
-            </Button>
+      <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Pontuação?</Label>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={punctuation ? "default" : "secondary"}
+                onClick={() => setPunctuation(true)}
+                className="flex-1"
+              >
+                Sim
+              </Button>
+              <Button
+                size="sm"
+                variant={!punctuation ? "default" : "secondary"}
+                onClick={() => setPunctuation(false)}
+                className="flex-1"
+              >
+                Não
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Separador?</Label>
+            <div className="flex gap-2">
+              <Button
+                size="sm"
+                variant={outputSeparator === "newline" ? "default" : "secondary"}
+                onClick={() => setOutputSeparator("newline")}
+                className="flex-1"
+              >
+                Quebra de linha
+              </Button>
+              <Button
+                size="sm"
+                variant={outputSeparator === "comma" ? "default" : "secondary"}
+                onClick={() => setOutputSeparator("comma")}
+                className="flex-1"
+              >
+                Vírgula
+              </Button>
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Estado</Label>
+            <Select value={selectedState || "any"} onValueChange={(v) => setSelectedState(v === "any" ? "" : v)}>
+              <SelectTrigger className="bg-muted border-border">
+                <SelectValue placeholder="Qualquer" />
+              </SelectTrigger>
+              <SelectContent>
+                {CPF_STATE_OPTIONS.map((e) => (
+                  <SelectItem key={e.value} value={e.value || "any"}>
+                    {e.label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label className="text-muted-foreground text-xs uppercase tracking-wider">Quantidade</Label>
+            <Input
+              type="number"
+              min={1}
+              max={100}
+              value={quantity}
+              onChange={(e) => setQuantity(Number(e.target.value))}
+              className="bg-muted border-border"
+            />
           </div>
         </div>
 
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Separador?</Label>
-          <div className="flex gap-2">
-            <Button
-              size="sm"
-              variant={outputSeparator === "newline" ? "default" : "secondary"}
-              onClick={() => setOutputSeparator("newline")}
-              className="flex-1"
-            >
-              Quebra de linha
-            </Button>
-            <Button
-              size="sm"
-              variant={outputSeparator === "comma" ? "default" : "secondary"}
-              onClick={() => setOutputSeparator("comma")}
-              className="flex-1"
-            >
-              Vírgula
-            </Button>
-          </div>
+        <div className="flex flex-wrap gap-3">
+          <Button onClick={handleGenerate} className="px-8">
+            Gerar
+          </Button>
+          <Button variant="secondary" onClick={handleCopy} className="gap-2">
+            <Copy className="h-4 w-4" />
+            Copiar
+          </Button>
         </div>
-
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Estado</Label>
-          <Select value={selectedState || "any"} onValueChange={(v) => setSelectedState(v === "any" ? "" : v)}>
-            <SelectTrigger className="bg-muted border-border">
-              <SelectValue placeholder="Qualquer" />
-            </SelectTrigger>
-            <SelectContent>
-              {CPF_STATE_OPTIONS.map((e) => (
-                <SelectItem key={e.value} value={e.value || "any"}>
-                  {e.label}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="space-y-2">
-          <Label className="text-muted-foreground text-xs uppercase tracking-wider">Quantidade</Label>
-          <Input
-            type="number"
-            min={1}
-            max={100}
-            value={quantity}
-            onChange={(e) => setQuantity(Number(e.target.value))}
-            className="bg-muted border-border"
-          />
-        </div>
-      </div>
-
-      <div className="flex gap-3">
-        <Button onClick={handleGenerate} className="px-8">
-          Gerar
-        </Button>
-        <Button variant="secondary" onClick={handleCopy} className="gap-2">
-          <Copy className="h-4 w-4" />
-          Copiar
-        </Button>
       </div>
 
       <AnimatePresence mode="wait">
         {results.length > 0 && (
           <motion.div
-            key={results.join()}
+            key={`${results.join()}-${outputSeparator}`}
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="rounded-md border border-border bg-muted p-5"
+            className="rounded-lg border border-border bg-muted p-5"
           >
             <p className="text-xs text-muted-foreground mb-2 uppercase tracking-wider">CPF(s) gerado</p>
-            <div className="font-mono text-lg text-foreground space-y-1">
-              {results.map((cpf, i) => (
-                <div key={i} className="font-semibold">{cpf}</div>
-              ))}
+            <div className="font-mono text-lg text-foreground">
+              {outputSeparator === "comma" ? (
+                <div className="font-semibold break-words">{results.join(", ")}</div>
+              ) : (
+                <div className="space-y-1">
+                  {results.map((cpf, i) => (
+                    <div key={i} className="font-semibold">{cpf}</div>
+                  ))}
+                </div>
+              )}
             </div>
           </motion.div>
         )}
