@@ -7,34 +7,19 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { CheckCircle, XCircle, ShieldCheck } from "lucide-react";
 import { ToolFaq } from "@/components/tool-faq";
-
-function validateRgSpDigits(rg: string): boolean {
-  const digits = rg.replace(/\D/g, "");
-  if (digits.length !== 9) return false;
-  if (/^(\d)\1{8}$/.test(digits)) return false;
-
-  const nums = digits.split("").map(Number);
-  const weights = [2, 3, 4, 5, 6, 7, 8, 9];
-  let sum = 0;
-  for (let i = 0; i < 8; i++) {
-    sum += nums[7 - i] * weights[i];
-  }
-  const remainder = sum % 11;
-  const check = remainder < 2 ? 0 : 11 - remainder;
-  return nums[8] === check;
-}
+import { isValidRGSP } from "@/lib/rg-sp";
 
 export default function ValidateRGSP() {
   const [rg, setRg] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
 
   const handleValidate = () => {
-    const clean = rg.replace(/\D/g, "");
+    const clean = rg.replace(/[^\dXx]/g, "");
     if (clean.length !== 9) {
-      toast({ title: "Digite um RG com 9 dígitos", variant: "destructive" });
+      toast({ title: "Digite um RG com 9 caracteres", variant: "destructive" });
       return;
     }
-    setIsValid(validateRgSpDigits(clean));
+    setIsValid(isValidRGSP(clean));
   };
 
   return (

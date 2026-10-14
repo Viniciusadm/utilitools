@@ -50,6 +50,7 @@ export function numberToPortugueseWords(input: string): string {
 
   const parts: string[] = [];
   const totalGroups = groups.length;
+  let lastGroupValue = 0;
 
   for (let i = 0; i < totalGroups; i++) {
     const value = groups[i];
@@ -58,9 +59,12 @@ export function numberToPortugueseWords(input: string): string {
     const level = totalGroups - 1 - i;
     const text = groupToPortugueseWords(value);
     const [singular, plural] = SCALE_GROUPS[level];
+    lastGroupValue = value;
 
     if (level === 0) {
       parts.push(text);
+    } else if (level === 1 && value === 1) {
+      parts.push(singular);
     } else {
       parts.push(`${text} ${value === 1 ? singular : plural}`);
     }
@@ -70,5 +74,6 @@ export function numberToPortugueseWords(input: string): string {
   if (parts.length === 1) return parts[0];
 
   const last = parts.pop()!;
-  return parts.join(", ") + " e " + last;
+  const needsConjunction = lastGroupValue < 100 || lastGroupValue % 100 === 0;
+  return parts.join(" ") + (needsConjunction ? " e " : " ") + last;
 }

@@ -152,19 +152,23 @@ export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
       {
         question: "Como é formado o RG de São Paulo?",
         answer:
-          "O RG SSP SP tem 8 dígitos seguidos de um dígito verificador, no formato 00.000.000-0.",
+          "O RG SSP SP tem 8 dígitos seguidos de um dígito verificador, que pode ser um número ou a letra X, no formato 00.000.000-0. O verificador é calculado com pesos de 2 a 9 e o resto da divisão por 11.",
       },
     ],
   },
   "validar-rg": {
     title: "Validar RG SP Online: Validador de RG SSP",
     description:
-      "Verifique se um RG de São Paulo (SSP SP) é válido pelo cálculo do dígito verificador. Digite com ou sem pontuação e veja o resultado na hora.",
+      "Verifique se um RG de São Paulo (SSP SP) é válido pelo cálculo do dígito verificador, inclusive quando o dígito é X. Digite com ou sem pontuação.",
     faq: [
       {
         question: "Como saber se um RG de São Paulo é válido?",
         answer:
           "O último caractere do RG SSP SP é um dígito verificador calculado a partir dos 8 primeiros números. Se o cálculo bate, o RG é válido.",
+      },
+      {
+        question: "Por que alguns RGs terminam com X?",
+        answer: "Quando o cálculo do dígito verificador resulta em 10, ele é representado pela letra X.",
       },
       {
         question: "O validador funciona para RG de outros estados?",
@@ -305,6 +309,15 @@ export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
       {
         question: "Até que número a ferramenta escreve por extenso?",
         answer: "Até a casa dos quatrilhões, ou seja, números com até 18 dígitos.",
+      },
+      {
+        question: "Quando usar o “e” nos números por extenso?",
+        answer:
+          "O “e” sempre liga centenas, dezenas e unidades (cento e vinte e três). Entre o milhar e a centena, ele só aparece quando a centena é redonda ou menor que cem: mil e duzentos, mil e cinquenta, mas mil duzentos e cinquenta.",
+      },
+      {
+        question: "Escreve-se “mil” ou “um mil”?",
+        answer: "A forma recomendada é apenas “mil”. Por exemplo, 1.500 se escreve mil e quinhentos.",
       },
     ],
   },
