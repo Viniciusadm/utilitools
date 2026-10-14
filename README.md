@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Utilitools
 
-## Getting Started
+Utilitools is a collection of small text, number and document tools in Portuguese, built with Next.js and exported as a static site. Every tool runs in the browser; there is no backend.
 
-First, run the development server:
+The tools are:
+
+- Math: division remainder, rule of three, number base conversion, temperature conversion (Celsius, Fahrenheit and Kelvin) and counting days between two dates.
+- Text: truncate, split by delimiter, transform words, edit and format text, strip accents, write numbers out in words and generate Lorem Ipsum.
+- Random data: names and numbers.
+- Brazilian documents: generate and validate CPF, CNPJ, CNH and RG from São Paulo and from Rio de Janeiro (IFP).
+
+| Part | What it is |
+| --- | --- |
+| [`app`](app) | App Router pages. `(site)/[tool]` renders each tool from its URL segment; `sitemap.ts` and `robots.ts` build the SEO files. |
+| [`components/tools`](components/tools) | One component per tool. |
+| [`components/ui`](components/ui) | UI primitives on top of Radix UI and Tailwind CSS. |
+| [`lib`](lib) | Document algorithms (`cpf.ts`, `cnpj.ts`, `cnh.ts`, `rg.ts`, `rg-sp.ts`), numbers in words (`extenso.ts`) and the list of tools (`nav-tools.ts`). |
+
+## Requirements
+
+- Node.js 20.9+ (required by Next.js 16)
+- npm
+
+The stack is Next.js 16, React 19, TypeScript 5 and Tailwind CSS 4.
+
+## Configuration
+
+`NEXT_PUBLIC_SITE_URL` is the public address used in the sitemap and `robots.txt`. Copy the example to set it:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cp .env.example .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Without it the site uses `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running locally
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Install the dependencies and start the development server on port 3000:
 
-## Learn More
+```bash
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+Build the static site into `out/`, ready to serve from any static host:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Run the linter:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run lint
+```
