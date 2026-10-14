@@ -1,192 +1,55 @@
-
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { toast } from "@/hooks/use-toast";
+import { DocumentGenerator } from "@/components/document-generator";
+import { ToolSection } from "@/components/tool-section";
 import { generateRG } from "@/lib/rg";
-import { Copy } from "lucide-react";
-import { ToolFaq } from "@/components/tool-faq";
 
 export default function GenerateRGRJ() {
-  const [punctuation, setPunctuation] = useState(true);
-  const [outputSeparator, setOutputSeparator] = useState<"newline" | "comma">("newline");
-  const [quantity, setQuantity] = useState(1);
-  const [results, setResults] = useState<string[]>([]);
-
-  useEffect(() => {
-    setResults([generateRG(true)]);
-  }, []);
-
-  const handleGenerate = () => {
-    const qty = Math.max(1, Math.min(quantity, 100));
-    const rgs: string[] = [];
-    for (let i = 0; i < qty; i++) {
-      rgs.push(generateRG(punctuation));
-    }
-    setResults(rgs);
-  };
-
-  const handleCopy = () => {
-    if (results.length === 0) return;
-    const sep = outputSeparator === "comma" ? ", " : "\n";
-    navigator.clipboard.writeText(results.join(sep));
-    toast({ title: "Copiado para a área de transferência" });
-  };
-
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Gerador de RG – IFP RJ</h1>
-        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">
-          Gere números de RG válidos no padrão IFP RJ de forma rápida e prática. Escolha com ou sem
-          pontuação e gere múltiplos registros para testes, cadastros e validações.
+    <DocumentGenerator
+      title="Gerador de RG – IFP RJ"
+      intro="Gere números de RG válidos no padrão IFP RJ de forma rápida e prática. Escolha com ou sem pontuação e gere múltiplos registros para testes, cadastros e validações."
+      validateHref="/validar-rj"
+      resultLabel="RG(s) gerado(s)"
+      generate={generateRG}
+      segment="gerar-rj"
+      related={["validar-rj", "gerar-rg", "gerar-cpf", "gerar-cnpj", "gerar-numeros", "gerar-nomes", "gerar-lorem", "gerar-cnh"]}
+    >
+      <ToolSection title="O que é RG?">
+        <p>
+          O RG (Registro Geral) é um documento de identificação civil utilizado no Brasil. Ele contém informações pessoais
+          como nome, data de nascimento e número único de identificação, sendo essencial para diversos processos e
+          cadastros.
         </p>
-        <a href="/validar-rg" className="text-primary text-sm hover:underline mt-1 inline-block">
-          Deseja validar em vez de gerar?
-        </a>
+      </ToolSection>
+
+      <ToolSection title="RG IFP RJ">
+        <p>
+          O RG emitido no estado do Rio de Janeiro segue o padrão do Instituto Félix Pacheco (IFP RJ). Esse modelo possui
+          uma estrutura numérica específica com dígito verificador, garantindo maior segurança e validação dos dados.
+        </p>
+      </ToolSection>
+
+      <ToolSection title="Como é formado o RG IFP RJ">
+        <p>
+          O número do RG é composto por 9 dígitos. Os primeiros números são gerados de forma sequencial ou aleatória,
+          enquanto o último é um dígito verificador calculado a partir dos anteriores, garantindo a validade do documento.
+        </p>
+      </ToolSection>
+
+      <ToolSection title="Para que usar um gerador de RG?">
+        <ul>
+          <li>Testes de sistemas</li>
+          <li>Desenvolvimento de software</li>
+          <li>Preenchimento de dados fictícios</li>
+          <li>Simulações e validações</li>
+        </ul>
+      </ToolSection>
+
+      <div className="rounded-lg border border-border bg-muted/60 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">NOTA:</strong> Os RGs gerados são fictícios e destinados exclusivamente para
+          fins educacionais, testes e desenvolvimento.
+        </p>
       </div>
-
-      <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5 shadow-xs">
-        <div className="grid gap-5 sm:grid-cols-3">
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground">Pontuação?</Label>
-            <div className="flex gap-2">
-              <Button size="sm" variant={punctuation ? "default" : "secondary"} onClick={() => setPunctuation(true)} className="flex-1">
-                Sim
-              </Button>
-              <Button size="sm" variant={!punctuation ? "default" : "secondary"} onClick={() => setPunctuation(false)} className="flex-1">
-                Não
-              </Button>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground">Separador</Label>
-            <div className="flex gap-2">
-              <Button size="sm" variant={outputSeparator === "newline" ? "default" : "secondary"} onClick={() => setOutputSeparator("newline")} className="flex-1">
-                Quebra de linha
-              </Button>
-              <Button size="sm" variant={outputSeparator === "comma" ? "default" : "secondary"} onClick={() => setOutputSeparator("comma")} className="flex-1">
-                Vírgula
-              </Button>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground">Quantidade</Label>
-            <Input
-              id="qty-rg-rj"
-              type="number"
-              min={1}
-              max={100}
-              value={quantity}
-              onChange={(e) => setQuantity(Number(e.target.value))}
-             
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-wrap gap-3">
-          <Button onClick={handleGenerate} className="px-8">Gerar</Button>
-          <Button variant="secondary" onClick={handleCopy} className="gap-2">
-            <Copy className="h-4 w-4" /> Copiar
-          </Button>
-        </div>
-      </div>
-
-      <AnimatePresence mode="wait">
-        {results.length > 0 && (
-          <motion.div
-            key={`${results.join(",")}-${outputSeparator}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5"
-          >
-            <p className="text-sm font-medium text-muted-foreground mb-2">RG(s) gerado(s)</p>
-            <div className="font-mono text-lg text-foreground">
-              {outputSeparator === "comma" ? (
-                <div className="font-semibold break-words">{results.join(", ")}</div>
-              ) : (
-                <div className="space-y-1">
-                  {results.map((rg, i) => (
-                    <div key={i} className="font-semibold">{rg}</div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="space-y-8 border-t border-border pt-10">
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">O que é RG?</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            O RG (Registro Geral) é um documento de identificação civil utilizado no Brasil. Ele
-            contém informações pessoais como nome, data de nascimento e número único de identificação,
-            sendo essencial para diversos processos e cadastros.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">RG IFP RJ</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            O RG emitido no estado do Rio de Janeiro segue o padrão do Instituto Félix Pacheco
-            (IFP RJ). Esse modelo possui uma estrutura numérica específica com dígito verificador,
-            garantindo maior segurança e validação dos dados.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Como é formado o RG IFP RJ</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            O número do RG é composto por 9 dígitos. Os primeiros números são gerados de forma
-            sequencial ou aleatória, enquanto o último é um dígito verificador calculado a partir dos
-            anteriores, garantindo a validade do documento.
-          </p>
-        </section>
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Para que usar um gerador de RG?</h2>
-          <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
-            <li>Testes de sistemas</li>
-            <li>Desenvolvimento de software</li>
-            <li>Preenchimento de dados fictícios</li>
-            <li>Simulações e validações</li>
-          </ul>
-        </section>
-
-        <div className="rounded-lg border border-border bg-muted/60 p-4">
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">NOTA:</strong> Os RGs gerados são fictícios e destinados exclusivamente para fins
-            educacionais, testes e desenvolvimento.
-          </p>
-        </div>
-
-        <ToolFaq segment="gerar-rj" />
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { label: "Gerar CPF", url: "/gerar-cpf" },
-              { label: "Gerar CNPJ", url: "/gerar-cnpj" },
-              { label: "Gerar Números", url: "/gerar-numeros" },
-              { label: "Gerar Nomes", url: "/gerar-nomes" },
-              { label: "Gerar Lorem Ipsum", url: "/gerar-lorem" },
-              { label: "Gerar CNH", url: "/gerar-cnh" },
-            ].map((link) => (
-              <a key={link.url} href={link.url} className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </section>
-      </div>
-    </div>
+    </DocumentGenerator>
   );
 }

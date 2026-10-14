@@ -18,7 +18,7 @@ type OptionToggleProps = {
   falseLabel: string;
 };
 
-function OptionToggle({ label, value, onChange, trueLabel, falseLabel }: OptionToggleProps) {
+export function OptionToggle({ label, value, onChange, trueLabel, falseLabel }: OptionToggleProps) {
   return (
     <div className="space-y-2">
       <Label className="text-sm font-medium text-foreground">{label}</Label>
