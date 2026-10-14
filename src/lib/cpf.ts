@@ -1,6 +1,6 @@
 const stateDigitMap: Record<string, number[]> = {
   "RS": [0],
-  "DF": [1], "GO": [1], "MS": [1], "TO": [1],
+  "DF": [1], "GO": [1], "MS": [1], "MT": [1], "TO": [1],
   "PA": [2], "AM": [2], "AC": [2], "AP": [2], "RO": [2], "RR": [2],
   "CE": [3], "MA": [3], "PI": [3],
   "PE": [4], "RN": [4], "PB": [4], "AL": [4],
