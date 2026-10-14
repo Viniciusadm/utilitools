@@ -177,6 +177,7 @@ export default function EditText() {
         <div>
           <h2 className="text-xl font-semibold text-foreground mb-2">Veja também</h2>
           <ul className="list-disc list-inside space-y-1">
+            <li><a href="/contador-de-caracteres" className="text-primary hover:underline">Contador de Caracteres</a></li>
             <li><a href="/editar-palavras" className="text-primary hover:underline">Editar Palavras</a></li>
             <li><a href="/dividir-texto" className="text-primary hover:underline">Dividir Texto</a></li>
             <li><a href="/cortar-texto" className="text-primary hover:underline">Cortar Texto</a></li>

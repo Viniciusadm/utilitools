@@ -118,6 +118,7 @@ export default function RuleOfThree() {
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
           <div className="flex flex-wrap gap-2">
             <a href="/calcular-resto" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Calcular Resto</a>
+            <a href="/calculadora-de-porcentagem" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Calculadora de Porcentagem</a>
           </div>
         </section>
       </div>

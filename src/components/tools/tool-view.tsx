@@ -3,10 +3,13 @@ import type { ComponentType } from "react";
 type ToolModule = { default: ComponentType };
 
 export const toolLoaders: Record<string, () => Promise<ToolModule>> = {
+  "calculadora-de-porcentagem": () => import("./percentage-calculator"),
+  "calcular-idade": () => import("./age-calculator"),
   "calcular-resto": () => import("./divide-remainder"),
   "calcular-tres": () => import("./rule-of-three"),
   "converter-numeros": () => import("./radix-converter"),
   "converter-temperaturas": () => import("./temperature-converter"),
+  "contador-de-caracteres": () => import("./character-counter"),
   "contar-dias": () => import("./count-days"),
   "cortar-texto": () => import("./truncate-text"),
   "editar-palavras": () => import("./edit-words"),
@@ -18,9 +21,11 @@ export const toolLoaders: Record<string, () => Promise<ToolModule>> = {
   "gerar-lorem": () => import("./generate-lorem"),
   "gerar-nomes": () => import("./generate-names"),
   "gerar-numeros": () => import("./generate-numbers"),
+  "gerador-de-senha": () => import("./password-generator"),
   "gerar-cnpj": () => import("./generate-cnpj"),
   "numeros-por-extenso": () => import("./numbers-spell-out"),
   "remover-acentos": () => import("./strip-diacritics"),
+  "sorteador-de-nomes": () => import("./name-draw"),
   "dividir-texto": () => import("./split-text"),
   "validar-cnh": () => import("./validate-cnh"),
   "validar-rj": () => import("./validate-rg-rj"),

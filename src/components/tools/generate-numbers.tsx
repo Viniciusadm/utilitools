@@ -150,6 +150,8 @@ export default function GenerateRandomNumbers() {
               { label: "Gerar CPF", url: "/gerar-cpf" },
               { label: "Gerar CNPJ", url: "/gerar-cnpj" },
               { label: "Gerar Nomes", url: "/gerar-nomes" },
+              { label: "Sorteador de Nomes", url: "/sorteador-de-nomes" },
+              { label: "Gerador de Senha", url: "/gerador-de-senha" },
               { label: "Gerar Lorem", url: "/gerar-lorem" },
               { label: "Gerar RG", url: "/gerar-rg" },
               { label: "Gerar RJ", url: "/gerar-rj" },

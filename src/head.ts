@@ -1,4 +1,5 @@
 import { absoluteUrl } from "@/lib/site";
+import { getToolSeo, type FaqItem } from "@/lib/tool-seo";
 import type { Route } from "./routes";
 
 const siteName = "UtiliTools";
@@ -20,6 +21,19 @@ function escapeHtml(value: string) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function defaultFaq(toolTitle: string, toolDesc: string): FaqItem[] {
+  return [
+    {
+      question: `A ferramenta ${toolTitle} é gratuita?`,
+      answer: "Sim. O uso é gratuito no navegador, sem cadastro obrigatório.",
+    },
+    {
+      question: `Como usar ${toolTitle} no UtiliTools?`,
+      answer: `${toolDesc} Use os controles na página para obter o resultado.`,
+    },
+  ];
 }
 
 function headData(route: Route): HeadData {
@@ -49,12 +63,15 @@ function headData(route: Route): HeadData {
       const { tool, segment } = route;
       const path = `${segment}/`;
       const pageUrl = absoluteUrl(path);
-      const title = `${tool.title} · ${siteName}`;
+      const seo = getToolSeo(segment);
+      const title = `${seo?.title ?? tool.title} · ${siteName}`;
+      const description = seo?.description ?? tool.desc;
+      const faq = seo?.faq ?? defaultFaq(tool.title, tool.desc);
       return {
         title,
-        description: tool.desc,
+        description,
         shareTitle: title,
-        shareDescription: tool.desc,
+        shareDescription: description,
         path,
         index: true,
         jsonLd: {
@@ -64,11 +81,12 @@ function headData(route: Route): HeadData {
               "@type": "WebApplication",
               "@id": `${pageUrl}#app`,
               name: title,
-              description: tool.desc,
+              description,
               url: pageUrl,
               applicationCategory: "UtilityApplication",
               operatingSystem: "Any",
               browserRequirements: "Requires JavaScript.",
+              inLanguage: "pt-BR",
               offers: {
                 "@type": "Offer",
                 price: "0",
@@ -78,23 +96,21 @@ function headData(route: Route): HeadData {
             {
               "@type": "FAQPage",
               "@id": `${pageUrl}#faq`,
-              mainEntity: [
-                {
-                  "@type": "Question",
-                  name: `A ferramenta ${tool.title} é gratuita?`,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: "Sim. O uso é gratuito no navegador, sem cadastro obrigatório.",
-                  },
+              mainEntity: faq.map(({ question, answer }) => ({
+                "@type": "Question",
+                name: question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: answer,
                 },
-                {
-                  "@type": "Question",
-                  name: `Como usar ${tool.title} no UtiliTools?`,
-                  acceptedAnswer: {
-                    "@type": "Answer",
-                    text: `${tool.desc} Use os controles na página para obter o resultado.`,
-                  },
-                },
+              })),
+            },
+            {
+              "@type": "BreadcrumbList",
+              "@id": `${pageUrl}#breadcrumb`,
+              itemListElement: [
+                { "@type": "ListItem", position: 1, name: "Início", item: absoluteUrl() },
+                { "@type": "ListItem", position: 2, name: tool.title, item: pageUrl },
               ],
             },
           ],

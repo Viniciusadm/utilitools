@@ -158,6 +158,7 @@ export default function GenerateNames() {
               { label: "Gerar CPF", url: "/gerar-cpf" },
               { label: "Gerar CNPJ", url: "/gerar-cnpj" },
               { label: "Gerar Números", url: "/gerar-numeros" },
+              { label: "Sorteador de Nomes", url: "/sorteador-de-nomes" },
               { label: "Gerar Lorem Ipsum", url: "/gerar-lorem" },
               { label: "Gerar RG", url: "/gerar-rg" },
               { label: "Gerar CNH", url: "/gerar-cnh" },
