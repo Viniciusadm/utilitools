@@ -1,6 +1,6 @@
 # Utilitools
 
-Utilitools is a collection of small text, number and document tools in Portuguese, built with Next.js and exported as a static site. Every tool runs in the browser; there is no backend. It is live at [utilitools.com.br](https://www.utilitools.com.br/).
+Utilitools is a collection of small text, number and document tools in Portuguese, built with React and Vite and prerendered as a static site. Every tool runs in the browser; there is no backend. It is live at [utilitools.com.br](https://www.utilitools.com.br/).
 
 The tools are:
 
@@ -11,38 +11,39 @@ The tools are:
 
 | Part | What it is |
 | --- | --- |
-| [`app`](app) | App Router pages. `(site)/[tool]` renders each tool from its URL segment; `sitemap.ts` and `robots.ts` build the SEO files. |
-| [`components/tools`](components/tools) | One component per tool. |
-| [`components/ui`](components/ui) | UI primitives on top of Radix UI and Tailwind CSS. |
-| [`lib`](lib) | Document algorithms (`cpf.ts`, `cnpj.ts`, `cnh.ts`, `rg.ts`, `rg-sp.ts`), numbers in words (`extenso.ts`) and the list of tools (`nav-tools.ts`). |
+| [`src`](src) | Entry points: `entry-server.tsx` renders each page to HTML at build time and `entry-client.tsx` hydrates it in the browser. `routes.ts` maps URLs to pages and `head.ts` builds the meta tags. |
+| [`scripts/prerender.js`](scripts/prerender.js) | Writes one HTML file per page, plus `404.html`, `sitemap.xml` and `robots.txt`. |
+| [`src/components/tools`](src/components/tools) | One component per tool. |
+| [`src/components/ui`](src/components/ui) | UI primitives on top of Radix UI and Tailwind CSS. |
+| [`src/lib`](src/lib) | Document algorithms (`cpf.ts`, `cnpj.ts`, `cnh.ts`, `rg.ts`, `rg-sp.ts`), numbers in words (`extenso.ts`) and the list of tools (`nav-tools.ts`). |
 
 ## Requirements
 
-- Node.js 20.9+ (required by Next.js 16)
+- Node.js 20.19+ (required by Vite 8)
 - npm
 
-The stack is Next.js 16, React 19, TypeScript 5 and Tailwind CSS 4.
+The stack is Vite 8, React 19, TypeScript 6 and Tailwind CSS 4.
 
 ## Configuration
 
-`NEXT_PUBLIC_SITE_URL` is the public address used in the sitemap and `robots.txt`. Copy the example to set it:
+`VITE_SITE_URL` is the public address used in canonical links, the sitemap and `robots.txt`. Set it in the environment when building:
 
 ```bash
-cp .env.example .env
+VITE_SITE_URL=https://www.utilitools.com.br npm run build
 ```
 
-Without it the site uses `http://localhost:3000`.
+Without it the site uses `https://www.utilitools.com.br`.
 
 ## Running locally
 
-Install the dependencies and start the development server on port 3000:
+Install the dependencies and start the development server on port 5173:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build the static site into `out/`, ready to serve from any static host:
+Build the static site into `dist/`, ready to serve from any static host:
 
 ```bash
 npm run build
