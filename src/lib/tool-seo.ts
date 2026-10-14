@@ -10,6 +10,181 @@ export type ToolSeo = {
 };
 
 export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
+  "gerar-cartao-de-credito": {
+    title: "Gerador de Cartão de Crédito Válido para Testes",
+    description:
+      "Gere números de cartão de crédito válidos para testes, com bandeira Visa, Mastercard, Elo, Amex, Hipercard ou Diners, data de validade e CVV.",
+    faq: [
+      {
+        question: "Os cartões gerados funcionam para fazer compras?",
+        answer:
+          "Não. Os números apenas passam no algoritmo de Luhn. Eles não estão ligados a nenhum banco, não têm saldo e são recusados em qualquer compra real.",
+      },
+      {
+        question: "Para que serve um cartão de crédito gerado?",
+        answer:
+          "Para testar formulários de pagamento, máscaras, identificação de bandeira e validações no front-end durante o desenvolvimento de software.",
+      },
+      {
+        question: "Quais bandeiras posso gerar?",
+        answer: "Visa, Mastercard, Elo, American Express, Hipercard e Diners Club.",
+      },
+      {
+        question: "Posso usar para testar meu gateway de pagamento?",
+        answer:
+          "Para testes de ponta a ponta, use os números de teste oficiais do seu gateway (como Stripe, Mercado Pago ou PagSeguro), que simulam aprovações e recusas no ambiente de testes.",
+      },
+    ],
+  },
+  "validar-cartao-de-credito": {
+    title: "Validar Cartão de Crédito e Descobrir a Bandeira",
+    description:
+      "Verifique se o número de um cartão de crédito é válido pelo algoritmo de Luhn e descubra a bandeira. Grátis, sem envio de dados e direto no navegador.",
+    faq: [
+      {
+        question: "Como saber se um número de cartão é válido?",
+        answer:
+          "O último dígito do cartão é calculado pelo algoritmo de Luhn. Se a verificação bate e a quantidade de dígitos corresponde à bandeira, o número é válido.",
+      },
+      {
+        question: "Um número válido significa que o cartão tem limite?",
+        answer:
+          "Não. A validação confere apenas se o número é matematicamente correto. Limite, situação e titularidade só podem ser verificados pelo banco emissor.",
+      },
+      {
+        question: "Como descobrir a bandeira do cartão pelo número?",
+        answer:
+          "Pelos primeiros dígitos, chamados de BIN. Visa começa com 4, Mastercard com 51 a 55 ou 2221 a 2720, American Express com 34 ou 37 e Elo e Hipercard têm faixas próprias.",
+      },
+      {
+        question: "É seguro validar um cartão aqui?",
+        answer: "O cálculo é feito no seu navegador e o número não é enviado para nenhum servidor.",
+      },
+    ],
+  },
+  "gerar-pis": {
+    title: "Gerador de PIS/PASEP Válido Online",
+    description:
+      "Gere números de PIS, PASEP e NIS válidos para testes de sistemas de RH e folha de pagamento, com ou sem pontuação. Gere vários de uma vez.",
+    faq: [
+      {
+        question: "O PIS gerado pertence a um trabalhador real?",
+        answer:
+          "Não. Os números são aleatórios e apenas passam no cálculo do dígito verificador. Servem somente para testes de software.",
+      },
+      {
+        question: "Qual o formato do número do PIS?",
+        answer: "São 11 dígitos no formato 000.00000.00-0, sendo o último o dígito verificador.",
+      },
+      {
+        question: "O gerador também serve para NIS e PASEP?",
+        answer: "Sim. PIS, PASEP, NIS e NIT usam o mesmo formato e o mesmo cálculo de dígito verificador.",
+      },
+    ],
+  },
+  "validar-pis": {
+    title: "Validar PIS/PASEP/NIS Online",
+    description:
+      "Verifique se um número de PIS, PASEP, NIS ou NIT é válido pelo cálculo do dígito verificador. Digite com ou sem pontuação e veja o resultado na hora.",
+    faq: [
+      {
+        question: "Como saber se um PIS é válido?",
+        answer:
+          "Multiplique os 10 primeiros dígitos pelos pesos 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 e calcule o resto da divisão por 11. O dígito verificador é 0 se o resto for 0 ou 1, e 11 menos o resto nos demais casos.",
+      },
+      {
+        question: "O validador consulta o PIS na Caixa?",
+        answer:
+          "Não. A ferramenta confere apenas se o número é matematicamente válido. Para consultar benefícios, use o aplicativo FGTS, Caixa Tem ou a Carteira de Trabalho Digital.",
+      },
+      {
+        question: "PIS e NIS são o mesmo número?",
+        answer:
+          "Para quem tem cadastro no PIS, o NIS costuma ser o mesmo número. Ambos usam o mesmo formato e podem ser validados aqui.",
+      },
+    ],
+  },
+  "gerar-titulo-de-eleitor": {
+    title: "Gerador de Título de Eleitor Válido por Estado",
+    description:
+      "Gere números de título de eleitor válidos para testes, escolhendo o estado de emissão, com ou sem formatação. Gere vários de uma vez e copie com um clique.",
+    faq: [
+      {
+        question: "O título gerado é de um eleitor real?",
+        answer:
+          "Não. O número é aleatório e só passa no cálculo dos dígitos verificadores. Ele serve para testes de software.",
+      },
+      {
+        question: "Posso gerar título de um estado específico?",
+        answer:
+          "Sim. Escolha o estado antes de gerar. O 9º e o 10º dígitos do título indicam a unidade da federação de emissão.",
+      },
+      {
+        question: "Quantos dígitos tem o título de eleitor?",
+        answer: "12 dígitos: 8 sequenciais, 2 do código do estado e 2 dígitos verificadores.",
+      },
+    ],
+  },
+  "validar-titulo-de-eleitor": {
+    title: "Validar Título de Eleitor e Ver o Estado",
+    description:
+      "Verifique se um número de título de eleitor é válido pelo cálculo dos dígitos verificadores e descubra em qual estado ele foi emitido.",
+    faq: [
+      {
+        question: "Como saber se um título de eleitor é válido?",
+        answer:
+          "Os dois últimos dígitos são verificadores, calculados a partir dos 8 primeiros e do código do estado. Se os dois batem, o número é válido.",
+      },
+      {
+        question: "Como saber de qual estado é o título?",
+        answer:
+          "Pelo 9º e 10º dígitos: 01 é São Paulo, 02 Minas Gerais, 03 Rio de Janeiro e assim por diante, até 28 para eleitores no exterior. O validador mostra o estado automaticamente.",
+      },
+      {
+        question: "O validador mostra se o título está regular?",
+        answer:
+          "Não. Ele confere apenas o número. A situação eleitoral é consultada no site do TSE ou no aplicativo e-Título.",
+      },
+    ],
+  },
+  "gerar-renavam": {
+    title: "Gerador de RENAVAM Válido Online",
+    description:
+      "Gere números de RENAVAM válidos com 11 dígitos para testes de sistemas de veículos, despachantes e seguradoras. Gere vários de uma vez.",
+    faq: [
+      {
+        question: "O RENAVAM gerado é de um veículo real?",
+        answer:
+          "Não. O número é aleatório e passa apenas no cálculo do dígito verificador. Ele serve para testes de software.",
+      },
+      {
+        question: "Quantos dígitos tem o RENAVAM?",
+        answer:
+          "Desde 2013 o RENAVAM tem 11 dígitos. Números antigos, de 9 dígitos, são completados com dois zeros à esquerda.",
+      },
+    ],
+  },
+  "validar-renavam": {
+    title: "Validar RENAVAM Online",
+    description:
+      "Verifique se um número de RENAVAM é válido pelo cálculo do dígito verificador. Aceita o formato atual de 11 dígitos e o antigo de 9.",
+    faq: [
+      {
+        question: "Como saber se o RENAVAM é válido?",
+        answer:
+          "Multiplique os 10 primeiros dígitos pelos pesos 3, 2, 9, 8, 7, 6, 5, 4, 3, 2, multiplique a soma por 10 e calcule o resto por 11. Se o resultado, com 10 virando 0, for igual ao último dígito, o RENAVAM é válido.",
+      },
+      {
+        question: "O validador consulta débitos do veículo?",
+        answer:
+          "Não. Ele confere apenas se o número está correto. Débitos, IPVA e licenciamento são consultados no site do Detran do seu estado.",
+      },
+      {
+        question: "Meu RENAVAM tem 9 dígitos. Ele é válido?",
+        answer: "Pode ser. RENAVAMs antigos têm 9 dígitos e são validados completando com dois zeros à esquerda.",
+      },
+    ],
+  },
   "cnpj-alfanumerico": {
     title: "CNPJ Alfanumérico: Validar, Gerar e Calcular o DV",
     description:
