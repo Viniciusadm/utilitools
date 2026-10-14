@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { numberToPortugueseWords } from "@/lib/extenso";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function NumbersSpellOut() {
   const [numberInput, setNumberInput] = useState("");
@@ -113,6 +114,8 @@ export default function NumbersSpellOut() {
             especialmente em valores financeiros, para evitar inconsistências.
           </p>
         </div>
+
+        <ToolFaq segment="numeros-por-extenso" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

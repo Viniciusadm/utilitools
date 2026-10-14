@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function SplitText() {
   const [text, setText] = useState("");
@@ -119,6 +120,8 @@ export default function SplitText() {
             Se o texto não for dividido corretamente, verifique se o separador utilizado corresponde exatamente ao que está no conteúdo.
           </p>
         </section>
+
+        <ToolFaq segment="dividir-texto" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

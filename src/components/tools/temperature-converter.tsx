@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 type Scale = "celsius" | "fahrenheit" | "kelvin";
 
@@ -166,6 +167,8 @@ export default function TemperatureConverter() {
             A escala Fahrenheit é utilizada principalmente nos Estados Unidos. Nela, a água congela a 32°F e ferve a 212°F.
           </p>
         </section>
+
+        <ToolFaq segment="converter-temperaturas" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

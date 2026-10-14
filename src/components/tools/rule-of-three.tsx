@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function RuleOfThree() {
   const [a, setA] = useState("");
@@ -113,6 +114,8 @@ export default function RuleOfThree() {
             Se temos a relação: A está para B assim como C está para X. Então: X = (A × C) ÷ B. Isso permite descobrir o valor proporcional de forma simples e rápida.
           </p>
         </section>
+
+        <ToolFaq segment="calcular-tres" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

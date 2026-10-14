@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { CheckCircle, XCircle, ShieldCheck } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 function validateRgSpDigits(rg: string): boolean {
   const digits = rg.replace(/\D/g, "");
@@ -141,6 +142,8 @@ export default function ValidateRGSP() {
           verifica se o documento existe ou pertence a uma pessoa real.
         </p>
       </div>
+
+      <ToolFaq segment="validar-rg" />
 
       <section>
         <h2 className="text-lg font-semibold text-foreground mb-3">Veja também</h2>

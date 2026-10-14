@@ -7,6 +7,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { toast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpDown, Shuffle, Copy, Undo2, Trash2, ArrowDownUp } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 type WordDelimiter = "space" | "newline" | "comma" | "semicolon";
 
@@ -189,6 +190,8 @@ export default function EditWords() {
             <li><strong>Desfazer:</strong> reverte a última alteração feita no texto.</li>
           </ul>
         </div>
+
+        <ToolFaq segment="editar-palavras" />
 
         <div>
           <h2 className="text-xl font-semibold text-foreground mb-2">Veja também</h2>

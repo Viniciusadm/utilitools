@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function TruncateText() {
   const [text, setText] = useState("");
@@ -133,6 +134,8 @@ export default function TruncateText() {
             <li>Respeitar limites de formulários</li>
           </ul>
         </section>
+
+        <ToolFaq segment="cortar-texto" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function GenerateRandomNumbers() {
   const [minVal, setMinVal] = useState(1);
@@ -142,6 +143,8 @@ export default function GenerateRandomNumbers() {
             maiores entre o valor mínimo e máximo.
           </p>
         </div>
+
+        <ToolFaq segment="gerar-numeros" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

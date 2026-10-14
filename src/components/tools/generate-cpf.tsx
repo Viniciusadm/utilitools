@@ -14,6 +14,7 @@ import {
 import { toast } from "@/hooks/use-toast";
 import { generateCPF, formatCPF, CPF_STATE_OPTIONS } from "@/lib/cpf";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function GenerateCPF() {
   const [punctuation, setPunctuation] = useState(true);
@@ -208,6 +209,8 @@ export default function GenerateCPF() {
             <strong className="text-foreground">NOTA:</strong> O gerador de CPF fornecido tem exclusivamente propósitos educacionais. Os números gerados são aleatórios e seguem as regras matemáticas reais de validação do CPF, porém não correspondem a pessoas reais. Não nos responsabilizamos pelo uso indevido desta ferramenta. Em caso de problemas, entre em contato.
           </p>
         </div>
+
+        <ToolFaq segment="gerar-cpf" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

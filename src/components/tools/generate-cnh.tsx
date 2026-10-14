@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { generateCNH } from "@/lib/cnh";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function GenerateCNH() {
   const [outputSeparator, setOutputSeparator] = useState<"newline" | "comma">("newline");
@@ -157,6 +158,8 @@ export default function GenerateCNH() {
             Não nos responsabilizamos pelo uso indevido desta ferramenta.
           </p>
         </div>
+
+        <ToolFaq segment="gerar-cnh" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

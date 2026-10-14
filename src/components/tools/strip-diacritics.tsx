@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 function stripDiacritics(text: string): string {
   return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -121,6 +122,8 @@ export default function StripDiacritics() {
             Para comunicação com pessoas, prefira manter a acentuação correta para evitar ambiguidades.
           </p>
         </div>
+
+        <ToolFaq segment="remover-acentos" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { toast } from "@/hooks/use-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import { Copy, Undo2, Trash2, Shuffle, ArrowDownUp, CaseSensitive, CaseUpper, CaseLower, Type } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function EditText() {
   const [text, setText] = useState("");
@@ -173,6 +174,8 @@ export default function EditText() {
             <li><strong>Remover duplicados:</strong> elimina palavras repetidas.</li>
           </ul>
         </div>
+
+        <ToolFaq segment="editar-texto" />
 
         <div>
           <h2 className="text-xl font-semibold text-foreground mb-2">Veja também</h2>

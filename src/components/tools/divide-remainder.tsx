@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function DivideRemainder() {
   const [dividend, setDividend] = useState("");
@@ -109,6 +110,8 @@ export default function DivideRemainder() {
             Por exemplo, ao dividir 10 por 3: 10 ÷ 3 = 3 com resto 1. Isso significa que o número 3 cabe três vezes dentro de 10, sobrando 1. O quociente é 3 e o resto é 1.
           </p>
         </section>
+
+        <ToolFaq segment="calcular-resto" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

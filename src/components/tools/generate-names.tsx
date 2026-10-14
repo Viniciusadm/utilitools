@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 const maleFirstNames = [
   "João", "Pedro", "Lucas", "Gabriel", "Rafael", "Carlos", "Fernando", "André",
@@ -150,6 +151,8 @@ export default function GenerateNames() {
             de teste, desenvolvimento ou entretenimento.
           </p>
         </div>
+
+        <ToolFaq segment="gerar-nomes" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

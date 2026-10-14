@@ -10,6 +10,7 @@ import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { RelatedTools } from "@/components/related-tools";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function CountDays() {
   const [startDate, setStartDate] = useState<Date>();
@@ -122,6 +123,8 @@ export default function CountDays() {
             <li>Controlar períodos de tempo</li>
           </ul>
         </section>
+
+        <ToolFaq segment="contar-dias" />
 
         <RelatedTools segments={["calcular-idade", "calculadora-de-porcentagem", "calcular-tres"]} />
       </div>

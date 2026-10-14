@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, XCircle } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 function validateCnpjDigits(value: string): boolean {
   const cnpj = value.replace(/\D/g, "");
@@ -132,6 +133,8 @@ export default function ValidateCNPJ() {
             <li>Para evitar erros de digitação</li>
           </ul>
         </section>
+
+        <ToolFaq segment="validar-cnpj" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

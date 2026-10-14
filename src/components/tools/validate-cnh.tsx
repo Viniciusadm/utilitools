@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, XCircle } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 function validateCnhDigits(cnh: string): boolean {
   if (!/^\d{11}$/.test(cnh)) return false;
@@ -142,6 +143,8 @@ export default function ValidateCNH() {
             Digite apenas números, sem espaços ou caracteres especiais, para garantir uma validação correta.
           </p>
         </section>
+
+        <ToolFaq segment="validar-cnh" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

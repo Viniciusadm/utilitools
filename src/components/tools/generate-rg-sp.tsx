@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { generateRGSP } from "@/lib/rg-sp";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function GenerateRGSP() {
   const [punctuation, setPunctuation] = useState(true);
@@ -165,6 +166,8 @@ export default function GenerateRGSP() {
             educacionais, testes e desenvolvimento.
           </p>
         </div>
+
+        <ToolFaq segment="gerar-rg" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

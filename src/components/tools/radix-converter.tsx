@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 type Base = "bin" | "oct" | "dec" | "hex";
 
@@ -159,6 +160,8 @@ export default function RadixConverter() {
             <li><strong className="text-foreground">Hexadecimal (base 16)</strong>: usado em programação, cores e memória</li>
           </ul>
         </section>
+
+        <ToolFaq segment="converter-numeros" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 const LOREM_WORDS = [
   "lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit","sed","do",
@@ -240,6 +241,8 @@ export default function GenerateLorem() {
             e design. Ele não possui significado real e serve exclusivamente para preencher layouts.
           </p>
         </div>
+
+        <ToolFaq segment="gerar-lorem" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { generateCNPJ } from "@/lib/cnpj";
 import { Copy } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 export default function GenerateCNPJ() {
   const [punctuation, setPunctuation] = useState(true);
@@ -158,6 +159,8 @@ export default function GenerateCNPJ() {
             de formação do CNPJ. Não nos responsabilizamos por qualquer uso indevido.
           </p>
         </div>
+
+        <ToolFaq segment="gerar-cnpj" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>

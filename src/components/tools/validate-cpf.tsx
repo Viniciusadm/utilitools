@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, XCircle } from "lucide-react";
+import { ToolFaq } from "@/components/tool-faq";
 
 function validateCpfDigits(value: string): boolean {
   const cpf = value.replace(/\D/g, "");
@@ -136,6 +137,8 @@ export default function ValidateCPF() {
             <strong className="text-foreground">Nota:</strong> Esta ferramenta valida apenas a estrutura matemática do CPF e não verifica se o documento existe ou pertence a uma pessoa real.
           </p>
         </section>
+
+        <ToolFaq segment="validar-cpf" />
 
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
