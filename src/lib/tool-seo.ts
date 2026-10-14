@@ -10,6 +10,122 @@ export type ToolSeo = {
 };
 
 export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
+  "gerador-de-qr-code-pix": {
+    title: "Gerador de QR Code Pix Grátis e Pix Copia e Cola",
+    description:
+      "Gere QR Code Pix e código Pix copia e cola grátis, com ou sem valor. Baixe o QR Code em PNG para receber pagamentos. Nada é enviado para servidores.",
+    faq: [
+      {
+        question: "Gerar QR Code Pix aqui é seguro?",
+        answer:
+          "Sim. O QR Code é gerado no seu navegador e nenhum dado é enviado ou armazenado. O dinheiro vai direto para a conta da chave Pix informada, sem intermediários.",
+      },
+      {
+        question: "O QR Code Pix tem validade?",
+        answer:
+          "Não. O QR Code gerado é estático: pode ser usado quantas vezes quiser e não expira enquanto a chave Pix estiver cadastrada.",
+      },
+      {
+        question: "Posso gerar um QR Code Pix com valor definido?",
+        answer:
+          "Sim. Preencha o campo Valor e o pagador só precisa confirmar. Deixe em branco para que ele digite o valor no aplicativo do banco.",
+      },
+      {
+        question: "O que é o Pix copia e cola?",
+        answer:
+          "É o mesmo conteúdo do QR Code em forma de texto. A pessoa cola o código na área Pix do aplicativo do banco para pagar, útil quando não dá para escanear.",
+      },
+      {
+        question: "Por que o nome aparece sem acento?",
+        answer:
+          "O padrão do Pix (BR Code) aceita apenas caracteres sem acento e limita o nome a 25 caracteres e a cidade a 15. O ajuste é feito automaticamente.",
+      },
+    ],
+  },
+  "calculadora-de-juros-compostos": {
+    title: "Calculadora de Juros Compostos com Aporte Mensal",
+    description:
+      "Simule juros compostos com valor inicial, aporte mensal e taxa ao mês ou ao ano. Veja o valor final, os juros ganhos e a evolução ano a ano.",
+    faq: [
+      {
+        question: "Qual a fórmula dos juros compostos?",
+        answer:
+          "M = C × (1 + i)ⁿ, em que M é o montante, C o capital inicial, i a taxa por período e n o número de períodos. Com aportes, cada depósito rende pelo tempo que fica aplicado.",
+      },
+      {
+        question: "Qual a diferença entre juros simples e compostos?",
+        answer:
+          "Nos juros simples, os juros incidem só sobre o valor inicial. Nos compostos, incidem sobre o saldo acumulado, incluindo os juros anteriores, o que faz o dinheiro crescer mais rápido com o tempo.",
+      },
+      {
+        question: "Como converter taxa anual em mensal?",
+        answer:
+          "Use (1 + taxa anual)^(1/12) − 1. Por exemplo, 12% ao ano equivale a cerca de 0,95% ao mês. A calculadora faz essa conversão quando você escolhe taxa ao ano.",
+      },
+      {
+        question: "A simulação considera imposto de renda?",
+        answer:
+          "Não. O resultado é bruto, sem imposto de renda, taxas ou inflação. O valor líquido depende do tipo de investimento e do prazo.",
+      },
+    ],
+  },
+  "calculadora-imc": {
+    title: "Calculadora de IMC: Índice de Massa Corporal",
+    description:
+      "Calcule seu IMC online com peso e altura e veja a classificação da OMS: abaixo do peso, normal, sobrepeso ou obesidade. Veja também seu peso ideal.",
+    faq: [
+      {
+        question: "Como calcular o IMC?",
+        answer: "Divida o peso em quilos pela altura em metros ao quadrado. Com 70 kg e 1,75 m, o IMC é 70 ÷ 3,0625 = 22,9.",
+      },
+      {
+        question: "Qual é o IMC ideal?",
+        answer: "Para adultos, a OMS considera peso normal o IMC entre 18,5 e 24,9.",
+      },
+      {
+        question: "Como saber meu peso ideal pela altura?",
+        answer:
+          "Multiplique sua altura ao quadrado por 18,5 e por 24,9. Os dois resultados formam a faixa de peso saudável. A calculadora mostra essa faixa automaticamente.",
+      },
+      {
+        question: "O IMC vale para crianças e idosos?",
+        answer:
+          "Não. A tabela é para adultos. Crianças e adolescentes usam curvas de crescimento por idade, e idosos têm faixas de referência diferentes.",
+      },
+    ],
+  },
+  "calcular-dias-uteis": {
+    title: "Calcular Dias Úteis Entre Datas e Prazos",
+    description:
+      "Calcule quantos dias úteis há entre duas datas ou some dias úteis a uma data para saber o prazo final, descontando fins de semana e feriados nacionais.",
+    faq: [
+      {
+        question: "Como calcular dias úteis entre duas datas?",
+        answer:
+          "Conte os dias do período e retire sábados, domingos e feriados que caem em dias de semana. A calculadora faz isso automaticamente e lista os feriados encontrados.",
+      },
+      {
+        question: "Sábado é dia útil?",
+        answer:
+          "Para prazos processuais e bancários, não. Em algumas regras trabalhistas o sábado pode ser considerado dia útil, então confira a regra do seu caso. Esta calculadora não conta o sábado.",
+      },
+      {
+        question: "Carnaval é feriado nacional?",
+        answer:
+          "Não. Carnaval e Corpus Christi são pontos facultativos no âmbito federal, mas muitos estados, cidades e empresas não trabalham nessas datas. Você pode escolher se eles devem ser descontados.",
+      },
+      {
+        question: "A calculadora considera feriados estaduais e municipais?",
+        answer:
+          "Não. Ela considera apenas os feriados nacionais. Desconte manualmente os feriados da sua cidade ou estado.",
+      },
+      {
+        question: "A data inicial entra na contagem?",
+        answer:
+          "Na contagem entre datas, a inicial e a final entram. Ao somar dias úteis, a contagem começa no dia útil seguinte à data de início, como nos prazos.",
+      },
+    ],
+  },
   "gerar-cartao-de-credito": {
     title: "Gerador de Cartão de Crédito Válido para Testes",
     description:

@@ -3,6 +3,7 @@ import {
   Briefcase,
   Building2,
   Cake,
+  CalendarCheck,
   CalendarDays,
   Car,
   CarFront,
@@ -16,20 +17,23 @@ import {
   KeyRound,
   LetterText,
   PencilLine,
+  QrCode,
   Percent,
   Scale,
   Scissors,
   ShieldCheck,
   SpellCheck,
   Thermometer,
+  TrendingUp,
   Trophy,
   Users,
   Vote,
+  Weight,
   WholeWord,
   type LucideIcon,
 } from "lucide-react";
 
-export const NAV_CATEGORIES = ["Documentos", "Texto", "Matemática", "Dados aleatórios"] as const;
+export const NAV_CATEGORIES = ["Documentos", "Finanças", "Texto", "Matemática", "Dados aleatórios"] as const;
 
 export type NavCategory = (typeof NAV_CATEGORIES)[number];
 
@@ -53,6 +57,8 @@ export const NAV_TOOLS: readonly NavTool[] = [
   { title: "Validar RG SP", url: "/validar-rg", desc: "Valide números de RG", category: "Documentos", icon: ShieldCheck },
   { title: "Gerar RG RJ", url: "/gerar-rj", desc: "Gere inscrições estaduais RJ", category: "Documentos", icon: IdCard },
   { title: "Validar RG RJ", url: "/validar-rj", desc: "Valide inscrições estaduais RJ", category: "Documentos", icon: ShieldCheck },
+  { title: "QR Code Pix", url: "/gerador-de-qr-code-pix", desc: "Gere QR Code e Pix copia e cola", category: "Finanças", icon: QrCode },
+  { title: "Juros Compostos", url: "/calculadora-de-juros-compostos", desc: "Simule rendimentos com aportes mensais", category: "Finanças", icon: TrendingUp },
   { title: "Contador de Caracteres", url: "/contador-de-caracteres", desc: "Conte caracteres, palavras e linhas", category: "Texto", icon: LetterText },
   { title: "Gerar Cartão de Crédito", url: "/gerar-cartao-de-credito", desc: "Gere cartões de teste com bandeira, validade e CVV", category: "Documentos", icon: CreditCard },
   { title: "Validar Cartão de Crédito", url: "/validar-cartao-de-credito", desc: "Valide o número e descubra a bandeira", category: "Documentos", icon: ShieldCheck },
@@ -71,6 +77,8 @@ export const NAV_TOOLS: readonly NavTool[] = [
   { title: "Gerar Lorem", url: "/gerar-lorem", desc: "Gere texto Lorem Ipsum", category: "Texto", icon: FileText },
   { title: "Calculadora de Porcentagem", url: "/calculadora-de-porcentagem", desc: "Calcule porcentagens, aumentos e descontos", category: "Matemática", icon: Percent },
   { title: "Calcular Idade", url: "/calcular-idade", desc: "Descubra a idade exata pela data de nascimento", category: "Matemática", icon: Cake },
+  { title: "Calculadora de IMC", url: "/calculadora-imc", desc: "Calcule o índice de massa corporal", category: "Matemática", icon: Weight },
+  { title: "Calcular Dias Úteis", url: "/calcular-dias-uteis", desc: "Dias úteis entre datas e prazos", category: "Matemática", icon: CalendarCheck },
   { title: "Calcular Resto", url: "/calcular-resto", desc: "Calcule o resto de uma divisão", category: "Matemática", icon: Divide },
   { title: "Calcular Três", url: "/calcular-tres", desc: "Regra de três simples", category: "Matemática", icon: Scale },
   { title: "Converter Números", url: "/converter-numeros", desc: "Converta entre bases numéricas", category: "Matemática", icon: Binary },

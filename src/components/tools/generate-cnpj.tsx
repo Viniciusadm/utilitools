@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
-import { DocumentGenerator, OptionToggle } from "@/components/document-generator";
+import { DocumentGenerator } from "@/components/document-generator";
+import { OptionToggle } from "@/components/option-toggle";
 import { ToolSection } from "@/components/tool-section";
 import { generateCNPJ } from "@/lib/cnpj";
 

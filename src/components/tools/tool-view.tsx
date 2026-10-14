@@ -3,7 +3,10 @@ import type { ComponentType } from "react";
 type ToolModule = { default: ComponentType };
 
 export const toolLoaders: Record<string, () => Promise<ToolModule>> = {
+  "calculadora-de-juros-compostos": () => import("./compound-interest"),
   "calculadora-de-porcentagem": () => import("./percentage-calculator"),
+  "calculadora-imc": () => import("./bmi-calculator"),
+  "calcular-dias-uteis": () => import("./business-days"),
   "calcular-idade": () => import("./age-calculator"),
   "calcular-resto": () => import("./divide-remainder"),
   "calcular-tres": () => import("./rule-of-three"),
@@ -15,6 +18,7 @@ export const toolLoaders: Record<string, () => Promise<ToolModule>> = {
   "cortar-texto": () => import("./truncate-text"),
   "editar-palavras": () => import("./edit-words"),
   "editar-texto": () => import("./edit-text"),
+  "gerador-de-qr-code-pix": () => import("./pix-qr-code"),
   "gerar-cartao-de-credito": () => import("./generate-credit-card"),
   "gerar-cpf": () => import("./generate-cpf"),
   "gerar-pis": () => import("./generate-pis"),

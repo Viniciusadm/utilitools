@@ -126,7 +126,7 @@ export default function CountDays() {
 
         <ToolFaq segment="contar-dias" />
 
-        <RelatedTools segments={["calcular-idade", "calculadora-de-porcentagem", "calcular-tres"]} />
+        <RelatedTools segments={["calcular-dias-uteis", "calcular-idade", "calculadora-de-porcentagem", "calcular-tres"]} />
       </div>
     </div>
   );

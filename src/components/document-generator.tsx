@@ -4,35 +4,12 @@ import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { OptionToggle } from "@/components/option-toggle";
 import { RelatedTools } from "@/components/related-tools";
 import { ToolFaq } from "@/components/tool-faq";
 import { toast } from "@/hooks/use-toast";
 
 const MAX_QUANTITY = 100;
-
-type OptionToggleProps = {
-  label: string;
-  value: boolean;
-  onChange: (value: boolean) => void;
-  trueLabel: string;
-  falseLabel: string;
-};
-
-export function OptionToggle({ label, value, onChange, trueLabel, falseLabel }: OptionToggleProps) {
-  return (
-    <div className="space-y-2">
-      <Label className="text-sm font-medium text-foreground">{label}</Label>
-      <div className="flex gap-2">
-        <Button size="sm" variant={value ? "default" : "secondary"} onClick={() => onChange(true)} className="flex-1">
-          {trueLabel}
-        </Button>
-        <Button size="sm" variant={!value ? "default" : "secondary"} onClick={() => onChange(false)} className="flex-1">
-          {falseLabel}
-        </Button>
-      </div>
-    </div>
-  );
-}
 
 type DocumentGeneratorProps = {
   title: string;

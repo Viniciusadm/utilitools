@@ -1,5 +1,6 @@
 export function parseDecimal(value: string) {
-  const normalized = value.includes(",") ? value.replace(/\./g, "").replace(",", ".") : value;
+  const usesThousandsDots = /^\s*-?\d{1,3}(\.\d{3})+\s*$/.test(value);
+  const normalized = value.includes(",") || usesThousandsDots ? value.replace(/\./g, "").replace(",", ".") : value;
   const trimmed = normalized.trim();
   if (trimmed === "") return null;
   const parsed = Number(trimmed);
