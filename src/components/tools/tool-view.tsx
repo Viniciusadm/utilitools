@@ -9,6 +9,7 @@ export const toolLoaders: Record<string, () => Promise<ToolModule>> = {
   "calcular-tres": () => import("./rule-of-three"),
   "converter-numeros": () => import("./radix-converter"),
   "converter-temperaturas": () => import("./temperature-converter"),
+  "cnpj-alfanumerico": () => import("./cnpj-alphanumeric"),
   "contador-de-caracteres": () => import("./character-counter"),
   "contar-dias": () => import("./count-days"),
   "cortar-texto": () => import("./truncate-text"),

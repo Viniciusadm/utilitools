@@ -6,43 +6,23 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, XCircle } from "lucide-react";
 import { ToolFaq } from "@/components/tool-faq";
-
-function validateCnpjDigits(value: string): boolean {
-  const cnpj = value.replace(/\D/g, "");
-  if (cnpj.length !== 14) return false;
-  if (/^(\d)\1{13}$/.test(cnpj)) return false;
-
-  const digits = cnpj.split("").map(Number);
-
-  const weights1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-  const sum1 = digits.slice(0, 12).reduce((acc, d, i) => acc + d * weights1[i], 0);
-  const r1 = sum1 % 11;
-  const d1 = r1 < 2 ? 0 : 11 - r1;
-  if (digits[12] !== d1) return false;
-
-  const weights2 = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
-  const sum2 = digits.slice(0, 13).reduce((acc, d, i) => acc + d * weights2[i], 0);
-  const r2 = sum2 % 11;
-  const d2 = r2 < 2 ? 0 : 11 - r2;
-  if (digits[13] !== d2) return false;
-
-  return true;
-}
+import { isAlphanumericCNPJ, isValidCNPJ, normalizeCNPJ } from "@/lib/cnpj";
 
 export default function ValidateCNPJ() {
   const [cnpj, setCnpj] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
 
-  const digitsOnly = cnpj.replace(/\D/g, "");
+  const normalized = normalizeCNPJ(cnpj);
+  const kind = isAlphanumericCNPJ(normalized) ? "CNPJ alfanumérico" : "CNPJ";
 
   const handleChange = (val: string) => {
-    setCnpj(val.replace(/[^\d./-]/g, "").slice(0, 18));
+    setCnpj(val.toUpperCase().replace(/[^0-9A-Z./-]/g, "").slice(0, 18));
     setIsValid(null);
   };
 
   const handleValidate = () => {
-    if (digitsOnly.length !== 14) return;
-    setIsValid(validateCnpjDigits(digitsOnly));
+    if (normalized.length !== 14) return;
+    setIsValid(isValidCNPJ(normalized));
   };
 
   return (
@@ -50,7 +30,7 @@ export default function ValidateCNPJ() {
       <div>
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Validar CNPJ</h1>
         <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">
-          Valide rapidamente um CNPJ para verificar se ele é válido de acordo com as regras oficiais da Receita Federal. Basta digitar o número no campo abaixo e clicar em validar para obter o resultado instantaneamente.
+          Valide rapidamente um CNPJ para verificar se ele é válido de acordo com as regras oficiais da Receita Federal, inclusive o novo CNPJ alfanumérico. Basta digitar o número no campo abaixo e clicar em validar para obter o resultado instantaneamente.
         </p>
       </div>
 
@@ -62,12 +42,12 @@ export default function ValidateCNPJ() {
             onChange={(e) => handleChange(e.target.value)}
            
             placeholder="00.000.000/0000-00"
-            inputMode="numeric"
+            autoCapitalize="characters"
           />
         </div>
       </div>
 
-      <Button onClick={handleValidate} disabled={digitsOnly.length !== 14}>Validar</Button>
+      <Button onClick={handleValidate} disabled={normalized.length !== 14}>Validar</Button>
 
       <AnimatePresence mode="wait">
         {isValid !== null && (
@@ -83,7 +63,7 @@ export default function ValidateCNPJ() {
               <>
                 <CheckCircle className="h-5 w-5 text-success shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-foreground">CNPJ válido</p>
+                  <p className="text-sm font-semibold text-foreground">{kind} válido</p>
                   <p className="text-xs text-muted-foreground">O número informado possui dígitos verificadores corretos.</p>
                 </div>
               </>
@@ -91,7 +71,7 @@ export default function ValidateCNPJ() {
               <>
                 <XCircle className="h-5 w-5 text-destructive shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-foreground">CNPJ inválido</p>
+                  <p className="text-sm font-semibold text-foreground">{kind} inválido</p>
                   <p className="text-xs text-muted-foreground">O número informado não possui dígitos verificadores válidos.</p>
                 </div>
               </>
@@ -111,7 +91,7 @@ export default function ValidateCNPJ() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">Como funciona a validação?</h2>
           <p className="text-[15px] leading-7 text-muted-foreground">
-            O CNPJ possui 14 dígitos, sendo os dois últimos chamados de dígitos verificadores. Esses números são calculados com base nos demais dígitos usando um algoritmo matemático específico. A validação consiste em verificar o formato do número, recalcular os dígitos verificadores e comparar com os informados.
+            O CNPJ possui 14 caracteres, sendo os dois últimos chamados de dígitos verificadores. Esses números são calculados com base nos demais caracteres usando um algoritmo matemático específico. No CNPJ alfanumérico, as 12 primeiras posições podem ter letras, e cada caractere entra no cálculo pelo seu código ASCII menos 48. A validação consiste em verificar o formato do número, recalcular os dígitos verificadores e comparar com os informados.
           </p>
         </section>
 
@@ -139,6 +119,7 @@ export default function ValidateCNPJ() {
         <section>
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
           <div className="flex flex-wrap gap-2">
+            <a href="/cnpj-alfanumerico" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">CNPJ Alfanumérico</a>
             <a href="/gerar-cnpj" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Gerar CNPJ</a>
             <a href="/validar-cpf" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Validar CPF</a>
             <a href="/validar-cnh" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Validar CNH</a>

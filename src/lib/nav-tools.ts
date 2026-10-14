@@ -42,6 +42,7 @@ export const NAV_TOOLS: readonly NavTool[] = [
   { title: "Validar CPF", url: "/validar-cpf", desc: "Valide números de CPF", category: "Documentos", icon: ShieldCheck },
   { title: "Gerar CNPJ", url: "/gerar-cnpj", desc: "Gere CNPJs válidos", category: "Documentos", icon: Building2 },
   { title: "Validar CNPJ", url: "/validar-cnpj", desc: "Valide números de CNPJ", category: "Documentos", icon: ShieldCheck },
+  { title: "CNPJ Alfanumérico", url: "/cnpj-alfanumerico", desc: "Valide e gere o novo CNPJ com letras", category: "Documentos", icon: Building2 },
   { title: "Gerar CNH", url: "/gerar-cnh", desc: "Gere números de CNH", category: "Documentos", icon: Car },
   { title: "Validar CNH", url: "/validar-cnh", desc: "Valide números de CNH", category: "Documentos", icon: ShieldCheck },
   { title: "Gerar RG SP", url: "/gerar-rg", desc: "Gere números de RG", category: "Documentos", icon: IdCard },

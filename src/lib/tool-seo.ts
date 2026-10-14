@@ -10,6 +10,37 @@ export type ToolSeo = {
 };
 
 export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
+  "cnpj-alfanumerico": {
+    title: "CNPJ Alfanumérico: Validar, Gerar e Calcular o DV",
+    description:
+      "Valide e gere CNPJ alfanumérico online. Entenda o novo formato com letras da Receita Federal (IN RFB 2.229/2024) e veja como calcular o dígito verificador.",
+    faq: [
+      {
+        question: "Quando o CNPJ alfanumérico começou a valer?",
+        answer:
+          "A Receita Federal passou a emitir CNPJs alfanuméricos para novas inscrições a partir de julho de 2026, conforme a Instrução Normativa RFB nº 2.229/2024.",
+      },
+      {
+        question: "Meu CNPJ atual vai mudar?",
+        answer: "Não. CNPJs já existentes continuam com o mesmo número. Apenas novas inscrições recebem o formato alfanumérico.",
+      },
+      {
+        question: "Quais caracteres o CNPJ alfanumérico pode ter?",
+        answer:
+          "As 12 primeiras posições aceitam números de 0 a 9 e letras maiúsculas de A a Z. As duas últimas posições, os dígitos verificadores, continuam sempre numéricas.",
+      },
+      {
+        question: "Como calcular o dígito verificador do CNPJ alfanumérico?",
+        answer:
+          "Converta cada caractere em número pelo código ASCII menos 48 (A = 17, B = 18 e assim por diante) e aplique o mesmo módulo 11 do CNPJ numérico, com os pesos de 2 a 9.",
+      },
+      {
+        question: "O que meu sistema precisa mudar para aceitar o novo CNPJ?",
+        answer:
+          "Campos e colunas que guardam o CNPJ como número precisam passar a aceitar texto, as máscaras e validações devem permitir letras nas 12 primeiras posições e o cálculo do dígito verificador deve usar a conversão por ASCII.",
+      },
+    ],
+  },
   "gerar-cpf": {
     title: "Gerador de CPF Válido Online por Estado",
     description:
@@ -64,9 +95,9 @@ export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
     ],
   },
   "gerar-cnpj": {
-    title: "Gerador de CNPJ Válido Online para Testes",
+    title: "Gerador de CNPJ Válido: Numérico e Alfanumérico",
     description:
-      "Gere CNPJs válidos para testes de software, com ou sem pontuação. Gere vários números de uma vez, escolha o separador e copie com um clique.",
+      "Gere CNPJs válidos para testes de software, no formato numérico ou no novo CNPJ alfanumérico, com ou sem pontuação. Gere vários de uma vez e copie com um clique.",
     faq: [
       {
         question: "O CNPJ gerado pertence a uma empresa real?",
@@ -79,20 +110,30 @@ export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
           "O CNPJ tem 14 dígitos: os 8 primeiros identificam a empresa, os 4 seguintes a matriz ou filial (0001 é a matriz) e os 2 últimos são dígitos verificadores.",
       },
       {
+        question: "O gerador cria CNPJ alfanumérico?",
+        answer:
+          "Sim. Escolha o tipo Alfanumérico para gerar CNPJs com letras e números nas 12 primeiras posições, no formato adotado pela Receita Federal a partir de julho de 2026.",
+      },
+      {
         question: "Posso gerar vários CNPJs de uma vez?",
         answer: "Sim. Defina a quantidade e o separador e todos os números aparecem prontos para copiar.",
       },
     ],
   },
   "validar-cnpj": {
-    title: "Validar CNPJ Online: Validador de CNPJ Grátis",
+    title: "Validar CNPJ Online: Numérico e Alfanumérico",
     description:
-      "Verifique se um CNPJ é válido pelo cálculo dos dígitos verificadores. Digite com ou sem pontuação e veja o resultado instantaneamente.",
+      "Verifique se um CNPJ é válido pelo cálculo dos dígitos verificadores, inclusive o novo CNPJ alfanumérico. Digite com ou sem pontuação e veja o resultado na hora.",
     faq: [
       {
         question: "Como saber se um CNPJ é válido?",
         answer:
           "Um CNPJ é válido quando os dois últimos dígitos batem com o cálculo dos dígitos verificadores feito sobre os 12 primeiros. O validador faz essa conta na hora.",
+      },
+      {
+        question: "O validador aceita CNPJ alfanumérico?",
+        answer:
+          "Sim. CNPJs com letras nas 12 primeiras posições, como 12.ABC.345/01DE-35, são validados pela mesma regra oficial, convertendo cada caractere pelo código ASCII menos 48.",
       },
       {
         question: "O validador mostra a razão social da empresa?",

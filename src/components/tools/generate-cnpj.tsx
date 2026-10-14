@@ -11,6 +11,7 @@ import { ToolFaq } from "@/components/tool-faq";
 
 export default function GenerateCNPJ() {
   const [punctuation, setPunctuation] = useState(true);
+  const [alphanumeric, setAlphanumeric] = useState(false);
   const [outputSeparator, setOutputSeparator] = useState<"newline" | "comma">("newline");
   const [quantity, setQuantity] = useState(1);
   const [results, setResults] = useState<string[]>([]);
@@ -23,7 +24,7 @@ export default function GenerateCNPJ() {
     const qty = Math.max(1, Math.min(quantity, 100));
     const cnpjs: string[] = [];
     for (let i = 0; i < qty; i++) {
-      cnpjs.push(generateCNPJ(punctuation));
+      cnpjs.push(generateCNPJ(punctuation, alphanumeric));
     }
     setResults(cnpjs);
   };
@@ -40,8 +41,8 @@ export default function GenerateCNPJ() {
       <div>
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Gerador de CNPJ</h1>
         <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">
-          Gerador de CNPJs válidos aleatórios. Você pode escolher se quer pontuação ou não.
-          Basta clicar em gerar e copiar o CNPJ gerado.
+          Gerador de CNPJs válidos aleatórios, no formato numérico tradicional ou no novo CNPJ alfanumérico. Você pode
+          escolher se quer pontuação ou não. Basta clicar em gerar e copiar o CNPJ gerado.
         </p>
         <a href="/validar-cnpj" className="text-primary text-sm hover:underline mt-1 inline-block">
           Deseja validar em vez de gerar?
@@ -49,7 +50,19 @@ export default function GenerateCNPJ() {
       </div>
 
       <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5 shadow-xs">
-        <div className="grid gap-5 sm:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-foreground">Tipo</Label>
+            <div className="flex gap-2">
+              <Button size="sm" variant={!alphanumeric ? "default" : "secondary"} onClick={() => setAlphanumeric(false)} className="flex-1">
+                Numérico
+              </Button>
+              <Button size="sm" variant={alphanumeric ? "default" : "secondary"} onClick={() => setAlphanumeric(true)} className="flex-1">
+                Alfanumérico
+              </Button>
+            </div>
+          </div>
+
           <div className="space-y-2">
             <Label className="text-sm font-medium text-foreground">Pontuação?</Label>
             <div className="flex gap-2">
@@ -135,6 +148,15 @@ export default function GenerateCNPJ() {
         </section>
 
         <section>
+          <h2 className="text-lg font-semibold text-foreground mb-2">O que é o CNPJ alfanumérico?</h2>
+          <p className="text-[15px] leading-7 text-muted-foreground">
+            Desde julho de 2026, a Receita Federal emite CNPJs que combinam letras e números nas 12 primeiras posições,
+            como 12.ABC.345/01DE-35. Os dois dígitos verificadores continuam numéricos, e os CNPJs já existentes não mudam.
+            Saiba mais na página sobre o <a href="/cnpj-alfanumerico" className="text-primary hover:underline">CNPJ alfanumérico</a>.
+          </p>
+        </section>
+
+        <section>
           <h2 className="text-lg font-semibold text-foreground mb-2">Como obter um CNPJ?</h2>
           <p className="text-[15px] leading-7 text-muted-foreground">
             Para obter um CNPJ, uma empresa deve se registrar na Receita Federal. O registro pode ser feito online
@@ -166,6 +188,8 @@ export default function GenerateCNPJ() {
           <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
           <div className="flex flex-wrap gap-2">
             {[
+              { label: "CNPJ Alfanumérico", url: "/cnpj-alfanumerico" },
+              { label: "Validar CNPJ", url: "/validar-cnpj" },
               { label: "Gerar CPF", url: "/gerar-cpf" },
               { label: "Gerar Números", url: "/gerar-numeros" },
               { label: "Gerar Nomes", url: "/gerar-nomes" },
