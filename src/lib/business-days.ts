@@ -1,22 +1,37 @@
 import { addDays, format, isWeekend, startOfDay } from "date-fns";
 
+export type HolidayCode =
+  | "newYear"
+  | "tiradentes"
+  | "labourDay"
+  | "independence"
+  | "ourLadyAparecida"
+  | "allSouls"
+  | "republic"
+  | "blackConsciousness"
+  | "christmas"
+  | "goodFriday"
+  | "carnivalMonday"
+  | "carnivalTuesday"
+  | "corpusChristi";
+
 export type Holiday = {
   date: Date;
-  name: string;
+  code: HolidayCode;
   optional: boolean;
 };
 
 const ISO = "yyyy-MM-dd";
 
-const FIXED_HOLIDAYS = [
-  { month: 0, day: 1, name: "Confraternização Universal" },
-  { month: 3, day: 21, name: "Tiradentes" },
-  { month: 4, day: 1, name: "Dia do Trabalho" },
-  { month: 8, day: 7, name: "Independência do Brasil" },
-  { month: 9, day: 12, name: "Nossa Senhora Aparecida" },
-  { month: 10, day: 2, name: "Finados" },
-  { month: 10, day: 15, name: "Proclamação da República" },
-  { month: 11, day: 25, name: "Natal" },
+const FIXED_HOLIDAYS: { month: number; day: number; code: HolidayCode }[] = [
+  { month: 0, day: 1, code: "newYear" },
+  { month: 3, day: 21, code: "tiradentes" },
+  { month: 4, day: 1, code: "labourDay" },
+  { month: 8, day: 7, code: "independence" },
+  { month: 9, day: 12, code: "ourLadyAparecida" },
+  { month: 10, day: 2, code: "allSouls" },
+  { month: 10, day: 15, code: "republic" },
+  { month: 11, day: 25, code: "christmas" },
 ];
 
 const BLACK_CONSCIOUSNESS_DAY_SINCE = 2024;
@@ -41,19 +56,19 @@ export function easterSunday(year: number) {
 
 export function nationalHolidays(year: number): Holiday[] {
   const easter = easterSunday(year);
-  const holidays: Holiday[] = FIXED_HOLIDAYS.map(({ month, day, name }) => ({
+  const holidays: Holiday[] = FIXED_HOLIDAYS.map(({ month, day, code }) => ({
     date: new Date(year, month, day),
-    name,
+    code,
     optional: false,
   }));
   if (year >= BLACK_CONSCIOUSNESS_DAY_SINCE) {
-    holidays.push({ date: new Date(year, 10, 20), name: "Dia Nacional de Zumbi e da Consciência Negra", optional: false });
+    holidays.push({ date: new Date(year, 10, 20), code: "blackConsciousness", optional: false });
   }
   holidays.push(
-    { date: addDays(easter, -2), name: "Sexta-feira Santa", optional: false },
-    { date: addDays(easter, -48), name: "Carnaval (segunda-feira)", optional: true },
-    { date: addDays(easter, -47), name: "Carnaval (terça-feira)", optional: true },
-    { date: addDays(easter, 60), name: "Corpus Christi", optional: true },
+    { date: addDays(easter, -2), code: "goodFriday", optional: false },
+    { date: addDays(easter, -48), code: "carnivalMonday", optional: true },
+    { date: addDays(easter, -47), code: "carnivalTuesday", optional: true },
+    { date: addDays(easter, 60), code: "corpusChristi", optional: true },
   );
   return holidays.sort((x, y) => x.date.getTime() - y.date.getTime());
 }

@@ -9,7 +9,7 @@ export type PasswordOptions = {
   excludeAmbiguous: boolean;
 };
 
-export type PasswordStrength = "Muito fraca" | "Fraca" | "Média" | "Forte" | "Muito forte";
+export type PasswordStrength = "veryWeak" | "weak" | "medium" | "strong" | "veryStrong";
 
 const CHARSETS = {
   uppercase: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -45,9 +45,9 @@ export function passwordEntropyBits(options: PasswordOptions) {
 }
 
 export function passwordStrength(bits: number): PasswordStrength {
-  if (bits < 28) return "Muito fraca";
-  if (bits < 36) return "Fraca";
-  if (bits < 60) return "Média";
-  if (bits < 100) return "Forte";
-  return "Muito forte";
+  if (bits < 28) return "veryWeak";
+  if (bits < 36) return "weak";
+  if (bits < 60) return "medium";
+  if (bits < 100) return "strong";
+  return "veryStrong";
 }

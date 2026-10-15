@@ -1,3 +1,6 @@
+import type { Locale } from "@/lib/i18n";
+import { TOOL_SEO_EN } from "@/lib/tool-seo-en";
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -698,7 +701,7 @@ export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
       {
         question: "Como fazer regra de três simples?",
         answer:
-          "Monte a proporção A está para B assim como C está para X. Multiplique cruzado e isole o X: X = B × C ÷ A.",
+          "Monte a proporção B está para A assim como C está para X. Multiplique cruzado e isole o X: X = A × C ÷ B.",
       },
       {
         question: "Qual a diferença entre grandezas diretas e inversas?",
@@ -940,6 +943,6 @@ export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
   },
 };
 
-export function getToolSeo(segment: string) {
-  return TOOL_SEO[segment];
+export function getToolSeo(id: string, locale: Locale) {
+  return locale === "en" ? TOOL_SEO_EN[id] : TOOL_SEO[id];
 }

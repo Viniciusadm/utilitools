@@ -1,12 +1,16 @@
+import { useUiCopy } from "@/i18n/ui";
+import { useLocale } from "@/lib/i18n";
 import { getToolSeo } from "@/lib/tool-seo";
 
-export function ToolFaq({ segment }: { segment: string }) {
-  const faq = getToolSeo(segment)?.faq;
+export function ToolFaq({ toolId }: { toolId: string }) {
+  const locale = useLocale();
+  const copy = useUiCopy();
+  const faq = getToolSeo(toolId, locale)?.faq;
   if (!faq?.length) return null;
 
   return (
     <section>
-      <h2 className="text-lg font-semibold text-foreground mb-4">Perguntas frequentes</h2>
+      <h2 className="text-lg font-semibold text-foreground mb-4">{copy.faq}</h2>
       <div className="space-y-5">
         {faq.map(({ question, answer }) => (
           <div key={question}>

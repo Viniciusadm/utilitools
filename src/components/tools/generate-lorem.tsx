@@ -9,6 +9,9 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
 import { ToolFaq } from "@/components/tool-faq";
+import { RelatedTools } from "@/components/related-tools";
+import { useUiCopy } from "@/i18n/ui";
+import { useCopy } from "@/lib/i18n";
 
 const LOREM_WORDS = [
   "lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit","sed","do",
@@ -103,7 +106,105 @@ function generateByChars(qty: number): string {
 
 type LoremUnit = "paragraphs" | "words" | "characters";
 
+const pt = {
+  title: "Gerador de Lorem Ipsum",
+  intro:
+    "Gere textos Lorem Ipsum online de forma rápida e prática. Você pode escolher gerar parágrafos, palavras ou até uma quantidade específica de caracteres. Ideal para testes de layout, softwares, sites e apresentações.",
+  unit: "Tipo",
+  units: {
+    paragraphs: "Parágrafos",
+    words: "Palavras",
+    characters: "Caracteres",
+  } as Record<LoremUnit, string>,
+  quantity: "Quantidade",
+  generate: "Gerar",
+  copy: "Copiar",
+  generatedText: "Texto gerado",
+  stats: {
+    characters: "Caracteres:",
+    words: "Palavras:",
+    lines: "Linhas:",
+  },
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">O que é Lorem Ipsum?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Lorem Ipsum é um texto fictício utilizado na área de design, web e editoração para preencher espaços e
+          demonstrar layouts. Ele permite que designers e desenvolvedores visualizem como um conteúdo ficará sem
+          depender de textos reais.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Por que usar Lorem Ipsum?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Usar Lorem Ipsum ajuda a evitar distrações causadas por textos reais, mantendo o foco no design, na
+          tipografia e na organização visual do conteúdo. É amplamente adotado em protótipos de sites, aplicativos
+          e materiais gráficos.
+        </p>
+      </section>
+
+      <div className="rounded-lg border border-border bg-muted/60 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">NOTA:</strong> O Lorem Ipsum gerado aqui é apenas para fins de teste
+          e design. Ele não possui significado real e serve exclusivamente para preencher layouts.
+        </p>
+      </div>
+    </>
+  ),
+};
+
+const en: typeof pt = {
+  title: "Lorem Ipsum Generator",
+  intro:
+    "Generate Lorem Ipsum placeholder text online, fast. Choose to generate paragraphs, words or an exact number of characters. Ideal for layout tests, software, websites, mockups and presentations.",
+  unit: "Type",
+  units: {
+    paragraphs: "Paragraphs",
+    words: "Words",
+    characters: "Characters",
+  },
+  quantity: "Quantity",
+  generate: "Generate",
+  copy: "Copy",
+  generatedText: "Generated text",
+  stats: {
+    characters: "Characters:",
+    words: "Words:",
+    lines: "Lines:",
+  },
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">What is Lorem Ipsum?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Lorem Ipsum is dummy text used in graphic design, web design and publishing to fill space and demonstrate
+          layouts. It lets designers and developers see how content will look without depending on real copy.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Why use Lorem Ipsum?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Lorem Ipsum avoids the distraction of readable text, keeping the focus on design, typography and the visual
+          structure of the content. It is widely used in website and app prototypes, wireframes and print materials.
+        </p>
+      </section>
+
+      <div className="rounded-lg border border-border bg-muted/60 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">NOTE:</strong> The Lorem Ipsum generated here is for testing and design
+          purposes only. It has no real meaning and is meant solely to fill layouts.
+        </p>
+      </div>
+    </>
+  ),
+};
+
 export default function GenerateLorem() {
+  const copy = useCopy({ pt, en });
+  const uiCopy = useUiCopy();
   const [unit, setUnit] = useState<LoremUnit>("paragraphs");
   const [quantity, setQuantity] = useState(3);
   const [output, setOutput] = useState("");
@@ -141,52 +242,49 @@ export default function GenerateLorem() {
   const handleCopy = () => {
     if (!output) return;
     navigator.clipboard.writeText(output);
-    toast({ title: "Copiado para a área de transferência" });
+    toast({ title: uiCopy.copied });
   };
 
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Gerador de Lorem Ipsum</h1>
-        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">
-          Gere textos Lorem Ipsum online de forma rápida e prática. Você pode escolher gerar parágrafos, palavras ou
-          até uma quantidade específica de caracteres. Ideal para testes de layout, softwares, sites e apresentações.
-        </p>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{copy.title}</h1>
+        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">{copy.intro}</p>
       </div>
 
       <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5 shadow-xs">
         <div className="grid gap-5 sm:grid-cols-2">
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground">Tipo</Label>
+            <Label className="text-sm font-medium text-foreground">{copy.unit}</Label>
             <ToggleGroup
               type="single"
               value={unit}
               onValueChange={(v) => v && setUnit(v as LoremUnit)}
               className="justify-start"
             >
-              <ToggleGroupItem value="paragraphs" className="px-3 text-sm">Parágrafos</ToggleGroupItem>
-              <ToggleGroupItem value="words" className="px-3 text-sm">Palavras</ToggleGroupItem>
-              <ToggleGroupItem value="characters" className="px-3 text-sm">Caracteres</ToggleGroupItem>
+              <ToggleGroupItem value="paragraphs" className="px-3 text-sm">{copy.units.paragraphs}</ToggleGroupItem>
+              <ToggleGroupItem value="words" className="px-3 text-sm">{copy.units.words}</ToggleGroupItem>
+              <ToggleGroupItem value="characters" className="px-3 text-sm">{copy.units.characters}</ToggleGroupItem>
             </ToggleGroup>
           </div>
 
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground">Quantidade</Label>
+            <Label className="text-sm font-medium text-foreground">{copy.quantity}</Label>
             <Input
               type="number"
               min={1}
               max={1000}
               value={quantity}
               onChange={(e) => setQuantity(Number(e.target.value))}
-             
+
             />
           </div>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Button onClick={handleGenerate} className="px-8">Gerar</Button>
+          <Button onClick={handleGenerate} className="px-8">{copy.generate}</Button>
           <Button variant="secondary" onClick={handleCopy} className="gap-2">
-            <Copy className="h-4 w-4" /> Copiar
+            <Copy className="h-4 w-4" /> {copy.copy}
           </Button>
         </div>
       </div>
@@ -201,66 +299,27 @@ export default function GenerateLorem() {
             transition={{ duration: 0.2 }}
             className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3"
           >
-            <p className="text-sm font-medium text-muted-foreground">Texto gerado</p>
+            <p className="text-sm font-medium text-muted-foreground">{copy.generatedText}</p>
             <Textarea
               value={output}
               readOnly
               className="min-h-[200px] bg-background border-border font-mono text-sm"
             />
             <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-              <span>Caracteres: <strong className="text-foreground">{stats.chars}</strong></span>
-              <span>Palavras: <strong className="text-foreground">{stats.words}</strong></span>
-              <span>Linhas: <strong className="text-foreground">{stats.lines}</strong></span>
+              <span>{copy.stats.characters} <strong className="text-foreground">{stats.chars}</strong></span>
+              <span>{copy.stats.words} <strong className="text-foreground">{stats.words}</strong></span>
+              <span>{copy.stats.lines} <strong className="text-foreground">{stats.lines}</strong></span>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <div className="space-y-8 border-t border-border pt-10">
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">O que é Lorem Ipsum?</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            Lorem Ipsum é um texto fictício utilizado na área de design, web e editoração para preencher espaços e
-            demonstrar layouts. Ele permite que designers e desenvolvedores visualizem como um conteúdo ficará sem
-            depender de textos reais.
-          </p>
-        </section>
+        {copy.content}
 
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Por que usar Lorem Ipsum?</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            Usar Lorem Ipsum ajuda a evitar distrações causadas por textos reais, mantendo o foco no design, na
-            tipografia e na organização visual do conteúdo. É amplamente adotado em protótipos de sites, aplicativos
-            e materiais gráficos.
-          </p>
-        </section>
+        <ToolFaq toolId="gerar-lorem" />
 
-        <div className="rounded-lg border border-border bg-muted/60 p-4">
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">NOTA:</strong> O Lorem Ipsum gerado aqui é apenas para fins de teste
-            e design. Ele não possui significado real e serve exclusivamente para preencher layouts.
-          </p>
-        </div>
-
-        <ToolFaq segment="gerar-lorem" />
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { label: "Gerar CPF", url: "/gerar-cpf" },
-              { label: "Gerar CNPJ", url: "/gerar-cnpj" },
-              { label: "Gerar Números", url: "/gerar-numeros" },
-              { label: "Gerar Nomes", url: "/gerar-nomes" },
-              { label: "Gerar RG", url: "/gerar-rg" },
-              { label: "Gerar RJ", url: "/gerar-rj" },
-            ].map((link) => (
-              <a key={link.url} href={link.url} className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </section>
+        <RelatedTools ids={["gerar-cpf", "gerar-cnpj", "gerar-numeros", "gerar-nomes", "gerar-rg", "gerar-rj"]} />
       </div>
     </div>
   );

@@ -10,7 +10,9 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 import { NavLink } from "@/components/nav-link";
-import { groupToolsByCategory } from "@/lib/nav-tools";
+import { useUiCopy } from "@/i18n/ui";
+import { homePath, useLocale } from "@/lib/i18n";
+import { CATEGORY_LABELS, groupToolsByCategory, toolPath } from "@/lib/nav-tools";
 import { House } from "lucide-react";
 
 const linkClassName =
@@ -19,6 +21,9 @@ const activeLinkClassName =
   "bg-primary/10 text-primary font-medium hover:bg-primary/10 hover:text-primary [&>svg]:text-primary";
 
 export function AppSidebar() {
+  const locale = useLocale();
+  const copy = useUiCopy();
+
   return (
     <Sidebar collapsible="offcanvas" className="border-r border-sidebar-border">
       <SidebarContent className="bg-sidebar scrollbar-sidebar py-2">
@@ -27,9 +32,9 @@ export function AppSidebar() {
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  <NavLink href="/" end className={linkClassName} activeClassName={activeLinkClassName}>
+                  <NavLink href={homePath(locale)} end className={linkClassName} activeClassName={activeLinkClassName}>
                     <House className="h-4 w-4" />
-                    <span>Página inicial</span>
+                    <span>{copy.home.link}</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -39,15 +44,17 @@ export function AppSidebar() {
 
         {groupToolsByCategory().map(({ category, tools }) => (
           <SidebarGroup key={category}>
-            <SidebarGroupLabel className="px-3 text-xs font-semibold text-foreground/70">{category}</SidebarGroupLabel>
+            <SidebarGroupLabel className="px-3 text-xs font-semibold text-foreground/70">
+              {CATEGORY_LABELS[category][locale]}
+            </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {tools.map((tool) => (
-                  <SidebarMenuItem key={tool.url}>
+                  <SidebarMenuItem key={tool.id}>
                     <SidebarMenuButton asChild>
-                      <NavLink href={tool.url} end className={linkClassName} activeClassName={activeLinkClassName}>
+                      <NavLink href={toolPath(tool.id, locale)} end className={linkClassName} activeClassName={activeLinkClassName}>
                         <tool.icon className="h-4 w-4" />
-                        <span>{tool.title}</span>
+                        <span>{tool.title[locale]}</span>
                       </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

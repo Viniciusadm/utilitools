@@ -1,16 +1,63 @@
+import { HTML_LANG, OG_LOCALE, LOCALES, type Locale, type Localized } from "@/lib/i18n";
+import { localeRedirectScript } from "@/lib/locale-redirect";
 import { absoluteUrl } from "@/lib/site";
 import { getToolSeo, type FaqItem } from "@/lib/tool-seo";
-import type { Route } from "./routes";
+import { alternatePaths, routePath, type Route } from "./routes";
 
 const siteName = "UtiliTools";
-const defaultTitle = "UtiliTools — Ferramentas online gratuitas";
+
+const HEAD_COPY = {
+  pt: {
+    defaultTitle: "UtiliTools — Ferramentas online gratuitas",
+    homeTitle: `Ferramentas online gratuitas · ${siteName}`,
+    homeDescription:
+      "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores e calculadoras. Grátis e sem cadastro.",
+    siteDescription:
+      "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores e calculadoras.",
+    notFoundTitle: `Página não encontrada · ${siteName}`,
+    notFoundDescription:
+      "Utilitários online gratuitos: validar CPF e CNPJ, gerar dados de teste, editar texto, conversores e mais.",
+    breadcrumbHome: "Início",
+    defaultFaq: (toolTitle: string, toolDesc: string): FaqItem[] => [
+      {
+        question: `A ferramenta ${toolTitle} é gratuita?`,
+        answer: "Sim. O uso é gratuito no navegador, sem cadastro obrigatório.",
+      },
+      {
+        question: `Como usar ${toolTitle} no UtiliTools?`,
+        answer: `${toolDesc}. Use os controles na página para obter o resultado.`,
+      },
+    ],
+  },
+  en: {
+    defaultTitle: "UtiliTools — Free online tools",
+    homeTitle: `Free online tools · ${siteName}`,
+    homeDescription:
+      "UtiliTools: free online tools for developers and everyday tasks. Document generators and validators, text editors, converters and calculators. No sign-up.",
+    siteDescription:
+      "UtiliTools: document generators and validators, text editors, converters and calculators.",
+    notFoundTitle: `Page not found · ${siteName}`,
+    notFoundDescription:
+      "Free online utilities: validate CPF and CNPJ, generate test data, edit text, converters and more.",
+    breadcrumbHome: "Home",
+    defaultFaq: (toolTitle: string, toolDesc: string): FaqItem[] => [
+      {
+        question: `Is ${toolTitle} free?`,
+        answer: "Yes. It is free to use in your browser, with no sign-up required.",
+      },
+      {
+        question: `How do I use ${toolTitle} on UtiliTools?`,
+        answer: `${toolDesc}. Use the controls on the page to get the result.`,
+      },
+    ],
+  },
+} satisfies Localized<unknown>;
 
 type HeadData = {
   title: string;
   description: string;
   shareTitle: string;
   shareDescription: string;
-  path: string;
   index: boolean;
   jsonLd?: Record<string, unknown>;
 };
@@ -23,56 +70,40 @@ function escapeHtml(value: string) {
     .replace(/"/g, "&quot;");
 }
 
-function defaultFaq(toolTitle: string, toolDesc: string): FaqItem[] {
-  return [
-    {
-      question: `A ferramenta ${toolTitle} é gratuita?`,
-      answer: "Sim. O uso é gratuito no navegador, sem cadastro obrigatório.",
-    },
-    {
-      question: `Como usar ${toolTitle} no UtiliTools?`,
-      answer: `${toolDesc} Use os controles na página para obter o resultado.`,
-    },
-  ];
-}
-
 function headData(route: Route): HeadData {
+  const copy = HEAD_COPY[route.locale];
+  const inLanguage = HTML_LANG[route.locale];
+  const pageUrl = absoluteUrl(routePath(route));
   switch (route.kind) {
     case "home": {
-      const description =
-        "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores e calculadoras. Grátis e sem cadastro.";
       return {
-        title: `Ferramentas online gratuitas · ${siteName}`,
-        description,
-        shareTitle: defaultTitle,
-        shareDescription: description,
-        path: "",
+        title: copy.homeTitle,
+        description: copy.homeDescription,
+        shareTitle: copy.defaultTitle,
+        shareDescription: copy.homeDescription,
         index: true,
         jsonLd: {
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: siteName,
-          url: absoluteUrl(),
-          description:
-            "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores e calculadoras.",
-          inLanguage: "pt-BR",
+          url: pageUrl,
+          description: copy.siteDescription,
+          inLanguage,
         },
       };
     }
     case "tool": {
-      const { tool, segment } = route;
-      const path = `${segment}/`;
-      const pageUrl = absoluteUrl(path);
-      const seo = getToolSeo(segment);
-      const title = `${seo?.title ?? tool.title} · ${siteName}`;
-      const description = seo?.description ?? tool.desc;
-      const faq = seo?.faq ?? defaultFaq(tool.title, tool.desc);
+      const { tool, locale } = route;
+      const seo = getToolSeo(tool.id, locale);
+      const toolTitle = tool.title[locale];
+      const title = `${seo?.title ?? toolTitle} · ${siteName}`;
+      const description = seo?.description ?? tool.desc[locale];
+      const faq = seo?.faq ?? copy.defaultFaq(toolTitle, tool.desc[locale]);
       return {
         title,
         description,
         shareTitle: title,
         shareDescription: description,
-        path,
         index: true,
         jsonLd: {
           "@context": "https://schema.org",
@@ -86,7 +117,7 @@ function headData(route: Route): HeadData {
               applicationCategory: "UtilityApplication",
               operatingSystem: "Any",
               browserRequirements: "Requires JavaScript.",
-              inLanguage: "pt-BR",
+              inLanguage,
               offers: {
                 "@type": "Offer",
                 price: "0",
@@ -109,8 +140,13 @@ function headData(route: Route): HeadData {
               "@type": "BreadcrumbList",
               "@id": `${pageUrl}#breadcrumb`,
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Início", item: absoluteUrl() },
-                { "@type": "ListItem", position: 2, name: tool.title, item: pageUrl },
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: copy.breadcrumbHome,
+                  item: absoluteUrl(routePath({ kind: "home", locale })),
+                },
+                { "@type": "ListItem", position: 2, name: toolTitle, item: pageUrl },
               ],
             },
           ],
@@ -118,33 +154,49 @@ function headData(route: Route): HeadData {
       };
     }
     case "not-found": {
-      const description =
-        "Utilitários online gratuitos: validar CPF e CNPJ, gerar dados de teste, editar texto, conversores e mais.";
       return {
-        title: `Página não encontrada · ${siteName}`,
-        description,
-        shareTitle: defaultTitle,
-        shareDescription: description,
-        path: "404",
+        title: copy.notFoundTitle,
+        description: copy.notFoundDescription,
+        shareTitle: copy.defaultTitle,
+        shareDescription: copy.notFoundDescription,
         index: false,
       };
     }
   }
 }
 
+function alternateLinks(route: Route) {
+  const alternates = alternatePaths(route);
+  if (!alternates) return [];
+  return [
+    ...LOCALES.map(
+      (locale: Locale) =>
+        `<link rel="alternate" hreflang="${HTML_LANG[locale]}" href="${escapeHtml(absoluteUrl(alternates[locale]))}" />`,
+    ),
+    `<link rel="alternate" hreflang="x-default" href="${escapeHtml(absoluteUrl(alternates.pt))}" />`,
+  ];
+}
+
+export function renderHtmlLang(route: Route) {
+  return HTML_LANG[route.locale];
+}
+
 export function renderHead(route: Route) {
-  const { title, description, shareTitle, shareDescription, path, index, jsonLd } = headData(route);
-  const pageUrl = absoluteUrl(path);
+  const { title, description, shareTitle, shareDescription, index, jsonLd } = headData(route);
+  const pageUrl = absoluteUrl(routePath(route));
+  const otherLocales = LOCALES.filter((locale) => locale !== route.locale);
   return [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
     `<meta name="robots" content="${index ? "index, follow" : "noindex"}" />`,
     ...(index ? [`<link rel="canonical" href="${escapeHtml(pageUrl)}" />`] : []),
+    ...alternateLinks(route),
     `<meta property="og:title" content="${escapeHtml(shareTitle)}" />`,
     `<meta property="og:description" content="${escapeHtml(shareDescription)}" />`,
     `<meta property="og:url" content="${escapeHtml(pageUrl)}" />`,
     `<meta property="og:site_name" content="${siteName}" />`,
-    `<meta property="og:locale" content="pt_BR" />`,
+    `<meta property="og:locale" content="${OG_LOCALE[route.locale]}" />`,
+    ...otherLocales.map((locale) => `<meta property="og:locale:alternate" content="${OG_LOCALE[locale]}" />`),
     `<meta property="og:type" content="website" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeHtml(shareTitle)}" />`,
@@ -152,5 +204,6 @@ export function renderHead(route: Route) {
     ...(jsonLd
       ? [`<script type="application/ld+json">${JSON.stringify(jsonLd).replace(/</g, "\\u003c")}</script>`]
       : []),
+    ...(index ? [`<script>${localeRedirectScript()}</script>`] : []),
   ].join("\n    ");
 }

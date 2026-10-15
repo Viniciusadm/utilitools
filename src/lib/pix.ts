@@ -57,20 +57,22 @@ export function normalizePixKey(keyType: PixKeyType, key: string) {
   }
 }
 
-export function pixKeyError(keyType: PixKeyType, key: string) {
+export type PixKeyError = "required" | "documentLength" | "phone" | "email" | "randomKey";
+
+export function pixKeyError(keyType: PixKeyType, key: string): PixKeyError | null {
   const normalized = normalizePixKey(keyType, key);
-  if (!key.trim()) return "Informe a chave Pix.";
+  if (!key.trim()) return "required";
   switch (keyType) {
     case "document":
-      return [11, 14].includes(normalized.length) ? null : "CPF deve ter 11 dígitos e CNPJ 14.";
+      return [11, 14].includes(normalized.length) ? null : "documentLength";
     case "phone":
-      return /^\+55\d{10,11}$/.test(normalized) ? null : "Informe o telefone com DDD.";
+      return /^\+55\d{10,11}$/.test(normalized) ? null : "phone";
     case "email":
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized) ? null : "E-mail inválido.";
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(normalized) ? null : "email";
     case "random":
       return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(normalized)
         ? null
-        : "A chave aleatória tem 32 caracteres no formato 00000000-0000-0000-0000-000000000000.";
+        : "randomKey";
   }
 }
 

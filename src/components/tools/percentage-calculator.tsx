@@ -2,6 +2,7 @@ import { useId, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { RelatedTools } from "@/components/related-tools";
 import { ToolFaq } from "@/components/tool-faq";
+import { useCopy, useLocale, type Locale } from "@/lib/i18n";
 import {
   applyDiscount,
   applyIncrease,
@@ -61,15 +62,208 @@ function CalculatorCard({
   );
 }
 
-function compute([first, second]: [string, string], fn: (a: number, b: number) => number | null, suffix = "") {
-  const a = parseDecimal(first);
-  const b = parseDecimal(second);
+function compute(
+  [first, second]: [string, string],
+  fn: (a: number, b: number) => number | null,
+  locale: Locale,
+  suffix = "",
+) {
+  const a = parseDecimal(first, locale);
+  const b = parseDecimal(second, locale);
   if (a === null || b === null) return null;
   const result = fn(a, b);
-  return result === null ? null : `${formatDecimal(result)}${suffix}`;
+  return result === null ? null : `${formatDecimal(result, locale)}${suffix}`;
 }
 
+const pt = {
+  title: "Calculadora de Porcentagem",
+  intro:
+    "Calcule porcentagens online de forma rápida: descubra quanto é X% de um valor, quantos por cento um número representa de outro, aplique aumentos e descontos e veja a variação percentual entre dois valores. O resultado aparece enquanto você digita.",
+  percentOf: {
+    title: "Quanto é X% de um valor?",
+    percentSuffix: "% de",
+    percentLabel: "Porcentagem",
+    totalLabel: "Valor total",
+  },
+  ratio: {
+    title: "Um valor é quantos % de outro?",
+    partSuffix: "é quantos % de",
+    partLabel: "Parte",
+    totalLabel: "Total",
+  },
+  increase: {
+    title: "Aumento percentual",
+    valueSuffix: "com aumento de",
+    valueLabel: "Valor inicial",
+    percentLabel: "Porcentagem de aumento",
+  },
+  discount: {
+    title: "Desconto percentual",
+    valueSuffix: "com desconto de",
+    valueLabel: "Valor inicial",
+    percentLabel: "Porcentagem de desconto",
+  },
+  change: {
+    title: "Variação percentual entre dois valores",
+    fromPrefix: "De",
+    fromLabel: "Valor inicial",
+    toPrefix: "para",
+    toLabel: "Valor final",
+  },
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">O que é porcentagem?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Porcentagem é uma razão de base 100, representada pelo símbolo %. Dizer 25% é o mesmo que dizer 25 partes
+          de 100, ou seja, 0,25. Ela é usada no dia a dia para calcular descontos, juros, impostos, gorjetas,
+          comissões, notas e variações de preço.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Fórmulas de porcentagem</h2>
+        <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
+          <li>
+            <strong className="text-foreground">X% de Y:</strong> Y × X ÷ 100
+          </li>
+          <li>
+            <strong className="text-foreground">X é quantos % de Y:</strong> X ÷ Y × 100
+          </li>
+          <li>
+            <strong className="text-foreground">Aumento de X%:</strong> valor × (1 + X ÷ 100)
+          </li>
+          <li>
+            <strong className="text-foreground">Desconto de X%:</strong> valor × (1 − X ÷ 100)
+          </li>
+          <li>
+            <strong className="text-foreground">Variação percentual:</strong> (final − inicial) ÷ inicial × 100
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Exemplos de cálculo de porcentagem</h2>
+        <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
+          <li>
+            10% de R$ 350 é <strong className="text-foreground font-mono">R$ 35</strong>.
+          </li>
+          <li>
+            Uma conta de R$ 120 com 10% de serviço fica em <strong className="text-foreground font-mono">R$ 132</strong>.
+          </li>
+          <li>
+            Um salário que passou de R$ 2.000 para R$ 2.150 teve aumento de{" "}
+            <strong className="text-foreground font-mono">7,5%</strong>.
+          </li>
+        </ul>
+      </section>
+
+      <div className="rounded-lg border border-border bg-muted/60 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">DICA:</strong> um aumento de 10% seguido de um desconto de 10% não volta
+          ao valor original. R$ 100 + 10% = R$ 110, e R$ 110 − 10% = R$ 99.
+        </p>
+      </div>
+    </>
+  ),
+};
+
+const en: typeof pt = {
+  title: "Percentage Calculator",
+  intro:
+    "Calculate percentages online in seconds: find X% of a number, what percent one number is of another, apply increases and discounts, and get the percentage change between two values. Results update as you type.",
+  percentOf: {
+    title: "What is X% of a number?",
+    percentSuffix: "% of",
+    percentLabel: "Percentage",
+    totalLabel: "Total value",
+  },
+  ratio: {
+    title: "X is what percent of Y?",
+    partSuffix: "is what % of",
+    partLabel: "Part",
+    totalLabel: "Total",
+  },
+  increase: {
+    title: "Percentage increase",
+    valueSuffix: "increased by",
+    valueLabel: "Initial value",
+    percentLabel: "Increase percentage",
+  },
+  discount: {
+    title: "Percentage discount",
+    valueSuffix: "discounted by",
+    valueLabel: "Initial value",
+    percentLabel: "Discount percentage",
+  },
+  change: {
+    title: "Percentage change between two values",
+    fromPrefix: "From",
+    fromLabel: "Initial value",
+    toPrefix: "to",
+    toLabel: "Final value",
+  },
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">What is a percentage?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          A percentage is a ratio expressed out of 100, written with the % sign. Saying 25% is the same as saying 25
+          parts out of 100, or 0.25. Percentages are used every day to work out discounts, interest, taxes, tips,
+          commissions, grades and price changes.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Percentage formulas</h2>
+        <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
+          <li>
+            <strong className="text-foreground">X% of Y:</strong> Y × X ÷ 100
+          </li>
+          <li>
+            <strong className="text-foreground">X is what % of Y:</strong> X ÷ Y × 100
+          </li>
+          <li>
+            <strong className="text-foreground">Increase by X%:</strong> value × (1 + X ÷ 100)
+          </li>
+          <li>
+            <strong className="text-foreground">Discount of X%:</strong> value × (1 − X ÷ 100)
+          </li>
+          <li>
+            <strong className="text-foreground">Percentage change:</strong> (final − initial) ÷ initial × 100
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Percentage calculation examples</h2>
+        <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
+          <li>
+            10% of $350 is <strong className="text-foreground font-mono">$35</strong>.
+          </li>
+          <li>
+            A $120 bill with a 10% tip comes to <strong className="text-foreground font-mono">$132</strong>.
+          </li>
+          <li>
+            A salary that went from $2,000 to $2,150 increased by{" "}
+            <strong className="text-foreground font-mono">7.5%</strong>.
+          </li>
+        </ul>
+      </section>
+
+      <div className="rounded-lg border border-border bg-muted/60 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">TIP:</strong> a 10% increase followed by a 10% discount does not bring
+          you back to the original value. $100 + 10% = $110, and $110 − 10% = $99.
+        </p>
+      </div>
+    </>
+  ),
+};
+
 export default function PercentageCalculator() {
+  const locale = useLocale();
+  const copy = useCopy({ pt, en });
   const [ofPercent, setOfPercent] = useState("15");
   const [ofTotal, setOfTotal] = useState("200");
   const [ratioPart, setRatioPart] = useState("30");
@@ -84,114 +278,59 @@ export default function PercentageCalculator() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Calculadora de Porcentagem</h1>
-        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">
-          Calcule porcentagens online de forma rápida: descubra quanto é X% de um valor, quantos por cento um número
-          representa de outro, aplique aumentos e descontos e veja a variação percentual entre dois valores. O resultado
-          aparece enquanto você digita.
-        </p>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{copy.title}</h1>
+        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">{copy.intro}</p>
       </div>
 
       <div className="grid gap-4">
         <CalculatorCard
-          title="Quanto é X% de um valor?"
+          title={copy.percentOf.title}
           fields={[
-            { value: ofPercent, onChange: setOfPercent, suffix: "% de", label: "Porcentagem" },
-            { value: ofTotal, onChange: setOfTotal, label: "Valor total" },
+            { value: ofPercent, onChange: setOfPercent, suffix: copy.percentOf.percentSuffix, label: copy.percentOf.percentLabel },
+            { value: ofTotal, onChange: setOfTotal, label: copy.percentOf.totalLabel },
           ]}
-          result={compute([ofPercent, ofTotal], percentOf)}
+          result={compute([ofPercent, ofTotal], percentOf, locale)}
         />
         <CalculatorCard
-          title="Um valor é quantos % de outro?"
+          title={copy.ratio.title}
           fields={[
-            { value: ratioPart, onChange: setRatioPart, suffix: "é quantos % de", label: "Parte" },
-            { value: ratioTotal, onChange: setRatioTotal, label: "Total" },
+            { value: ratioPart, onChange: setRatioPart, suffix: copy.ratio.partSuffix, label: copy.ratio.partLabel },
+            { value: ratioTotal, onChange: setRatioTotal, label: copy.ratio.totalLabel },
           ]}
-          result={compute([ratioPart, ratioTotal], percentageRatio, "%")}
+          result={compute([ratioPart, ratioTotal], percentageRatio, locale, "%")}
         />
         <CalculatorCard
-          title="Aumento percentual"
+          title={copy.increase.title}
           fields={[
-            { value: increaseValue, onChange: setIncreaseValue, suffix: "com aumento de", label: "Valor inicial" },
-            { value: increasePercent, onChange: setIncreasePercent, suffix: "%", label: "Porcentagem de aumento" },
+            { value: increaseValue, onChange: setIncreaseValue, suffix: copy.increase.valueSuffix, label: copy.increase.valueLabel },
+            { value: increasePercent, onChange: setIncreasePercent, suffix: "%", label: copy.increase.percentLabel },
           ]}
-          result={compute([increaseValue, increasePercent], applyIncrease)}
+          result={compute([increaseValue, increasePercent], applyIncrease, locale)}
         />
         <CalculatorCard
-          title="Desconto percentual"
+          title={copy.discount.title}
           fields={[
-            { value: discountValue, onChange: setDiscountValue, suffix: "com desconto de", label: "Valor inicial" },
-            { value: discountPercent, onChange: setDiscountPercent, suffix: "%", label: "Porcentagem de desconto" },
+            { value: discountValue, onChange: setDiscountValue, suffix: copy.discount.valueSuffix, label: copy.discount.valueLabel },
+            { value: discountPercent, onChange: setDiscountPercent, suffix: "%", label: copy.discount.percentLabel },
           ]}
-          result={compute([discountValue, discountPercent], applyDiscount)}
+          result={compute([discountValue, discountPercent], applyDiscount, locale)}
         />
         <CalculatorCard
-          title="Variação percentual entre dois valores"
+          title={copy.change.title}
           fields={[
-            { value: changeFrom, onChange: setChangeFrom, prefix: "De", label: "Valor inicial" },
-            { value: changeTo, onChange: setChangeTo, prefix: "para", label: "Valor final" },
+            { value: changeFrom, onChange: setChangeFrom, prefix: copy.change.fromPrefix, label: copy.change.fromLabel },
+            { value: changeTo, onChange: setChangeTo, prefix: copy.change.toPrefix, label: copy.change.toLabel },
           ]}
-          result={compute([changeFrom, changeTo], percentChange, "%")}
+          result={compute([changeFrom, changeTo], percentChange, locale, "%")}
         />
       </div>
 
       <div className="space-y-8 border-t border-border pt-10">
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">O que é porcentagem?</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            Porcentagem é uma razão de base 100, representada pelo símbolo %. Dizer 25% é o mesmo que dizer 25 partes
-            de 100, ou seja, 0,25. Ela é usada no dia a dia para calcular descontos, juros, impostos, gorjetas,
-            comissões, notas e variações de preço.
-          </p>
-        </section>
+        {copy.content}
 
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Fórmulas de porcentagem</h2>
-          <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
-            <li>
-              <strong className="text-foreground">X% de Y:</strong> Y × X ÷ 100
-            </li>
-            <li>
-              <strong className="text-foreground">X é quantos % de Y:</strong> X ÷ Y × 100
-            </li>
-            <li>
-              <strong className="text-foreground">Aumento de X%:</strong> valor × (1 + X ÷ 100)
-            </li>
-            <li>
-              <strong className="text-foreground">Desconto de X%:</strong> valor × (1 − X ÷ 100)
-            </li>
-            <li>
-              <strong className="text-foreground">Variação percentual:</strong> (final − inicial) ÷ inicial × 100
-            </li>
-          </ul>
-        </section>
+        <ToolFaq toolId="calculadora-de-porcentagem" />
 
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Exemplos de cálculo de porcentagem</h2>
-          <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
-            <li>
-              10% de R$ 350 é <strong className="text-foreground font-mono">R$ 35</strong>.
-            </li>
-            <li>
-              Uma conta de R$ 120 com 10% de serviço fica em <strong className="text-foreground font-mono">R$ 132</strong>.
-            </li>
-            <li>
-              Um salário que passou de R$ 2.000 para R$ 2.150 teve aumento de{" "}
-              <strong className="text-foreground font-mono">7,5%</strong>.
-            </li>
-          </ul>
-        </section>
-
-        <div className="rounded-lg border border-border bg-muted/60 p-4">
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">DICA:</strong> um aumento de 10% seguido de um desconto de 10% não volta
-            ao valor original. R$ 100 + 10% = R$ 110, e R$ 110 − 10% = R$ 99.
-          </p>
-        </div>
-
-        <ToolFaq segment="calculadora-de-porcentagem" />
-
-        <RelatedTools segments={["calcular-tres", "calcular-resto", "numeros-por-extenso", "calcular-idade"]} />
+        <RelatedTools ids={["calcular-tres", "calcular-resto", "numeros-por-extenso", "calcular-idade"]} />
       </div>
     </div>
   );

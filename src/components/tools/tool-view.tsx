@@ -47,8 +47,8 @@ export const toolLoaders: Record<string, () => Promise<ToolModule>> = {
   "validar-cpf": () => import("./validate-cpf"),
 };
 
-export async function loadTool(segment: string) {
-  const loader = toolLoaders[segment];
+export async function loadTool(id: string) {
+  const loader = toolLoaders[id];
   if (!loader) return undefined;
   const { default: Tool } = await loader();
   return Tool;

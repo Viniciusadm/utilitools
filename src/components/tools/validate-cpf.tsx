@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CheckCircle, XCircle } from "lucide-react";
+import { RelatedTools } from "@/components/related-tools";
 import { ToolFaq } from "@/components/tool-faq";
+import { useCopy } from "@/lib/i18n";
 
 function validateCpfDigits(value: string): boolean {
   const cpf = value.replace(/\D/g, "");
@@ -27,7 +29,114 @@ function validateCpfDigits(value: string): boolean {
   return true;
 }
 
+const pt = {
+  title: "Validar CPF",
+  intro:
+    "Valide rapidamente um CPF para verificar se ele é válido de acordo com as regras oficiais da Receita Federal. Basta digitar o número no campo abaixo e clicar em validar para obter o resultado instantaneamente.",
+  validate: "Validar",
+  valid: "CPF válido",
+  validDetail: "O número informado possui dígitos verificadores corretos.",
+  invalid: "CPF inválido",
+  invalidDetail: "O número informado não possui dígitos verificadores válidos.",
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">O que é CPF?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          O CPF (Cadastro de Pessoas Físicas) é um documento emitido pela Receita Federal do Brasil que identifica contribuintes. Ele é composto por 11 dígitos e é utilizado em diversas situações, como abertura de contas bancárias, declaração de imposto de renda e transações financeiras.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Como funciona a validação?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          O CPF possui 11 dígitos, sendo os dois últimos chamados de dígitos verificadores. Esses números são calculados com base nos demais dígitos usando um algoritmo matemático específico. A validação consiste em verificar o formato do número, recalcular os dígitos verificadores e comparar com os informados.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Como usar</h2>
+        <ol className="text-[15px] leading-7 text-muted-foreground list-decimal list-inside space-y-2">
+          <li><strong className="text-foreground">Digite o CPF</strong> — Com ou sem pontuação.</li>
+          <li><strong className="text-foreground">Clique em Validar</strong> — A verificação será feita automaticamente.</li>
+          <li><strong className="text-foreground">Veja o resultado</strong> — Válido ou inválido será exibido instantaneamente.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Quando usar essa ferramenta?</h2>
+        <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
+          <li>Antes de salvar dados de clientes</li>
+          <li>Em validações de formulários</li>
+          <li>Em integrações com sistemas externos</li>
+          <li>Para evitar erros de digitação</li>
+        </ul>
+      </section>
+
+      <section>
+        <p className="text-sm text-muted-foreground italic">
+          <strong className="text-foreground">Nota:</strong> Esta ferramenta valida apenas a estrutura matemática do CPF e não verifica se o documento existe ou pertence a uma pessoa real.
+        </p>
+      </section>
+    </>
+  ),
+};
+
+const en: typeof pt = {
+  title: "CPF Validator",
+  intro:
+    "Quickly check whether a Brazilian CPF number is valid according to the official rules of the Receita Federal (Brazil's federal tax authority). Type the number in the field below and click validate to get the result instantly.",
+  validate: "Validate",
+  valid: "Valid CPF",
+  validDetail: "The number has correct check digits.",
+  invalid: "Invalid CPF",
+  invalidDetail: "The number does not have valid check digits.",
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">What is a CPF?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          The CPF (Cadastro de Pessoas Físicas) is the Brazilian individual taxpayer ID, issued by the Receita Federal. It has 11 digits and is used everywhere in Brazil: opening bank accounts, filing income tax returns, shopping online and signing up for services.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">How does CPF validation work?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          A CPF has 11 digits, and the last two are check digits. They are calculated from the other digits with a specific algorithm (weighted sums and modulo 11). Validation means checking the number&apos;s format, recalculating the check digits and comparing them with the ones provided.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">How to use</h2>
+        <ol className="text-[15px] leading-7 text-muted-foreground list-decimal list-inside space-y-2">
+          <li><strong className="text-foreground">Enter the CPF</strong> — With or without dots and dash.</li>
+          <li><strong className="text-foreground">Click Validate</strong> — The check runs automatically.</li>
+          <li><strong className="text-foreground">See the result</strong> — Valid or invalid is shown instantly.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">When to use this tool</h2>
+        <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
+          <li>Before saving Brazilian customer data</li>
+          <li>When testing form validation</li>
+          <li>When integrating with Brazilian systems and APIs</li>
+          <li>To catch typos</li>
+        </ul>
+      </section>
+
+      <section>
+        <p className="text-sm text-muted-foreground italic">
+          <strong className="text-foreground">Note:</strong> This tool only checks the mathematical structure of the CPF. It does not verify whether the document exists or belongs to a real person.
+        </p>
+      </section>
+    </>
+  ),
+};
+
 export default function ValidateCPF() {
+  const copy = useCopy({ pt, en });
   const [cpf, setCpf] = useState("");
   const [isValid, setIsValid] = useState<boolean | null>(null);
 
@@ -46,10 +155,8 @@ export default function ValidateCPF() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Validar CPF</h1>
-        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">
-          Valide rapidamente um CPF para verificar se ele é válido de acordo com as regras oficiais da Receita Federal. Basta digitar o número no campo abaixo e clicar em validar para obter o resultado instantaneamente.
-        </p>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{copy.title}</h1>
+        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">{copy.intro}</p>
       </div>
 
       <div className="space-y-5">
@@ -58,14 +165,14 @@ export default function ValidateCPF() {
           <Input
             value={cpf}
             onChange={(e) => handleChange(e.target.value)}
-           
+
             placeholder="000.000.000-00"
             inputMode="numeric"
           />
         </div>
       </div>
 
-      <Button onClick={handleValidate} disabled={digitsOnly.length !== 11}>Validar</Button>
+      <Button onClick={handleValidate} disabled={digitsOnly.length !== 11}>{copy.validate}</Button>
 
       <AnimatePresence mode="wait">
         {isValid !== null && (
@@ -81,16 +188,16 @@ export default function ValidateCPF() {
               <>
                 <CheckCircle className="h-5 w-5 text-success shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-foreground">CPF válido</p>
-                  <p className="text-xs text-muted-foreground">O número informado possui dígitos verificadores corretos.</p>
+                  <p className="text-sm font-semibold text-foreground">{copy.valid}</p>
+                  <p className="text-xs text-muted-foreground">{copy.validDetail}</p>
                 </div>
               </>
             ) : (
               <>
                 <XCircle className="h-5 w-5 text-destructive shrink-0" />
                 <div>
-                  <p className="text-sm font-semibold text-foreground">CPF inválido</p>
-                  <p className="text-xs text-muted-foreground">O número informado não possui dígitos verificadores válidos.</p>
+                  <p className="text-sm font-semibold text-foreground">{copy.invalid}</p>
+                  <p className="text-xs text-muted-foreground">{copy.invalidDetail}</p>
                 </div>
               </>
             )}
@@ -99,57 +206,11 @@ export default function ValidateCPF() {
       </AnimatePresence>
 
       <div className="space-y-8 border-t border-border pt-10">
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">O que é CPF?</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            O CPF (Cadastro de Pessoas Físicas) é um documento emitido pela Receita Federal do Brasil que identifica contribuintes. Ele é composto por 11 dígitos e é utilizado em diversas situações, como abertura de contas bancárias, declaração de imposto de renda e transações financeiras.
-          </p>
-        </section>
+        {copy.content}
 
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Como funciona a validação?</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            O CPF possui 11 dígitos, sendo os dois últimos chamados de dígitos verificadores. Esses números são calculados com base nos demais dígitos usando um algoritmo matemático específico. A validação consiste em verificar o formato do número, recalcular os dígitos verificadores e comparar com os informados.
-          </p>
-        </section>
+        <ToolFaq toolId="validar-cpf" />
 
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Como usar</h2>
-          <ol className="text-[15px] leading-7 text-muted-foreground list-decimal list-inside space-y-2">
-            <li><strong className="text-foreground">Digite o CPF</strong> — Com ou sem pontuação.</li>
-            <li><strong className="text-foreground">Clique em Validar</strong> — A verificação será feita automaticamente.</li>
-            <li><strong className="text-foreground">Veja o resultado</strong> — Válido ou inválido será exibido instantaneamente.</li>
-          </ol>
-        </section>
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Quando usar essa ferramenta?</h2>
-          <ul className="text-[15px] leading-7 text-muted-foreground list-disc list-inside space-y-1">
-            <li>Antes de salvar dados de clientes</li>
-            <li>Em validações de formulários</li>
-            <li>Em integrações com sistemas externos</li>
-            <li>Para evitar erros de digitação</li>
-          </ul>
-        </section>
-
-        <section>
-          <p className="text-sm text-muted-foreground italic">
-            <strong className="text-foreground">Nota:</strong> Esta ferramenta valida apenas a estrutura matemática do CPF e não verifica se o documento existe ou pertence a uma pessoa real.
-          </p>
-        </section>
-
-        <ToolFaq segment="validar-cpf" />
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
-          <div className="flex flex-wrap gap-2">
-            <a href="/gerar-cpf" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Gerar CPF</a>
-            <a href="/validar-cnpj" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Validar CNPJ</a>
-            <a href="/validar-cnh" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Validar CNH</a>
-            <a href="/validar-rg" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Validar RG SP</a>
-            <a href="/validar-rj" className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">Validar RG RJ</a>
-          </div>
-        </section>
+        <RelatedTools ids={["gerar-cpf", "validar-cnpj", "validar-cnh", "validar-rg", "validar-rj"]} />
       </div>
     </div>
   );

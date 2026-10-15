@@ -6,20 +6,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { OptionToggle } from "@/components/option-toggle";
 import { RelatedTools } from "@/components/related-tools";
+import { ToolLink } from "@/components/tool-link";
 import { ToolFaq } from "@/components/tool-faq";
 import { toast } from "@/hooks/use-toast";
+import { useUiCopy } from "@/i18n/ui";
 
 const MAX_QUANTITY = 100;
 
 type DocumentGeneratorProps = {
   title: string;
   intro: ReactNode;
-  validateHref: string;
+  validateToolId: string;
   resultLabel: string;
   generate: (punctuated: boolean) => string;
   supportsPunctuation?: boolean;
   extraControls?: ReactNode;
-  segment: string;
+  toolId: string;
   related: readonly string[];
   children: ReactNode;
 };
@@ -27,15 +29,16 @@ type DocumentGeneratorProps = {
 export function DocumentGenerator({
   title,
   intro,
-  validateHref,
+  validateToolId,
   resultLabel,
   generate,
   supportsPunctuation = true,
   extraControls,
-  segment,
+  toolId,
   related,
   children,
 }: DocumentGeneratorProps) {
+  const copy = useUiCopy();
   const [punctuation, setPunctuation] = useState(true);
   const [newlineSeparator, setNewlineSeparator] = useState(true);
   const [quantity, setQuantity] = useState(1);
@@ -57,7 +60,7 @@ export function DocumentGenerator({
   const handleCopy = () => {
     if (results.length === 0) return;
     navigator.clipboard.writeText(results.join(separator));
-    toast({ title: "Copiado para a área de transferência" });
+    toast({ title: copy.copied });
   };
 
   return (
@@ -65,26 +68,32 @@ export function DocumentGenerator({
       <div>
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{title}</h1>
         <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">{intro}</p>
-        <a href={validateHref} className="text-primary text-sm hover:underline mt-1 inline-block">
-          Deseja validar em vez de gerar?
-        </a>
+        <ToolLink id={validateToolId} className="text-primary text-sm hover:underline mt-1 inline-block">
+          {copy.generator.switchToValidate}
+        </ToolLink>
       </div>
 
       <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5 shadow-xs">
         <div className="grid gap-5 sm:grid-cols-2">
           {supportsPunctuation && (
-            <OptionToggle label="Pontuação?" value={punctuation} onChange={setPunctuation} trueLabel="Sim" falseLabel="Não" />
+            <OptionToggle
+              label={copy.generator.punctuation}
+              value={punctuation}
+              onChange={setPunctuation}
+              trueLabel={copy.generator.yes}
+              falseLabel={copy.generator.no}
+            />
           )}
           <OptionToggle
-            label="Separador"
+            label={copy.generator.separator}
             value={newlineSeparator}
             onChange={setNewlineSeparator}
-            trueLabel="Quebra de linha"
-            falseLabel="Vírgula"
+            trueLabel={copy.generator.newline}
+            falseLabel={copy.generator.comma}
           />
           {extraControls}
           <div className="space-y-2">
-            <Label className="text-sm font-medium text-foreground">Quantidade</Label>
+            <Label className="text-sm font-medium text-foreground">{copy.generator.quantity}</Label>
             <Input
               type="number"
               min={1}
@@ -97,10 +106,10 @@ export function DocumentGenerator({
 
         <div className="flex flex-wrap gap-3">
           <Button onClick={handleGenerate} className="px-8">
-            Gerar
+            {copy.generator.generate}
           </Button>
           <Button variant="secondary" onClick={handleCopy} className="gap-2">
-            <Copy className="h-4 w-4" /> Copiar
+            <Copy className="h-4 w-4" /> {copy.generator.copy}
           </Button>
         </div>
       </div>
@@ -135,8 +144,8 @@ export function DocumentGenerator({
 
       <div className="space-y-8 border-t border-border pt-10">
         {children}
-        <ToolFaq segment={segment} />
-        <RelatedTools segments={related} />
+        <ToolFaq toolId={toolId} />
+        <RelatedTools ids={related} />
       </div>
     </div>
   );

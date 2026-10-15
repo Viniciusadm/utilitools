@@ -5,7 +5,7 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from "lucide-react";
-import { DayPicker, DayButton, getDefaultClassNames } from "react-day-picker";
+import { DayPicker, DayButton, defaultDateLib, getDefaultClassNames } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -37,8 +37,8 @@ function Calendar({
       )}
       captionLayout={captionLayout}
       formatters={{
-        formatMonthDropdown: (date) =>
-          date.toLocaleString("default", { month: "short" }),
+        formatMonthDropdown: (date, dateLib) =>
+          (dateLib ?? defaultDateLib).format(date, "LLL"),
         ...formatters,
       }}
       classNames={{

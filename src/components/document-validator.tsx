@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RelatedTools } from "@/components/related-tools";
+import { ToolLink } from "@/components/tool-link";
 import { ToolFaq } from "@/components/tool-faq";
+import { useUiCopy } from "@/i18n/ui";
 
 export type ValidationResult = {
   valid: boolean;
@@ -15,13 +17,13 @@ export type ValidationResult = {
 type DocumentValidatorProps = {
   title: string;
   intro: ReactNode;
-  generateHref: string;
+  generateToolId: string;
   documentName: string;
   placeholder: string;
   maxLength: number;
   isComplete: (value: string) => boolean;
   validate: (value: string) => ValidationResult;
-  segment: string;
+  toolId: string;
   related: readonly string[];
   children: ReactNode;
 };
@@ -29,16 +31,17 @@ type DocumentValidatorProps = {
 export function DocumentValidator({
   title,
   intro,
-  generateHref,
+  generateToolId,
   documentName,
   placeholder,
   maxLength,
   isComplete,
   validate,
-  segment,
+  toolId,
   related,
   children,
 }: DocumentValidatorProps) {
+  const copy = useUiCopy();
   const inputId = useId();
   const [value, setValue] = useState("");
   const [result, setResult] = useState<ValidationResult | null>(null);
@@ -52,9 +55,9 @@ export function DocumentValidator({
       <div>
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{title}</h1>
         <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">{intro}</p>
-        <a href={generateHref} className="text-primary text-sm hover:underline mt-1 inline-block">
-          Deseja gerar em vez de validar?
-        </a>
+        <ToolLink id={generateToolId} className="text-primary text-sm hover:underline mt-1 inline-block">
+          {copy.validator.switchToGenerate}
+        </ToolLink>
       </div>
 
       <form
@@ -81,7 +84,7 @@ export function DocumentValidator({
           />
         </div>
         <Button type="submit" disabled={!isComplete(value)}>
-          Validar
+          {copy.validator.validate}
         </Button>
       </form>
 
@@ -103,13 +106,10 @@ export function DocumentValidator({
             )}
             <div>
               <p className="text-sm font-semibold text-foreground">
-                {documentName} {result.valid ? "válido" : "inválido"}
+                {result.valid ? copy.validator.valid(documentName) : copy.validator.invalid(documentName)}
               </p>
               <p className="text-xs text-muted-foreground">
-                {result.detail ??
-                  (result.valid
-                    ? "O número informado possui dígito verificador correto."
-                    : "O número informado não possui dígito verificador válido.")}
+                {result.detail ?? (result.valid ? copy.validator.validDetail : copy.validator.invalidDetail)}
               </p>
             </div>
           </motion.div>
@@ -118,8 +118,8 @@ export function DocumentValidator({
 
       <div className="space-y-8 border-t border-border pt-10">
         {children}
-        <ToolFaq segment={segment} />
-        <RelatedTools segments={related} />
+        <ToolFaq toolId={toolId} />
+        <RelatedTools ids={related} />
       </div>
     </div>
   );

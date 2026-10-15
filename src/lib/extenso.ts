@@ -33,12 +33,18 @@ function groupToPortugueseWords(n: number): string {
   return parts.join(" e ");
 }
 
-export function numberToPortugueseWords(input: string): string {
+export type SpellOutError = "invalid" | "tooLarge";
+
+export type SpellOutResult = { words: string } | { error: SpellOutError };
+
+export const MAX_SPELL_OUT_DIGITS = 18;
+
+export function numberToPortugueseWords(input: string): SpellOutResult {
   const cleaned = input.replace(/\s/g, "").replace(/^0+/, "") || "0";
 
-  if (!/^\d+$/.test(cleaned)) return "Número inválido";
-  if (cleaned === "0") return "zero";
-  if (cleaned.length > 18) return "Número muito grande (máximo: quatrilhões)";
+  if (!/^\d+$/.test(cleaned)) return { error: "invalid" };
+  if (cleaned === "0") return { words: "zero" };
+  if (cleaned.length > MAX_SPELL_OUT_DIGITS) return { error: "tooLarge" };
 
   const groups: number[] = [];
   for (let i = cleaned.length; i > 0; i -= 3) {
@@ -46,7 +52,7 @@ export function numberToPortugueseWords(input: string): string {
     groups.unshift(parseInt(cleaned.slice(start, i), 10));
   }
 
-  if (groups.length > SCALE_GROUPS.length) return "Número muito grande";
+  if (groups.length > SCALE_GROUPS.length) return { error: "tooLarge" };
 
   const parts: string[] = [];
   const totalGroups = groups.length;
@@ -70,10 +76,10 @@ export function numberToPortugueseWords(input: string): string {
     }
   }
 
-  if (parts.length === 0) return "zero";
-  if (parts.length === 1) return parts[0];
+  if (parts.length === 0) return { words: "zero" };
+  if (parts.length === 1) return { words: parts[0] };
 
   const last = parts.pop()!;
   const needsConjunction = lastGroupValue < 100 || lastGroupValue % 100 === 0;
-  return parts.join(" ") + (needsConjunction ? " e " : " ") + last;
+  return { words: parts.join(" ") + (needsConjunction ? " e " : " ") + last };
 }

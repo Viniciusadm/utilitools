@@ -1,16 +1,24 @@
+export type BmiCategoryCode =
+  | "underweight"
+  | "normal"
+  | "overweight"
+  | "obesityClass1"
+  | "obesityClass2"
+  | "obesityClass3";
+
 export type BmiCategory = {
-  label: string;
+  code: BmiCategoryCode;
   min: number;
   max: number;
 };
 
 export const BMI_CATEGORIES: readonly BmiCategory[] = [
-  { label: "Abaixo do peso", min: 0, max: 18.5 },
-  { label: "Peso normal", min: 18.5, max: 25 },
-  { label: "Sobrepeso", min: 25, max: 30 },
-  { label: "Obesidade grau I", min: 30, max: 35 },
-  { label: "Obesidade grau II", min: 35, max: 40 },
-  { label: "Obesidade grau III", min: 40, max: Infinity },
+  { code: "underweight", min: 0, max: 18.5 },
+  { code: "normal", min: 18.5, max: 25 },
+  { code: "overweight", min: 25, max: 30 },
+  { code: "obesityClass1", min: 30, max: 35 },
+  { code: "obesityClass2", min: 35, max: 40 },
+  { code: "obesityClass3", min: 40, max: Infinity },
 ];
 
 const NORMAL_MIN = 18.5;

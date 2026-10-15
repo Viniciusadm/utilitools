@@ -1,6 +1,14 @@
 import { onlyDigits, randomDigits, weightedSum } from "@/lib/check-digit";
 
-export const VOTER_ID_STATES = [
+const ABROAD_UF = "ZZ";
+
+export type VoterIdState = {
+  code: string;
+  uf: string;
+  name: string | null;
+};
+
+export const VOTER_ID_STATES: readonly VoterIdState[] = [
   { code: "01", uf: "SP", name: "São Paulo" },
   { code: "02", uf: "MG", name: "Minas Gerais" },
   { code: "03", uf: "RJ", name: "Rio de Janeiro" },
@@ -28,8 +36,8 @@ export const VOTER_ID_STATES = [
   { code: "25", uf: "AP", name: "Amapá" },
   { code: "26", uf: "RR", name: "Roraima" },
   { code: "27", uf: "TO", name: "Tocantins" },
-  { code: "28", uf: "ZZ", name: "Exterior" },
-] as const;
+  { code: "28", uf: ABROAD_UF, name: null },
+];
 
 const SEQUENCE_WEIGHTS = [2, 3, 4, 5, 6, 7, 8, 9];
 const SECOND_DIGIT_WEIGHTS = [7, 8, 9];

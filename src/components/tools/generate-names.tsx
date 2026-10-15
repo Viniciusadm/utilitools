@@ -5,7 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { Copy } from "lucide-react";
+import { RelatedTools } from "@/components/related-tools";
 import { ToolFaq } from "@/components/tool-faq";
+import { useUiCopy } from "@/i18n/ui";
+import { useCopy } from "@/lib/i18n";
 
 const maleFirstNames = [
   "João", "Pedro", "Lucas", "Gabriel", "Rafael", "Carlos", "Fernando", "André",
@@ -30,11 +33,13 @@ const lastNames = [
   "Campos", "Pinto",
 ];
 
+type Gender = "male" | "female";
+
 function pickRandom<T>(arr: T[]): T {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function generateFullName(gender: "male" | "female"): string {
+function generateFullName(gender: Gender): string {
   const first = gender === "male" ? pickRandom(maleFirstNames) : pickRandom(femaleFirstNames);
   const last1 = pickRandom(lastNames);
   let last2 = pickRandom(lastNames);
@@ -42,8 +47,109 @@ function generateFullName(gender: "male" | "female"): string {
   return `${first} ${last1} ${last2}`;
 }
 
+const pt = {
+  title: "Gerador de Nomes",
+  intro:
+    "Gere nomes completos aleatórios de forma rápida e prática. Escolha o gênero e crie nomes para testes, cadastros fictícios, jogos ou qualquer outra necessidade.",
+  genderLabel: "Gênero",
+  male: "Masculino",
+  female: "Feminino",
+  generate: "Gerar",
+  copy: "Copiar",
+  generatedName: "Nome gerado",
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Como usar o gerador de nomes</h2>
+        <ol className="text-[15px] leading-7 text-muted-foreground list-decimal list-inside space-y-1">
+          <li>Escolha o gênero desejado (masculino ou feminino).</li>
+          <li>Clique no botão <strong className="text-foreground">Gerar</strong>.</li>
+          <li>Um nome completo será criado automaticamente.</li>
+          <li>Clique em <strong className="text-foreground">Copiar</strong> para usar o nome gerado.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Para que usar um gerador de nomes?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Um gerador de nomes é útil para diversas situações, como testes de sistemas, criação de
+          usuários fictícios, desenvolvimento de jogos, escrita de histórias ou qualquer contexto
+          onde você precise de nomes aleatórios realistas.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Gerador de nomes aleatórios</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Os nomes gerados são combinados automaticamente para simular nomes reais, facilitando o
+          uso em ambientes de teste ou criação de conteúdo sem precisar inventar manualmente.
+        </p>
+      </section>
+
+      <div className="rounded-lg border border-border bg-muted/60 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">NOTA:</strong> Os nomes gerados são fictícios e devem ser usados apenas para fins
+          de teste, desenvolvimento ou entretenimento.
+        </p>
+      </div>
+    </>
+  ),
+};
+
+const en: typeof pt = {
+  title: "Random Brazilian Name Generator",
+  intro:
+    "Generate random, realistic Brazilian full names in one click. Choose the gender and create Portuguese-style names for test data, mock user accounts, QA, games or any other purpose.",
+  genderLabel: "Gender",
+  male: "Male",
+  female: "Female",
+  generate: "Generate",
+  copy: "Copy",
+  generatedName: "Generated name",
+  content: (
+    <>
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">How to use the name generator</h2>
+        <ol className="text-[15px] leading-7 text-muted-foreground list-decimal list-inside space-y-1">
+          <li>Choose the gender (male or female).</li>
+          <li>Click the <strong className="text-foreground">Generate</strong> button.</li>
+          <li>A full Brazilian name is created automatically.</li>
+          <li>Click <strong className="text-foreground">Copy</strong> to use the generated name.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">Why use a Brazilian name generator?</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Realistic Brazilian names are handy whenever you build or test software for Brazil: filling forms, seeding
+          databases, creating mock customers alongside a generated CPF, testing how your system handles accented
+          characters (like João, Lívia or Araújo), developing games or writing stories set in Brazil.
+        </p>
+      </section>
+
+      <section>
+        <h2 className="text-lg font-semibold text-foreground mb-2">How Brazilian names are built</h2>
+        <p className="text-[15px] leading-7 text-muted-foreground">
+          Brazilians usually have a first name followed by two surnames, typically one from the mother and one from the
+          father, such as Maria Silva Santos. The generator combines common Brazilian first names and surnames to
+          simulate real names, so you don't have to invent them by hand.
+        </p>
+      </section>
+
+      <div className="rounded-lg border border-border bg-muted/60 p-4">
+        <p className="text-xs text-muted-foreground leading-relaxed">
+          <strong className="text-foreground">NOTE:</strong> The generated names are fictitious and should only be used
+          for testing, development or entertainment purposes.
+        </p>
+      </div>
+    </>
+  ),
+};
+
 export default function GenerateNames() {
-  const [gender, setGender] = useState<"male" | "female">("male");
+  const copy = useCopy({ pt, en });
+  const uiCopy = useUiCopy();
+  const [gender, setGender] = useState<Gender>("male");
   const [output, setOutput] = useState("");
 
   useEffect(() => {
@@ -57,22 +163,19 @@ export default function GenerateNames() {
   const handleCopy = () => {
     if (!output) return;
     navigator.clipboard.writeText(output);
-    toast({ title: "Copiado para a área de transferência" });
+    toast({ title: uiCopy.copied });
   };
 
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">Gerador de Nomes</h1>
-        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">
-          Gere nomes completos aleatórios de forma rápida e prática. Escolha o gênero e crie nomes
-          para testes, cadastros fictícios, jogos ou qualquer outra necessidade.
-        </p>
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{copy.title}</h1>
+        <p className="mt-3 max-w-prose text-base leading-7 text-muted-foreground">{copy.intro}</p>
       </div>
 
       <div className="rounded-lg border border-border bg-card p-5 sm:p-6 space-y-5 shadow-xs">
         <div className="space-y-2">
-          <Label className="text-sm font-medium text-foreground">Gênero</Label>
+          <Label className="text-sm font-medium text-foreground">{copy.genderLabel}</Label>
           <div className="flex gap-2">
             <Button
               size="sm"
@@ -80,7 +183,7 @@ export default function GenerateNames() {
               onClick={() => setGender("male")}
               className="flex-1"
             >
-              Masculino
+              {copy.male}
             </Button>
             <Button
               size="sm"
@@ -88,15 +191,15 @@ export default function GenerateNames() {
               onClick={() => setGender("female")}
               className="flex-1"
             >
-              Feminino
+              {copy.female}
             </Button>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <Button onClick={handleGenerate} className="px-8">Gerar</Button>
+          <Button onClick={handleGenerate} className="px-8">{copy.generate}</Button>
           <Button variant="secondary" onClick={handleCopy} disabled={!output} className="gap-2">
-            <Copy className="h-4 w-4" /> Copiar
+            <Copy className="h-4 w-4" /> {copy.copy}
           </Button>
         </div>
       </div>
@@ -111,67 +214,18 @@ export default function GenerateNames() {
             transition={{ duration: 0.2 }}
             className="rounded-lg border border-primary/20 bg-primary/5 p-5"
           >
-            <p className="text-sm font-medium text-muted-foreground mb-2">Nome gerado</p>
+            <p className="text-sm font-medium text-muted-foreground mb-2">{copy.generatedName}</p>
             <p className="text-xl font-semibold text-foreground tracking-wide">{output}</p>
           </motion.div>
         )}
       </AnimatePresence>
 
       <div className="space-y-8 border-t border-border pt-10">
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Como usar o gerador de nomes</h2>
-          <ol className="text-[15px] leading-7 text-muted-foreground list-decimal list-inside space-y-1">
-            <li>Escolha o gênero desejado (masculino ou feminino).</li>
-            <li>Clique no botão <strong className="text-foreground">Gerar</strong>.</li>
-            <li>Um nome completo será criado automaticamente.</li>
-            <li>Clique em <strong className="text-foreground">Copiar</strong> para usar o nome gerado.</li>
-          </ol>
-        </section>
+        {copy.content}
 
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Para que usar um gerador de nomes?</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            Um gerador de nomes é útil para diversas situações, como testes de sistemas, criação de
-            usuários fictícios, desenvolvimento de jogos, escrita de histórias ou qualquer contexto
-            onde você precise de nomes aleatórios realistas.
-          </p>
-        </section>
+        <ToolFaq toolId="gerar-nomes" />
 
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-2">Gerador de nomes aleatórios</h2>
-          <p className="text-[15px] leading-7 text-muted-foreground">
-            Os nomes gerados são combinados automaticamente para simular nomes reais, facilitando o
-            uso em ambientes de teste ou criação de conteúdo sem precisar inventar manualmente.
-          </p>
-        </section>
-
-        <div className="rounded-lg border border-border bg-muted/60 p-4">
-          <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong className="text-foreground">NOTA:</strong> Os nomes gerados são fictícios e devem ser usados apenas para fins
-            de teste, desenvolvimento ou entretenimento.
-          </p>
-        </div>
-
-        <ToolFaq segment="gerar-nomes" />
-
-        <section>
-          <h2 className="text-lg font-semibold text-foreground mb-3">Veja também:</h2>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { label: "Gerar CPF", url: "/gerar-cpf" },
-              { label: "Gerar CNPJ", url: "/gerar-cnpj" },
-              { label: "Gerar Números", url: "/gerar-numeros" },
-              { label: "Sorteador de Nomes", url: "/sorteador-de-nomes" },
-              { label: "Gerar Lorem Ipsum", url: "/gerar-lorem" },
-              { label: "Gerar RG", url: "/gerar-rg" },
-              { label: "Gerar CNH", url: "/gerar-cnh" },
-            ].map((link) => (
-              <a key={link.url} href={link.url} className="rounded-full border border-border bg-card px-3 py-1 text-sm text-foreground transition-colors hover:border-primary/40 hover:text-primary">
-                {link.label}
-              </a>
-            ))}
-          </div>
-        </section>
+        <RelatedTools ids={["gerar-cpf", "gerar-cnpj", "gerar-numeros", "sorteador-de-nomes", "gerar-lorem", "gerar-rg", "gerar-cnh"]} />
       </div>
     </div>
   );
