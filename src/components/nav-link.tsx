@@ -22,7 +22,15 @@ export const NavLink = forwardRef<HTMLAnchorElement, NavLinkProps>(
       ? pathname === hrefStr
       : hrefStr !== "" && pathname.startsWith(hrefStr);
 
-    return <a ref={ref} href={href} className={cn(className, isActive && activeClassName)} {...props} />;
+    return (
+      <a
+        ref={ref}
+        href={href}
+        aria-current={isActive ? "page" : undefined}
+        className={cn(className, isActive && activeClassName)}
+        {...props}
+      />
+    );
   },
 );
 

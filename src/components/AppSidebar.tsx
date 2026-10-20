@@ -14,6 +14,8 @@ import { useUiCopy } from "@/i18n/ui";
 import { homePath, useLocale } from "@/lib/i18n";
 import { CATEGORY_LABELS, groupToolsByCategory, toolPath } from "@/lib/nav-tools";
 import { House } from "lucide-react";
+import { useEffect } from "react";
+import { saveSidebarScroll, SIDEBAR_CONTENT_ID, sidebarScrollScript } from "@/lib/sidebar-scroll";
 
 const linkClassName =
   "flex items-center gap-2.5 px-3 py-1.5 rounded-md text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition-colors [&>svg]:text-muted-foreground";
@@ -24,9 +26,14 @@ export function AppSidebar() {
   const locale = useLocale();
   const copy = useUiCopy();
 
+  useEffect(() => {
+    window.addEventListener("pagehide", saveSidebarScroll);
+    return () => window.removeEventListener("pagehide", saveSidebarScroll);
+  }, []);
+
   return (
     <Sidebar collapsible="offcanvas" className="border-r border-sidebar-border">
-      <SidebarContent className="bg-sidebar scrollbar-sidebar py-2">
+      <SidebarContent id={SIDEBAR_CONTENT_ID} className="bg-sidebar scrollbar-sidebar py-2">
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -64,6 +71,7 @@ export function AppSidebar() {
           </SidebarGroup>
         ))}
       </SidebarContent>
+      <script dangerouslySetInnerHTML={{ __html: sidebarScrollScript() }} />
     </Sidebar>
   );
 }
