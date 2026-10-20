@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { format, differenceInDays } from "date-fns";
-import { motion, AnimatePresence } from "framer-motion";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -179,23 +178,14 @@ export default function CountDays() {
 
       <Button onClick={handleCalculate} disabled={!startDate || !endDate}>{copy.calculate}</Button>
 
-      <AnimatePresence mode="wait">
-        {dayCount !== null && (
-          <motion.div
-            key={dayCount}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-1"
-          >
-            <p className="text-sm font-medium text-muted-foreground">{copy.dayCount}</p>
-            <p className="text-2xl font-semibold font-mono text-foreground">
-              {copy.days(new Intl.NumberFormat(INTL_LOCALE[locale]).format(dayCount), dayCount)}
-            </p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {dayCount !== null && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-1">
+          <p className="text-sm font-medium text-muted-foreground">{copy.dayCount}</p>
+          <p className="text-2xl font-semibold font-mono text-foreground">
+            {copy.days(new Intl.NumberFormat(INTL_LOCALE[locale]).format(dayCount), dayCount)}
+          </p>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

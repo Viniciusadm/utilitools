@@ -1,4 +1,5 @@
 import type { ToolSeo } from "@/lib/tool-seo";
+import { SEO as DEV } from "./dev";
 import { SEO as DOCUMENTS_CPF_CNPJ_CNH } from "./documents-cpf-cnpj-cnh";
 import { SEO as DOCUMENTS_OTHER } from "./documents-other";
 import { SEO as FINANCE_RANDOM } from "./finance-random";
@@ -11,4 +12,5 @@ export const TOOL_SEO_EN: Readonly<Record<string, ToolSeo>> = {
   ...FINANCE_RANDOM,
   ...MATH,
   ...TEXT,
+  ...DEV,
 };

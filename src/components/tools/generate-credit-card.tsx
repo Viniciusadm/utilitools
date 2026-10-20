@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -182,39 +181,30 @@ export default function GenerateCreditCard() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {cards.length > 0 && (
-          <motion.div
-            key={cards.map((c) => c.number).join()}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-x-auto rounded-lg border border-primary/20 bg-primary/5 p-5"
-          >
-            <table className="w-full min-w-[420px] text-left">
-              <thead>
-                <tr className="text-xs font-medium text-muted-foreground">
-                  <th className="pb-2 font-medium">{copy.brand}</th>
-                  <th className="pb-2 font-medium">{copy.number}</th>
-                  <th className="pb-2 font-medium">{copy.expiry}</th>
-                  <th className="pb-2 font-medium">CVV</th>
+      {cards.length > 0 && (
+        <div className="overflow-x-auto rounded-lg border border-primary/20 bg-primary/5 p-5">
+          <table className="w-full min-w-[420px] text-left">
+            <thead>
+              <tr className="text-xs font-medium text-muted-foreground">
+                <th className="pb-2 font-medium">{copy.brand}</th>
+                <th className="pb-2 font-medium">{copy.number}</th>
+                <th className="pb-2 font-medium">{copy.expiry}</th>
+                <th className="pb-2 font-medium">CVV</th>
+              </tr>
+            </thead>
+            <tbody className="font-mono text-foreground">
+              {cards.map((card, i) => (
+                <tr key={i}>
+                  <td className="py-1 pr-4 font-sans text-sm text-muted-foreground">{card.brand}</td>
+                  <td className="py-1 pr-4 text-lg font-semibold">{card.number}</td>
+                  <td className="py-1 pr-4">{card.expiry}</td>
+                  <td className="py-1">{card.cvv}</td>
                 </tr>
-              </thead>
-              <tbody className="font-mono text-foreground">
-                {cards.map((card, i) => (
-                  <tr key={i}>
-                    <td className="py-1 pr-4 font-sans text-sm text-muted-foreground">{card.brand}</td>
-                    <td className="py-1 pr-4 text-lg font-semibold">{card.number}</td>
-                    <td className="py-1 pr-4">{card.expiry}</td>
-                    <td className="py-1">{card.cvv}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

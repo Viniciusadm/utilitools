@@ -14,7 +14,7 @@ export function renderLlmsTxt() {
   return [
     "# UtiliTools",
     "",
-    "> Free online tools: generators and validators for Brazilian documents (CPF, CNPJ, CNH, RG, PIS, voter ID, RENAVAM) and test credit cards, finance calculators, text editors, converters, calculators and random data generators.",
+    "> Free online tools: generators and validators for Brazilian documents (CPF, CNPJ, CNH, RG, PIS, voter ID, RENAVAM) and test credit cards, finance calculators, text editors, converters, calculators, random data generators and developer tools (JSON formatter, Base64, UUID, hash, JWT decoder, Unix timestamp, regex tester, URL encoder and slug generator).",
     "",
     "Every tool runs entirely in the browser, with no sign-up and no data sent to a server. Generated documents are fictitious and intended for software testing only. The site is available in English (under /en/) and Brazilian Portuguese (at the root).",
     "",

@@ -941,6 +941,277 @@ export const TOOL_SEO: Readonly<Record<string, ToolSeo>> = {
       },
     ],
   },
+  "formatar-json": {
+    title: "Formatar JSON Online – Validador e Minificador de JSON",
+    description:
+      "Formate, valide e minifique JSON online grátis. Indente com 2 ou 4 espaços, ordene chaves e veja a linha e a coluna do erro. Tudo roda no navegador.",
+    faq: [
+      {
+        question: "Como formatar um JSON online?",
+        answer:
+          "Cole o JSON no campo de entrada e o resultado formatado aparece na hora. Escolha 2 espaços, 4 espaços ou tab de indentação e clique em Copiar.",
+      },
+      {
+        question: "Como saber se meu JSON é válido?",
+        answer:
+          "A ferramenta valida o JSON enquanto você digita. Se houver erro, ela mostra a linha e a coluna do problema, como uma vírgula sobrando ou uma aspa simples.",
+      },
+      {
+        question: "Qual a diferença entre formatar e minificar JSON?",
+        answer:
+          "Formatar adiciona quebras de linha e indentação para facilitar a leitura. Minificar remove todos os espaços desnecessários para deixar o JSON menor. Os dados são os mesmos.",
+      },
+      {
+        question: "JSON aceita comentários?",
+        answer:
+          "Não. O padrão JSON não permite comentários com // ou /* */. Formatos derivados como JSONC e JSON5 aceitam, mas não são JSON puro.",
+      },
+      {
+        question: "Meu JSON é enviado para algum servidor?",
+        answer: "Não. A formatação e a validação acontecem só no seu navegador, então você pode usar com dados sensíveis.",
+      },
+    ],
+  },
+  "codificar-base64": {
+    title: "Base64 Encode e Decode Online – Codificar e Decodificar Base64",
+    description:
+      "Codifique texto para Base64 e decodifique Base64 para texto online, com suporte a acentos (UTF-8) e Base64 URL-safe. Grátis e sem enviar dados.",
+    faq: [
+      {
+        question: "Como decodificar Base64?",
+        answer:
+          "Escolha Decodificar, cole o texto em Base64 e o conteúdo original aparece na hora. A ferramenta aceita também Base64 URL-safe, com - e _.",
+      },
+      {
+        question: "Base64 é criptografia?",
+        answer:
+          "Não. Base64 é só uma codificação: qualquer pessoa consegue decodificar sem chave. Ele não deve ser usado para proteger senhas ou dados sensíveis.",
+      },
+      {
+        question: "Por que o texto em Base64 termina com =?",
+        answer:
+          "O sinal de igual é preenchimento. Base64 codifica grupos de 3 bytes, e quando o texto não fecha um grupo completo são adicionados um ou dois =.",
+      },
+      {
+        question: "O que é Base64 URL-safe?",
+        answer:
+          "É uma variante que troca + por - e / por _, e remove o =. Assim o valor pode ser usado em URLs e nomes de arquivo sem precisar de escape. É a variante usada no JWT.",
+      },
+      {
+        question: "Quanto o Base64 aumenta o tamanho?",
+        answer: "Cerca de 33%. Cada 3 bytes de entrada viram 4 caracteres em Base64.",
+      },
+    ],
+  },
+  "gerador-de-uuid": {
+    title: "Gerador de UUID Online – UUID v4 e v7 em Massa",
+    description:
+      "Gere UUID v4 aleatório e UUID v7 ordenado por tempo, até 500 de uma vez. Maiúsculas, com ou sem hífens. Gerado no navegador com crypto seguro.",
+    faq: [
+      {
+        question: "UUID e GUID são a mesma coisa?",
+        answer:
+          "Sim. GUID (Globally Unique Identifier) é o nome usado pela Microsoft para o mesmo padrão de identificador de 128 bits.",
+      },
+      {
+        question: "Um UUID pode se repetir?",
+        answer:
+          "Na prática, não. O UUID v4 tem 122 bits aleatórios, e seria preciso gerar bilhões de UUIDs por segundo durante décadas para ter uma chance real de repetição.",
+      },
+      {
+        question: "Qual a diferença entre UUID v4 e v7?",
+        answer:
+          "O v4 é totalmente aleatório. O v7 começa com o horário em milissegundos, então os IDs ficam em ordem de criação, o que melhora o desempenho de índices em bancos de dados.",
+      },
+      {
+        question: "Posso usar UUID como chave primária?",
+        answer:
+          "Sim. Prefira o UUID v7 em tabelas grandes, porque a ordem por tempo evita fragmentação do índice. No PostgreSQL, use o tipo uuid em vez de texto.",
+      },
+      {
+        question: "Quantos caracteres tem um UUID?",
+        answer: "36 caracteres com hífens, ou 32 dígitos hexadecimais sem hífens.",
+      },
+    ],
+  },
+  "gerador-de-hash": {
+    title: "Gerador de Hash Online – MD5, SHA-1, SHA-256 e SHA-512",
+    description:
+      "Gere hash MD5, SHA-1, SHA-256, SHA-384 e SHA-512 de qualquer texto ao mesmo tempo. Grátis, rápido e calculado no seu navegador.",
+    faq: [
+      {
+        question: "Dá para descriptografar um hash MD5 ou SHA-256?",
+        answer:
+          "Não. Hash é uma função de mão única, não uma criptografia. Sites que dizem reverter MD5 só procuram o hash em listas de textos já conhecidos.",
+      },
+      {
+        question: "Qual hash é mais seguro?",
+        answer:
+          "Entre os disponíveis, SHA-256 e SHA-512. MD5 e SHA-1 têm colisões conhecidas e não devem ser usados para segurança, apenas para checksums simples.",
+      },
+      {
+        question: "Posso usar SHA-256 para guardar senhas?",
+        answer:
+          "Não é o ideal. SHA-256 é rápido demais, o que facilita ataques de força bruta. Para senhas, use bcrypt, scrypt ou Argon2, que são lentos e usam salt.",
+      },
+      {
+        question: "Por que o hash muda quando adiciono um espaço?",
+        answer:
+          "Porque qualquer alteração no texto, mesmo um espaço ou uma quebra de linha, gera um hash completamente diferente. Isso é o efeito avalanche.",
+      },
+      {
+        question: "Quantos caracteres tem cada hash?",
+        answer: "Em hexadecimal: MD5 tem 32, SHA-1 tem 40, SHA-256 tem 64, SHA-384 tem 96 e SHA-512 tem 128 caracteres.",
+      },
+    ],
+  },
+  "codificar-url": {
+    title: "URL Encode e Decode Online – Codificar URL",
+    description:
+      "Codifique e decodifique URLs e parâmetros de query string online. Converta espaços, acentos e símbolos para %20, %C3%A7 e volte ao texto original.",
+    faq: [
+      {
+        question: "O que significa %20 em uma URL?",
+        answer: "É o espaço codificado. Em URLs, o espaço não é permitido e vira %20, que é o código hexadecimal do caractere.",
+      },
+      {
+        question: "Qual a diferença entre encodeURI e encodeURIComponent?",
+        answer:
+          "encodeURIComponent codifica tudo, inclusive / ? & e =, e serve para valores de parâmetros. encodeURI preserva a estrutura da URL e serve para o endereço completo.",
+      },
+      {
+        question: "Por que o + virou espaço ao decodificar?",
+        answer:
+          "Formulários HTML enviam espaços como +. Por isso a ferramenta interpreta + como espaço ao decodificar. Para um + literal, use %2B.",
+      },
+      {
+        question: "Como codificar acentos em uma URL?",
+        answer:
+          "Cole o texto e escolha Codificar. Cada letra acentuada vira os bytes em UTF-8, como ç para %C3%A7 e ã para %C3%A3.",
+      },
+    ],
+  },
+  "decodificar-jwt": {
+    title: "Decodificar JWT Online – JWT Decoder",
+    description:
+      "Decodifique tokens JWT online e veja header, payload e datas de emissão e expiração. O token é lido só no navegador e não é enviado a servidores.",
+    faq: [
+      {
+        question: "É seguro colar meu JWT aqui?",
+        answer:
+          "Sim. A decodificação acontece no seu navegador e o token não sai do seu computador. Mesmo assim, evite compartilhar tokens de produção válidos.",
+      },
+      {
+        question: "Decodificar um JWT verifica a assinatura?",
+        answer:
+          "Não. Decodificar só lê o header e o payload. Verificar a assinatura exige a chave secreta (HS256) ou a chave pública (RS256) de quem emitiu o token.",
+      },
+      {
+        question: "Como saber se o JWT está expirado?",
+        answer:
+          "Veja o campo exp do payload. Ele é um timestamp Unix em segundos, e a ferramenta mostra a data convertida e avisa se o token já expirou.",
+      },
+      {
+        question: "O JWT é criptografado?",
+        answer:
+          "Na maioria dos casos, não. O JWT comum (JWS) é só assinado, e qualquer pessoa consegue ler o conteúdo. Existe o JWE, que é criptografado, mas é bem menos usado.",
+      },
+      {
+        question: "O que significam iat, exp e sub?",
+        answer:
+          "iat é a data de emissão, exp é a data de expiração e sub é o identificador do usuário ou do sujeito do token.",
+      },
+    ],
+  },
+  "converter-timestamp": {
+    title: "Converter Timestamp Unix em Data – Epoch Converter",
+    description:
+      "Converta timestamp Unix em data e data em timestamp online. Aceita segundos e milissegundos, mostra UTC e seu fuso horário e o timestamp atual.",
+    faq: [
+      {
+        question: "O que é timestamp Unix?",
+        answer: "É o número de segundos desde 1º de janeiro de 1970, às 00:00:00 UTC. Também é chamado de epoch time.",
+      },
+      {
+        question: "Como saber se o timestamp está em segundos ou milissegundos?",
+        answer:
+          "Pelo número de dígitos. Datas atuais têm 10 dígitos em segundos e 13 em milissegundos. A ferramenta detecta a unidade automaticamente.",
+      },
+      {
+        question: "O timestamp Unix tem fuso horário?",
+        answer:
+          "Não. Ele é sempre contado em UTC. O fuso só entra quando o número é convertido em data e hora para exibição.",
+      },
+      {
+        question: "Como converter timestamp em data no Excel?",
+        answer: "Use a fórmula =A1/86400+DATA(1970;1;1) e formate a célula como data e hora. O resultado fica em UTC.",
+      },
+      {
+        question: "O que acontece em 2038?",
+        answer:
+          "Sistemas que guardam o timestamp em 32 bits estouram em 19 de janeiro de 2038. Sistemas de 64 bits, que são a maioria hoje, não têm esse problema.",
+      },
+    ],
+  },
+  "testar-regex": {
+    title: "Testar Regex Online – Testador de Expressões Regulares",
+    description:
+      "Teste expressões regulares online com destaque das ocorrências, grupos de captura e substituição em tempo real. Usa o motor de regex do JavaScript.",
+    faq: [
+      {
+        question: "Qual sintaxe de regex a ferramenta usa?",
+        answer:
+          "A do JavaScript (ECMAScript). Ela é compatível com a maior parte das regex de Python, Java, PHP e C#, com pequenas diferenças em recursos avançados.",
+      },
+      {
+        question: "Para que serve a flag g?",
+        answer:
+          "A flag g (global) faz a busca encontrar todas as ocorrências. Sem ela, só a primeira ocorrência é considerada na busca e na substituição.",
+      },
+      {
+        question: "Como usar grupos na substituição?",
+        answer:
+          "Coloque partes da regex entre parênteses e use $1, $2 e assim por diante no campo de substituição. $& insere a ocorrência inteira.",
+      },
+      {
+        question: "Preciso escapar a barra invertida?",
+        answer:
+          "Não neste campo. Digite a regex como ela seria escrita entre barras no JavaScript, por exemplo \\d+. Só é preciso dobrar a barra quando a regex fica dentro de uma string no código.",
+      },
+      {
+        question: "Qual regex valida e-mail?",
+        answer:
+          "Uma regex simples e prática é ^[\\w.+-]+@[\\w-]+\\.[\\w.]+$. Validar e-mail com 100% de precisão por regex é inviável, então o ideal é confirmar com um e-mail de verificação.",
+      },
+    ],
+  },
+  "gerador-de-slug": {
+    title: "Gerador de Slug Online – Converter Texto em URL Amigável",
+    description:
+      "Transforme títulos em slugs para URL: sem acentos, sem espaços e com hífens. Gere vários slugs de uma vez para posts, produtos e páginas.",
+    faq: [
+      {
+        question: "O que é slug de URL?",
+        answer:
+          "É a parte final do endereço que identifica a página, como como-fazer-pao em site.com/blog/como-fazer-pao. Ela usa letras minúsculas, números e hífens.",
+      },
+      {
+        question: "É melhor usar hífen ou underline no slug?",
+        answer:
+          "Hífen. O Google trata o hífen como separador de palavras, enquanto o underline pode juntar as palavras em uma só.",
+      },
+      {
+        question: "Posso usar acentos na URL?",
+        answer:
+          "Funciona, mas não é recomendado. Os acentos viram códigos como %C3%A7 quando o link é copiado, o que deixa a URL longa e difícil de ler.",
+      },
+      {
+        question: "Qual o tamanho ideal de um slug?",
+        answer:
+          "Entre 3 e 5 palavras costuma funcionar bem. Mantenha a palavra-chave principal e tire palavras que não acrescentam sentido.",
+      },
+    ],
+  },
 };
 
 export function getToolSeo(id: string, locale: Locale) {

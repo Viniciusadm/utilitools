@@ -1,5 +1,4 @@
 import { useId, useState, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, XCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -88,33 +87,23 @@ export function DocumentValidator({
         </Button>
       </form>
 
-      <AnimatePresence mode="wait">
-        {result && (
-          <motion.div
-            key={`${result.valid}-${result.detail}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            aria-live="polite"
-            className={`rounded-lg border p-5 flex items-center gap-3 ${result.valid ? "border-success/30 bg-success/10" : "border-destructive/30 bg-destructive/10"}`}
-          >
-            {result.valid ? (
-              <CheckCircle className="h-5 w-5 text-success shrink-0" />
-            ) : (
-              <XCircle className="h-5 w-5 text-destructive shrink-0" />
-            )}
-            <div>
-              <p className="text-sm font-semibold text-foreground">
-                {result.valid ? copy.validator.valid(documentName) : copy.validator.invalid(documentName)}
-              </p>
-              <p className="text-xs text-muted-foreground">
-                {result.detail ?? (result.valid ? copy.validator.validDetail : copy.validator.invalidDetail)}
-              </p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {result && (
+        <div aria-live="polite" className={`rounded-lg border p-5 flex items-center gap-3 ${result.valid ? "border-success/30 bg-success/10" : "border-destructive/30 bg-destructive/10"}`}>
+          {result.valid ? (
+            <CheckCircle className="h-5 w-5 text-success shrink-0" />
+          ) : (
+            <XCircle className="h-5 w-5 text-destructive shrink-0" />
+          )}
+          <div>
+            <p className="text-sm font-semibold text-foreground">
+              {result.valid ? copy.validator.valid(documentName) : copy.validator.invalid(documentName)}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {result.detail ?? (result.valid ? copy.validator.validDetail : copy.validator.invalidDetail)}
+            </p>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {children}

@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -114,33 +113,24 @@ export function DocumentGenerator({
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {results.length > 0 && (
-          <motion.div
-            key={`${results.join()}-${newlineSeparator}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5"
-          >
-            <p className="text-sm font-medium text-muted-foreground mb-2">{resultLabel}</p>
-            <div className="font-mono text-lg text-foreground">
-              {newlineSeparator ? (
-                <div className="space-y-1">
-                  {results.map((result, i) => (
-                    <div key={i} className="font-semibold">
-                      {result}
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="font-semibold break-words">{results.join(", ")}</div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {results.length > 0 && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
+          <p className="text-sm font-medium text-muted-foreground mb-2">{resultLabel}</p>
+          <div className="font-mono text-lg text-foreground">
+            {newlineSeparator ? (
+              <div className="space-y-1">
+                {results.map((result, i) => (
+                  <div key={i} className="font-semibold">
+                    {result}
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="font-semibold break-words">{results.join(", ")}</div>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {children}

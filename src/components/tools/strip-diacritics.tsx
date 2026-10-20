@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -9,10 +8,7 @@ import { ToolFaq } from "@/components/tool-faq";
 import { RelatedTools } from "@/components/related-tools";
 import { useUiCopy } from "@/i18n/ui";
 import { useCopy } from "@/lib/i18n";
-
-function stripDiacritics(text: string): string {
-  return text.normalize("NFD").replace(/[̀-ͯ]/g, "");
-}
+import { stripDiacritics } from "@/lib/slug";
 
 const pt = {
   title: "Remover Acentos",
@@ -190,21 +186,12 @@ export default function StripDiacritics() {
         </Button>
       </div>
 
-      <AnimatePresence mode="wait">
-        {output && (
-          <motion.div
-            key={output}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5"
-          >
-            <p className="text-sm font-medium text-muted-foreground mb-2">{copy.result}</p>
-            <p className="text-sm text-foreground whitespace-pre-wrap">{output}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {output && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
+          <p className="text-sm font-medium text-muted-foreground mb-2">{copy.result}</p>
+          <p className="text-sm text-foreground whitespace-pre-wrap">{output}</p>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

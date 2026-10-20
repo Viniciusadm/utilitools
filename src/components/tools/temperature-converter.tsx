@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -243,28 +242,19 @@ export default function TemperatureConverter() {
         ))}
       </div>
 
-      <AnimatePresence mode="wait">
-        {hasResult && (
-          <motion.div
-            key={values.celsius}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3"
-          >
-            <p className="text-sm font-medium text-muted-foreground">{copy.resultTitle}</p>
-            <div className="grid gap-2 sm:grid-cols-3">
-              {SCALES.map((scale) => (
-                <div key={scale}>
-                  <p className="text-xs text-muted-foreground">{labels[scale]}</p>
-                  <p className="text-lg font-semibold font-mono text-foreground">{values[scale]}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {hasResult && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3">
+          <p className="text-sm font-medium text-muted-foreground">{copy.resultTitle}</p>
+          <div className="grid gap-2 sm:grid-cols-3">
+            {SCALES.map((scale) => (
+              <div key={scale}>
+                <p className="text-xs text-muted-foreground">{labels[scale]}</p>
+                <p className="text-lg font-semibold font-mono text-foreground">{values[scale]}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

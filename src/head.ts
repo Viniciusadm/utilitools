@@ -11,9 +11,9 @@ const HEAD_COPY = {
     defaultTitle: "UtiliTools — Ferramentas online gratuitas",
     homeTitle: `Ferramentas online gratuitas · ${siteName}`,
     homeDescription:
-      "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores e calculadoras. Grátis e sem cadastro.",
+      "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores, calculadoras e ferramentas para dev. Grátis e sem cadastro.",
     siteDescription:
-      "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores e calculadoras.",
+      "Central de ferramentas UtiliTools: validação de documentos, geradores, editores de texto, conversores, calculadoras e ferramentas para desenvolvedores.",
     notFoundTitle: `Página não encontrada · ${siteName}`,
     notFoundDescription:
       "Utilitários online gratuitos: validar CPF e CNPJ, gerar dados de teste, editar texto, conversores e mais.",
@@ -33,9 +33,9 @@ const HEAD_COPY = {
     defaultTitle: "UtiliTools — Free online tools",
     homeTitle: `Free online tools · ${siteName}`,
     homeDescription:
-      "UtiliTools: free online tools for developers and everyday tasks. Document generators and validators, text editors, converters and calculators. No sign-up.",
+      "UtiliTools: free online tools for developers and everyday tasks. JSON formatter, Base64, UUID and hash generators, document validators, text editors, converters and calculators. No sign-up.",
     siteDescription:
-      "UtiliTools: document generators and validators, text editors, converters and calculators.",
+      "UtiliTools: document generators and validators, text editors, converters, calculators and developer tools.",
     notFoundTitle: `Page not found · ${siteName}`,
     notFoundDescription:
       "Free online utilities: validate CPF and CNPJ, generate test data, edit text, converters and more.",

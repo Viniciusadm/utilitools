@@ -4,7 +4,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { toast } from "@/hooks/use-toast";
-import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpDown, Shuffle, Copy, Undo2, Trash2, ArrowDownUp } from "lucide-react";
 import { ToolFaq } from "@/components/tool-faq";
 import { RelatedTools } from "@/components/related-tools";
@@ -200,12 +199,12 @@ export default function EditWords() {
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-8">
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+      <div>
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{copy.title}</h1>
         <p className="mt-2 text-muted-foreground leading-relaxed max-w-prose">{copy.intro}</p>
-      </motion.div>
+      </div>
 
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}>
+      <div>
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">{copy.cardTitle}</CardTitle>
@@ -221,16 +220,7 @@ export default function EditWords() {
             />
 
             <div className="flex items-center justify-between flex-wrap gap-2">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={wordCount}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-sm text-muted-foreground tabular-nums"
-                >
-                  {copy.words(wordCount)}
-                </motion.span>
-              </AnimatePresence>
+              <span className="text-sm text-muted-foreground tabular-nums">{copy.words(wordCount)}</span>
             </div>
 
             <div className="space-y-2">
@@ -271,20 +261,15 @@ export default function EditWords() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="space-y-6 text-[15px] leading-7 text-muted-foreground"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <div className="space-y-6 text-[15px] leading-7 text-muted-foreground">
         {copy.content}
 
         <ToolFaq toolId="editar-palavras" />
 
         <RelatedTools ids={["editar-texto"]} />
-      </motion.div>
+      </div>
     </div>
   );
 }

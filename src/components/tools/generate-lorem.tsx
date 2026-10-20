@@ -1,6 +1,5 @@
 
 import { useState, useMemo, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -289,30 +288,21 @@ export default function GenerateLorem() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {output && (
-          <motion.div
-            key={output.slice(0, 40)}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3"
-          >
-            <p className="text-sm font-medium text-muted-foreground">{copy.generatedText}</p>
-            <Textarea
-              value={output}
-              readOnly
-              className="min-h-[200px] bg-background border-border font-mono text-sm"
-            />
-            <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
-              <span>{copy.stats.characters} <strong className="text-foreground">{stats.chars}</strong></span>
-              <span>{copy.stats.words} <strong className="text-foreground">{stats.words}</strong></span>
-              <span>{copy.stats.lines} <strong className="text-foreground">{stats.lines}</strong></span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {output && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3">
+          <p className="text-sm font-medium text-muted-foreground">{copy.generatedText}</p>
+          <Textarea
+            value={output}
+            readOnly
+            className="min-h-[200px] bg-background border-border font-mono text-sm"
+          />
+          <div className="flex flex-wrap gap-4 text-xs text-muted-foreground">
+            <span>{copy.stats.characters} <strong className="text-foreground">{stats.chars}</strong></span>
+            <span>{copy.stats.words} <strong className="text-foreground">{stats.words}</strong></span>
+            <span>{copy.stats.lines} <strong className="text-foreground">{stats.lines}</strong></span>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

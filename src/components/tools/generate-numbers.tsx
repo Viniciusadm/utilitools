@@ -1,6 +1,5 @@
 
 import { useCallback, useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -192,25 +191,16 @@ export default function GenerateRandomNumbers() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {results.length > 0 && (
-          <motion.div
-            key={results.join(",")}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5"
-          >
-            <p className="text-sm font-medium text-muted-foreground mb-2">{copy.generatedNumbers}</p>
-            <div className="font-mono text-lg text-foreground flex flex-wrap gap-3">
-              {results.map((num, i) => (
-                <span key={i} className="font-semibold">{num}</span>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {results.length > 0 && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
+          <p className="text-sm font-medium text-muted-foreground mb-2">{copy.generatedNumbers}</p>
+          <div className="font-mono text-lg text-foreground flex flex-wrap gap-3">
+            {results.map((num, i) => (
+              <span key={i} className="font-semibold">{num}</span>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

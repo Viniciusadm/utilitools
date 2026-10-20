@@ -1,6 +1,5 @@
 
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
@@ -204,21 +203,12 @@ export default function GenerateNames() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {output && (
-          <motion.div
-            key={output}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5"
-          >
-            <p className="text-sm font-medium text-muted-foreground mb-2">{copy.generatedName}</p>
-            <p className="text-xl font-semibold text-foreground tracking-wide">{output}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {output && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5">
+          <p className="text-sm font-medium text-muted-foreground mb-2">{copy.generatedName}</p>
+          <p className="text-xl font-semibold text-foreground tracking-wide">{output}</p>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

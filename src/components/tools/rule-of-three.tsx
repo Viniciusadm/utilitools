@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -162,21 +161,12 @@ export default function RuleOfThree() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {output && (
-          <motion.div
-            key={output}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-1"
-          >
-            <p className="text-sm font-medium text-muted-foreground">{copy.resultTitle}</p>
-            <p className="text-2xl font-semibold font-mono text-foreground">{output}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {output && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-1">
+          <p className="text-sm font-medium text-muted-foreground">{copy.resultTitle}</p>
+          <p className="text-2xl font-semibold font-mono text-foreground">{output}</p>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

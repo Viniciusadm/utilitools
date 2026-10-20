@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -179,25 +178,16 @@ export default function SplitText() {
         </Button>
       </div>
 
-      <AnimatePresence mode="wait">
-        {parts !== null && (
-          <motion.div
-            key={parts.length + parts.join("")}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3"
-          >
-            <p className="text-sm font-medium text-muted-foreground">{copy.result(parts.length)}</p>
-            <div className="space-y-1">
-              {parts.map((part, i) => (
-                <p key={i} className="text-sm font-mono text-foreground bg-background rounded px-3 py-1.5 border border-border">{part}</p>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {parts !== null && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3">
+          <p className="text-sm font-medium text-muted-foreground">{copy.result(parts.length)}</p>
+          <div className="space-y-1">
+            {parts.map((part, i) => (
+              <p key={i} className="text-sm font-mono text-foreground bg-background rounded px-3 py-1.5 border border-border">{part}</p>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

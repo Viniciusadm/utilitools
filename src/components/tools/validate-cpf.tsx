@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -174,36 +173,27 @@ export default function ValidateCPF() {
 
       <Button onClick={handleValidate} disabled={digitsOnly.length !== 11}>{copy.validate}</Button>
 
-      <AnimatePresence mode="wait">
-        {isValid !== null && (
-          <motion.div
-            key={String(isValid)}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className={`rounded-lg border p-5 flex items-center gap-3 ${isValid ? "border-success/30 bg-success/10" : "border-destructive/30 bg-destructive/10"}`}
-          >
-            {isValid ? (
-              <>
-                <CheckCircle className="h-5 w-5 text-success shrink-0" />
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{copy.valid}</p>
-                  <p className="text-xs text-muted-foreground">{copy.validDetail}</p>
-                </div>
-              </>
-            ) : (
-              <>
-                <XCircle className="h-5 w-5 text-destructive shrink-0" />
-                <div>
-                  <p className="text-sm font-semibold text-foreground">{copy.invalid}</p>
-                  <p className="text-xs text-muted-foreground">{copy.invalidDetail}</p>
-                </div>
-              </>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isValid !== null && (
+        <div className={`rounded-lg border p-5 flex items-center gap-3 ${isValid ? "border-success/30 bg-success/10" : "border-destructive/30 bg-destructive/10"}`}>
+          {isValid ? (
+            <>
+              <CheckCircle className="h-5 w-5 text-success shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">{copy.valid}</p>
+                <p className="text-xs text-muted-foreground">{copy.validDetail}</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <XCircle className="h-5 w-5 text-destructive shrink-0" />
+              <div>
+                <p className="text-sm font-semibold text-foreground">{copy.invalid}</p>
+                <p className="text-xs text-muted-foreground">{copy.invalidDetail}</p>
+              </div>
+            </>
+          )}
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

@@ -45,6 +45,15 @@ export const toolLoaders: Record<string, () => Promise<ToolModule>> = {
   "validar-rg": () => import("./validate-rg-sp"),
   "validar-cnpj": () => import("./validate-cnpj"),
   "validar-cpf": () => import("./validate-cpf"),
+  "formatar-json": () => import("./json-formatter"),
+  "codificar-base64": () => import("./base64"),
+  "gerador-de-uuid": () => import("./uuid-generator"),
+  "gerador-de-hash": () => import("./hash-generator"),
+  "codificar-url": () => import("./url-encoder"),
+  "decodificar-jwt": () => import("./jwt-decoder"),
+  "converter-timestamp": () => import("./unix-timestamp"),
+  "testar-regex": () => import("./regex-tester"),
+  "gerador-de-slug": () => import("./slug-generator"),
 };
 
 export async function loadTool(id: string) {

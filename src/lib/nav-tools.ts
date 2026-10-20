@@ -1,5 +1,6 @@
 import {
   Binary,
+  Braces,
   Briefcase,
   Building2,
   Cake,
@@ -7,18 +8,26 @@ import {
   CalendarDays,
   Car,
   CarFront,
+  Clock,
   Columns2,
   CreditCard,
   Dices,
   Divide,
   Eraser,
+  FileCode2,
   FileText,
+  Fingerprint,
+  Hash,
   IdCard,
   KeyRound,
+  KeySquare,
   LetterText,
+  Link,
+  Link2,
   PencilLine,
-  QrCode,
   Percent,
+  QrCode,
+  Regex,
   Scale,
   Scissors,
   ShieldCheck,
@@ -35,7 +44,7 @@ import {
 
 import { homePath, localePrefix, type Locale, type Localized } from "@/lib/i18n";
 
-export const NAV_CATEGORIES = ["documents", "finance", "text", "math", "random"] as const;
+export const NAV_CATEGORIES = ["documents", "finance", "text", "math", "random", "dev"] as const;
 
 export type NavCategory = (typeof NAV_CATEGORIES)[number];
 
@@ -45,6 +54,7 @@ export const CATEGORY_LABELS: Record<NavCategory, Localized<string>> = {
   text: { pt: "Texto", en: "Text" },
   math: { pt: "Matemática", en: "Math" },
   random: { pt: "Dados aleatórios", en: "Random data" },
+  dev: { pt: "Desenvolvimento", en: "Developer tools" },
 };
 
 export type NavTool = {
@@ -392,6 +402,78 @@ export const NAV_TOOLS: readonly NavTool[] = [
     desc: { pt: "Gere números aleatórios", en: "Generate random numbers" },
     category: "random",
     icon: Dices,
+  },
+  {
+    id: "formatar-json",
+    slugs: { pt: "formatar-json", en: "json-formatter" },
+    title: { pt: "Formatar JSON", en: "JSON Formatter" },
+    desc: { pt: "Formate, valide e minifique JSON", en: "Format, validate and minify JSON" },
+    category: "dev",
+    icon: Braces,
+  },
+  {
+    id: "codificar-base64",
+    slugs: { pt: "codificar-base64", en: "base64-encode-decode" },
+    title: { pt: "Base64 Encode e Decode", en: "Base64 Encode and Decode" },
+    desc: { pt: "Codifique e decodifique Base64", en: "Encode and decode Base64 text" },
+    category: "dev",
+    icon: FileCode2,
+  },
+  {
+    id: "gerador-de-uuid",
+    slugs: { pt: "gerador-de-uuid", en: "uuid-generator" },
+    title: { pt: "Gerador de UUID", en: "UUID Generator" },
+    desc: { pt: "Gere UUID v4 e v7 online", en: "Generate UUID v4 and v7 online" },
+    category: "dev",
+    icon: Fingerprint,
+  },
+  {
+    id: "gerador-de-hash",
+    slugs: { pt: "gerador-de-hash", en: "hash-generator" },
+    title: { pt: "Gerador de Hash", en: "Hash Generator" },
+    desc: { pt: "Gere hash MD5, SHA-1 e SHA-256", en: "Generate MD5, SHA-1 and SHA-256 hashes" },
+    category: "dev",
+    icon: Hash,
+  },
+  {
+    id: "codificar-url",
+    slugs: { pt: "codificar-url", en: "url-encoder-decoder" },
+    title: { pt: "URL Encode e Decode", en: "URL Encoder and Decoder" },
+    desc: { pt: "Codifique e decodifique URLs", en: "Encode and decode URLs" },
+    category: "dev",
+    icon: Link,
+  },
+  {
+    id: "decodificar-jwt",
+    slugs: { pt: "decodificar-jwt", en: "jwt-decoder" },
+    title: { pt: "Decodificar JWT", en: "JWT Decoder" },
+    desc: { pt: "Veja header e payload de um JWT", en: "Read a JWT header and payload" },
+    category: "dev",
+    icon: KeySquare,
+  },
+  {
+    id: "converter-timestamp",
+    slugs: { pt: "converter-timestamp", en: "unix-timestamp-converter" },
+    title: { pt: "Converter Timestamp Unix", en: "Unix Timestamp Converter" },
+    desc: { pt: "Converta timestamp Unix em data", en: "Convert Unix timestamps to dates" },
+    category: "dev",
+    icon: Clock,
+  },
+  {
+    id: "testar-regex",
+    slugs: { pt: "testar-regex", en: "regex-tester" },
+    title: { pt: "Testar Regex", en: "Regex Tester" },
+    desc: { pt: "Teste expressões regulares online", en: "Test regular expressions online" },
+    category: "dev",
+    icon: Regex,
+  },
+  {
+    id: "gerador-de-slug",
+    slugs: { pt: "gerador-de-slug", en: "slug-generator" },
+    title: { pt: "Gerador de Slug", en: "Slug Generator" },
+    desc: { pt: "Crie slugs amigáveis para URL", en: "Create URL-friendly slugs" },
+    category: "dev",
+    icon: Link2,
   },
 ];
 

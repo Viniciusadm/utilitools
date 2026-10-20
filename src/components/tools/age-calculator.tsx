@@ -1,6 +1,5 @@
 import { useEffect, useId, useState } from "react";
 import { format, parseISO } from "date-fns";
-import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RelatedTools } from "@/components/related-tools";
@@ -159,39 +158,30 @@ export default function AgeCalculator() {
 
       {invalidRange && <p className="text-sm text-destructive">{copy.invalidRange}</p>}
 
-      <AnimatePresence mode="wait">
-        {age && (
-          <motion.div
-            key={`${birthDate}-${referenceDate}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="space-y-3"
-          >
-            <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-1">
-              <p className="text-sm font-medium text-muted-foreground">{copy.age}</p>
-              <p className="text-2xl font-semibold text-foreground">{copy.ageSummary(age, formatCount)}</p>
-            </div>
-            <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-              {[
-                { label: copy.totalMonths, value: formatCount(age.totalMonths) },
-                { label: copy.totalWeeks, value: formatCount(age.totalWeeks) },
-                { label: copy.totalDays, value: formatCount(age.totalDays) },
-                {
-                  label: copy.nextBirthday,
-                  value: age.daysUntilBirthday === 0 ? copy.birthdayToday : copy.daysUntil(age.daysUntilBirthday, formatCount),
-                },
-              ].map(({ label, value }) => (
-                <div key={label} className="rounded-lg border border-border bg-card p-4">
-                  <dt className="text-xs font-medium text-muted-foreground">{label}</dt>
-                  <dd className="mt-1 font-mono text-lg font-semibold text-foreground">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {age && (
+        <div className="space-y-3">
+          <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-1">
+            <p className="text-sm font-medium text-muted-foreground">{copy.age}</p>
+            <p className="text-2xl font-semibold text-foreground">{copy.ageSummary(age, formatCount)}</p>
+          </div>
+          <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {[
+              { label: copy.totalMonths, value: formatCount(age.totalMonths) },
+              { label: copy.totalWeeks, value: formatCount(age.totalWeeks) },
+              { label: copy.totalDays, value: formatCount(age.totalDays) },
+              {
+                label: copy.nextBirthday,
+                value: age.daysUntilBirthday === 0 ? copy.birthdayToday : copy.daysUntil(age.daysUntilBirthday, formatCount),
+              },
+            ].map(({ label, value }) => (
+              <div key={label} className="rounded-lg border border-border bg-card p-4">
+                <dt className="text-xs font-medium text-muted-foreground">{label}</dt>
+                <dd className="mt-1 font-mono text-lg font-semibold text-foreground">{value}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

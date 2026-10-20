@@ -1,5 +1,4 @@
 import { useId, useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Copy, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -135,7 +134,6 @@ export default function NameDraw() {
   const [quantity, setQuantity] = useState(1);
   const [removeDuplicates, setRemoveDuplicates] = useState(true);
   const [winners, setWinners] = useState<string[]>([]);
-  const [drawCount, setDrawCount] = useState(0);
 
   const names = useMemo(() => parseNames(text, removeDuplicates, locale), [text, removeDuplicates, locale]);
 
@@ -143,7 +141,6 @@ export default function NameDraw() {
     if (names.length === 0) return;
     const count = Math.max(1, Math.min(quantity, names.length));
     setWinners(secureShuffle(names).slice(0, count));
-    setDrawCount((n) => n + 1);
   };
 
   const copyWinners = async () => {
@@ -209,31 +206,21 @@ export default function NameDraw() {
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        {winners.length > 0 && (
-          <motion.div
-            key={drawCount}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5"
-            aria-live="polite"
-          >
-            <p className="text-sm font-medium text-muted-foreground mb-3">
-              {copy.winners(winners.length)}
-            </p>
-            <ol className="space-y-1">
-              {winners.map((name, i) => (
-                <li key={`${name}-${i}`} className="flex gap-3 text-lg">
-                  <span className="font-mono text-muted-foreground">{copy.rank(i + 1)}</span>
-                  <span className="font-semibold text-foreground">{name}</span>
-                </li>
-              ))}
-            </ol>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {winners.length > 0 && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5" aria-live="polite">
+          <p className="text-sm font-medium text-muted-foreground mb-3">
+            {copy.winners(winners.length)}
+          </p>
+          <ol className="space-y-1">
+            {winners.map((name, i) => (
+              <li key={`${name}-${i}`} className="flex gap-3 text-lg">
+                <span className="font-mono text-muted-foreground">{copy.rank(i + 1)}</span>
+                <span className="font-semibold text-foreground">{name}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

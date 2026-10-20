@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -141,34 +140,25 @@ export default function DivideRemainder() {
 
       <Button onClick={handleCalculate} className="px-8">{copy.calculate}</Button>
 
-      <AnimatePresence mode="wait">
-        {result && (
-          <motion.div
-            key={`${result.quotient}-${result.remainder}`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3"
-          >
-            <p className="text-sm font-medium text-muted-foreground">{copy.result}</p>
-            <div className="grid gap-3 sm:grid-cols-3">
-              <div>
-                <p className="text-xs text-muted-foreground">{copy.quotient}</p>
-                <p className="text-lg font-semibold font-mono text-foreground">{numberFormat.format(result.quotient)}</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">{copy.remainder}</p>
-                <p className="text-lg font-semibold font-mono text-foreground">{numberFormat.format(result.remainder)}</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground">{copy.remainderPercent}</p>
-                <p className="text-lg font-semibold font-mono text-foreground">{percentFormat.format(result.remainderPercent)}%</p>
-              </div>
+      {result && (
+        <div className="rounded-lg border border-primary/20 bg-primary/5 p-5 space-y-3">
+          <p className="text-sm font-medium text-muted-foreground">{copy.result}</p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div>
+              <p className="text-xs text-muted-foreground">{copy.quotient}</p>
+              <p className="text-lg font-semibold font-mono text-foreground">{numberFormat.format(result.quotient)}</p>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <div>
+              <p className="text-xs text-muted-foreground">{copy.remainder}</p>
+              <p className="text-lg font-semibold font-mono text-foreground">{numberFormat.format(result.remainder)}</p>
+            </div>
+            <div>
+              <p className="text-xs text-muted-foreground">{copy.remainderPercent}</p>
+              <p className="text-lg font-semibold font-mono text-foreground">{percentFormat.format(result.remainderPercent)}%</p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="space-y-8 border-t border-border pt-10">
         {copy.content}

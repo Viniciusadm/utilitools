@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -173,33 +172,21 @@ export default function ValidateRGRJ() {
         </Button>
       </div>
 
-      <AnimatePresence mode="wait">
-        {isValid !== null && (
-          <motion.div
-            key={String(isValid)}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className={`rounded-lg border p-6 flex items-center gap-3 ${
-              isValid
-                ? "border-success/30 bg-success/10 text-success"
-                : "border-destructive/30 bg-destructive/10 text-destructive"
-            }`}
-          >
-            {isValid ? (
-              <>
-                <CheckCircle className="h-6 w-6" />
-                <span className="text-lg font-semibold">{ui.validator.valid("RG")}</span>
-              </>
-            ) : (
-              <>
-                <XCircle className="h-6 w-6" />
-                <span className="text-lg font-semibold">{ui.validator.invalid("RG")}</span>
-              </>
-            )}
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isValid !== null && (
+        <div className={`rounded-lg border p-6 flex items-center gap-3 ${ isValid ? "border-success/30 bg-success/10 text-success" : "border-destructive/30 bg-destructive/10 text-destructive" }`}>
+          {isValid ? (
+            <>
+              <CheckCircle className="h-6 w-6" />
+              <span className="text-lg font-semibold">{ui.validator.valid("RG")}</span>
+            </>
+          ) : (
+            <>
+              <XCircle className="h-6 w-6" />
+              <span className="text-lg font-semibold">{ui.validator.invalid("RG")}</span>
+            </>
+          )}
+        </div>
+      )}
 
       <div className="space-y-6 text-muted-foreground">{copy.content}</div>
 

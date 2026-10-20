@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
-import { motion, AnimatePresence } from "framer-motion";
 import { Copy, Undo2, Trash2, Shuffle, ArrowDownUp, CaseSensitive, CaseUpper, CaseLower, Type } from "lucide-react";
 import { ToolFaq } from "@/components/tool-faq";
 import { RelatedTools } from "@/components/related-tools";
@@ -188,12 +187,12 @@ export default function EditText() {
 
   return (
     <div className="w-full max-w-3xl mx-auto space-y-8">
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}>
+      <div>
         <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">{copy.title}</h1>
         <p className="mt-2 text-muted-foreground leading-relaxed max-w-prose">{copy.intro}</p>
-      </motion.div>
+      </div>
 
-      <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}>
+      <div>
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">{copy.cardTitle}</CardTitle>
@@ -208,18 +207,11 @@ export default function EditText() {
               className="resize-y"
             />
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${chars}-${wordCount}-${lineCount}`}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="flex gap-4 text-sm text-muted-foreground tabular-nums"
-              >
-                <span>{copy.characters(chars)}</span>
-                <span>{copy.words(wordCount)}</span>
-                <span>{copy.lines(lineCount)}</span>
-              </motion.div>
-            </AnimatePresence>
+            <div className="flex gap-4 text-sm text-muted-foreground tabular-nums">
+              <span>{copy.characters(chars)}</span>
+              <span>{copy.words(wordCount)}</span>
+              <span>{copy.lines(lineCount)}</span>
+            </div>
 
             <div className="flex flex-wrap gap-2">
               <Button onClick={reverseChars} variant="secondary" size="sm" disabled={!text.trim()}>
@@ -252,20 +244,15 @@ export default function EditText() {
             </div>
           </CardContent>
         </Card>
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="space-y-6 text-[15px] leading-7 text-muted-foreground"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
-      >
+      <div className="space-y-6 text-[15px] leading-7 text-muted-foreground">
         {copy.content}
 
         <ToolFaq toolId="editar-texto" />
 
         <RelatedTools ids={["contador-de-caracteres", "editar-palavras", "dividir-texto", "cortar-texto"]} />
-      </motion.div>
+      </div>
     </div>
   );
 }
