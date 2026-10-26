@@ -3,7 +3,7 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 
-const siteUrl = (process.env.VITE_SITE_URL || 'https://www.utilitools.com.br').replace(/\/+$/, '')
+const siteUrl = (process.env.VITE_SITE_URL || 'https://utilitools.com.br').replace(/\/+$/, '')
 
 export default defineConfig({
   define: {

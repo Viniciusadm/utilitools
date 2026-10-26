@@ -1,6 +1,6 @@
 # Utilitools
 
-Utilitools is a collection of small text, number and document tools in Portuguese, built with React and Vite and prerendered as a static site. Every tool runs in the browser; there is no backend. It is live at [utilitools.com.br](https://www.utilitools.com.br/).
+Utilitools is a collection of small text, number and document tools in Portuguese, built with React and Vite and prerendered as a static site. Every tool runs in the browser; there is no backend. It is live at [utilitools.com.br](https://utilitools.com.br/).
 
 The tools are:
 
@@ -29,10 +29,10 @@ The stack is Vite 8, React 19, TypeScript 6 and Tailwind CSS 4.
 `VITE_SITE_URL` is the public address used in canonical links, the sitemap and `robots.txt`. Set it in the environment when building:
 
 ```bash
-VITE_SITE_URL=https://www.utilitools.com.br npm run build
+VITE_SITE_URL=https://utilitools.com.br npm run build
 ```
 
-Without it the site uses `https://www.utilitools.com.br`.
+Without it the site uses `https://utilitools.com.br`.
 
 ## Running locally
 
