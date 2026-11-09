@@ -4,6 +4,7 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/AppSidebar";
 import { Toaster } from "@/components/ui/toaster";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { CommandPalette } from "@/components/command-palette";
 import { homePath, useLocale, type Localized } from "@/lib/i18n";
 
 export function AppLayout({ children, alternates }: { children: ReactNode; alternates: Localized<string> }) {
@@ -30,7 +31,10 @@ export function AppLayout({ children, alternates }: { children: ReactNode; alter
                 <span className="font-display text-lg font-bold tracking-tight text-foreground">UtiliTools</span>
               </a>
             </div>
-            <LanguageSwitcher alternates={alternates} />
+            <div className="flex items-center gap-2">
+              <CommandPalette />
+              <LanguageSwitcher alternates={alternates} />
+            </div>
           </header>
 
           <main className="flex-1 px-5 py-10 md:px-10 md:py-14 max-w-4xl w-full mx-auto">{children}</main>

@@ -43,6 +43,7 @@ import {
 } from "lucide-react";
 
 import { homePath, localePrefix, type Locale, type Localized } from "@/lib/i18n";
+import { stripDiacritics } from "@/lib/slug";
 
 export const NAV_CATEGORIES = ["documents", "finance", "text", "math", "random", "dev"] as const;
 
@@ -495,4 +496,25 @@ export function groupToolsByCategory(tools: readonly NavTool[] = NAV_TOOLS) {
     category,
     tools: tools.filter((t) => t.category === category),
   })).filter((group) => group.tools.length > 0);
+}
+
+export function normalizeSearch(value: string) {
+  return stripDiacritics(value).toLowerCase().trim();
+}
+
+/** Filtra as ferramentas pelo termo, priorizando títulos que começam com ele. */
+export function searchTools(query: string, locale: Locale, tools: readonly NavTool[] = NAV_TOOLS) {
+  const term = normalizeSearch(query);
+  if (!term) return [...tools];
+
+  const scored = tools.flatMap((tool) => {
+    const title = normalizeSearch(tool.title[locale]);
+    const rest = normalizeSearch(
+      `${tool.desc[locale]} ${CATEGORY_LABELS[tool.category][locale]} ${tool.slugs[locale].replace(/-/g, " ")} ${tool.id.replace(/-/g, " ")}`,
+    );
+    const score = title.startsWith(term) || title.includes(` ${term}`) ? 0 : title.includes(term) ? 1 : rest.includes(term) ? 2 : -1;
+    return score < 0 ? [] : [{ tool, score }];
+  });
+
+  return scored.sort((a, b) => a.score - b.score).map(({ tool }) => tool);
 }

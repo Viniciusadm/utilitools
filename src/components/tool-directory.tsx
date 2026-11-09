@@ -4,28 +4,14 @@ import { Search } from "lucide-react";
 
 import { useUiCopy } from "@/i18n/ui";
 import { useLocale } from "@/lib/i18n";
-import { CATEGORY_LABELS, groupToolsByCategory, NAV_TOOLS, toolPath } from "@/lib/nav-tools";
-
-function normalize(value: string) {
-  return value
-    .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
-    .toLowerCase()
-    .trim();
-}
+import { CATEGORY_LABELS, groupToolsByCategory, searchTools, toolPath } from "@/lib/nav-tools";
 
 export function ToolDirectory() {
   const locale = useLocale();
   const copy = useUiCopy();
   const [query, setQuery] = useState("");
 
-  const groups = useMemo(() => {
-    const term = normalize(query);
-    const matches = term
-      ? NAV_TOOLS.filter((t) => normalize(`${t.title[locale]} ${t.desc[locale]} ${CATEGORY_LABELS[t.category][locale]}`).includes(term))
-      : NAV_TOOLS;
-    return groupToolsByCategory(matches);
-  }, [query, locale]);
+  const groups = useMemo(() => groupToolsByCategory(searchTools(query, locale)), [query, locale]);
 
   return (
     <div className="space-y-12">
